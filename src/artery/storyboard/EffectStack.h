@@ -1,7 +1,6 @@
 #ifndef ARTERY_EFFECTSTACK_H_
 #define ARTERY_EFFECTSTACK_H_
 
-#include "artery/storyboard/Macros.h"
 #include <vector>
 #include <memory>
 
@@ -11,7 +10,7 @@ namespace artery
 class Effect;
 class Story;
 
-class STORYBOARD_API EffectStack
+class EffectStack
 {
 public:
     /**

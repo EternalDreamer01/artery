@@ -10,7 +10,7 @@ namespace artery
 /**
  * StopEffectFactories creates StopEffects
  */
-class STORYBOARD_API StopEffectFactory : public EffectFactory
+class StopEffectFactory : public EffectFactory
 {
 public:
     StopEffectFactory() {};

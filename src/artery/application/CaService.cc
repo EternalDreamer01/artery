@@ -107,9 +107,11 @@ void CaService::trigger()
 void CaService::indicate(const vanetza::btp::DataIndication& ind, std::unique_ptr<vanetza::UpPacket> packet)
 {
 	Enter_Method("indicate");
-
 	Asn1PacketVisitor<vanetza::asn1::Cam> visitor;
 	const vanetza::asn1::Cam* cam = boost::apply_visitor(visitor, *packet);
+
+	EV_INFO << getName() << ": Received a CAM packet!" << std::endl;
+
 	if (cam && cam->validate()) {
 		CaObject obj = visitor.shared_wrapper;
 		emit(scSignalCamReceived, &obj);
@@ -125,6 +127,9 @@ void CaService::checkTriggeringConditions(const SimTime& T_now)
 	const SimTime& T_GenCamMax = mGenCamMax;
 	const SimTime T_GenCamDcc = mDccRestriction ? genCamDcc() : T_GenCamMin;
 	const SimTime T_elapsed = T_now - mLastCamTimestamp;
+
+
+
 
 	if (T_elapsed >= T_GenCamDcc) {
 		if (mFixedRate) {

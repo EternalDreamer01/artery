@@ -1,0 +1,2496 @@
+<RSUs>
+  <!--This file was generated with 'RSUGenerator.py -n epita.net.xml -o RSUs.xml'-->
+  <rsu id="9263435437" positionX="977.78" positionY="769.07">
+    <antenna direction="1.6220334941983208"/>
+    <antenna direction="-2.2985847987799226"/>
+  </rsu>
+  <rsu id="cluster_1368411419_9263435418_9263435435" positionX="977.56" positionY="773.3600000000001">
+    <antenna direction="-2.1282645555866404"/>
+    <antenna direction="0.9347756388577819"/>
+    <antenna direction="-2.8213148521784213"/>
+    <antenna direction="-1.5195591593914723"/>
+    <antenna direction="0.5225531465766508"/>
+  </rsu>
+  <rsu id="cluster_1027189532_1027189580_1027189747_130112544_#3more" positionX="968.14" positionY="758.2500000000001">
+    <antenna direction="2.7438925241400733"/>
+    <antenna direction="-1.4244143628859072"/>
+    <antenna direction="1.7900566024804256"/>
+    <antenna direction="0.2656539630978362"/>
+    <antenna direction="1.6363459304883732"/>
+    <antenna direction="1.0133280980031527"/>
+    <antenna direction="-1.6469499323408472"/>
+    <antenna direction="-0.4261545308414724"/>
+    <antenna direction="1.0133280980031527"/>
+    <antenna direction="-0.3158695505361686"/>
+    <antenna direction="-2.880371153437768"/>
+  </rsu>
+  <rsu id="6672769916" positionX="946.93" positionY="767.1600000000001">
+    <antenna direction="-2.711912557267409"/>
+    <antenna direction="-0.3977001294497201"/>
+  </rsu>
+  <rsu id="2841195648" positionX="967.37" positionY="769.9800000000001">
+    <antenna direction="-1.5052467231014202"/>
+    <antenna direction="0.32027780141137185"/>
+  </rsu>
+  <rsu id="9264351113" positionX="1488.9" positionY="753.2600000000001">
+    <antenna direction="0.40168178770390317"/>
+    <antenna direction="2.310692881896844"/>
+    <antenna direction="-1.5283608121984156"/>
+  </rsu>
+  <rsu id="9264351110" positionX="1592.06" positionY="797.08">
+    <antenna direction="-2.73991086588589"/>
+  </rsu>
+  <rsu id="9264351114" positionX="1490.37" positionY="718.6400000000001">
+    <antenna direction="1.6132318413913775"/>
+    <antenna direction="-1.1185721294800328"/>
+  </rsu>
+  <rsu id="cluster_266541506_9264050741" positionX="277.15" positionY="583.1200000000001">
+    <antenna direction="-0.4290582209590084"/>
+    <antenna direction="0.9066970602318828"/>
+    <antenna direction="-2.658145652022591"/>
+    <antenna direction="0.9066970602318828"/>
+  </rsu>
+  <rsu id="266541505" positionX="365.7" positionY="542.6100000000001">
+    <antenna direction="-0.44373558955367054"/>
+    <antenna direction="1.015733791782908"/>
+    <antenna direction="2.7125344326307848"/>
+  </rsu>
+  <rsu id="9338534455" positionX="791.69" positionY="964.4300000000001">
+    <antenna direction="-2.7134712864621635"/>
+    <antenna direction="1.8475093646762146"/>
+  </rsu>
+  <rsu id="9338534456" positionX="786.65" positionY="962.1300000000001">
+    <antenna direction="0.4281213671276297"/>
+  </rsu>
+  <rsu id="cluster_2354444055_2354444056_9340102451_9340102452" positionX="1304.74" positionY="803.4000000000001">
+    <antenna direction="-0.7019645053549566"/>
+    <antenna direction="-0.08855743366282243"/>
+    <antenna direction="-2.403126733496139"/>
+    <antenna direction="-1.3320269274511891"/>
+    <antenna direction="-3.1047680721946547"/>
+  </rsu>
+  <rsu id="9340102450" positionX="1309.34" positionY="799.5100000000001">
+    <antenna direction="2.4396281482348368"/>
+  </rsu>
+  <rsu id="9340102449" positionX="1299.39" positionY="798.5300000000001">
+    <antenna direction="0.7384659200936544"/>
+    <antenna direction="-3.0471377181947177"/>
+  </rsu>
+  <rsu id="cluster_1245210112_213930366_2841195658_498381511_#1more" positionX="565.18" positionY="766.2300000000001">
+    <antenna direction="1.0588750068920931"/>
+    <antenna direction="-2.7051152840687087"/>
+    <antenna direction="-0.7708654764469313"/>
+    <antenna direction="1.2858823972259723"/>
+  </rsu>
+  <rsu id="cluster_267724810_2912877012" positionX="570.31" positionY="775.3600000000001">
+    <antenna direction="2.7883747862399635"/>
+    <antenna direction="-2.0827176466977"/>
+    <antenna direction="-2.9310206967535595"/>
+    <antenna direction="0.6667104134132978"/>
+    <antenna direction="-0.7806344553865942"/>
+  </rsu>
+  <rsu id="cluster_498492801_5926248302_6597415962_6597415964" positionX="443.12" positionY="727.7900000000001">
+    <antenna direction="-2.719508994972531"/>
+    <antenna direction="0.29628674917508974"/>
+    <antenna direction="2.162964126664739"/>
+    <antenna direction="0.4069888473212662"/>
+  </rsu>
+  <rsu id="9672198465" positionX="397.76" positionY="707.4200000000001">
+    <antenna direction="0.4220836586172624"/>
+  </rsu>
+  <rsu id="cluster_1042291747_1042291832_1042291846_1042292047_#17more" positionX="696.49" positionY="340.93000000000006">
+    <antenna direction="-3.0203075884899473"/>
+    <antenna direction="2.250063039225561"/>
+    <antenna direction="2.285576793348541"/>
+    <antenna direction="-0.8842284266752258"/>
+    <antenna direction="-0.8573969437177954"/>
+    <antenna direction="-0.33542665433247754"/>
+    <antenna direction="-0.8573969437177954"/>
+    <antenna direction="0.8383269964972772"/>
+    <antenna direction="0.37378278085941685"/>
+  </rsu>
+  <rsu id="cluster_1042291776_1042291933_1042292045_130111573_#1more" positionX="621.09" positionY="331.74">
+    <antenna direction="1.7427263745795993"/>
+    <antenna direction="-2.130059016405422"/>
+    <antenna direction="0.12128506509984585"/>
+    <antenna direction="0.12128506509984585"/>
+    <antenna direction="0.12128506509984585"/>
+    <antenna direction="-2.130059016405422"/>
+    <antenna direction="-1.6006644189730863"/>
+    <antenna direction="-2.9767629745095423"/>
+  </rsu>
+  <rsu id="cluster_1030443108_1030443219_1030443293_1030443315_#4more" positionX="458.41" positionY="304.68000000000006">
+    <antenna direction="-1.9049758217637913"/>
+    <antenna direction="-3.039217857471477"/>
+    <antenna direction="-1.8026344536124057"/>
+    <antenna direction="0.6065740956497366"/>
+    <antenna direction="1.4039886012561373"/>
+    <antenna direction="-1.6557129191369206"/>
+    <antenna direction="1.4693999889178875"/>
+    <antenna direction="0.16482967908025084"/>
+    <antenna direction="0.6065740956497366"/>
+  </rsu>
+  <rsu id="1025492377" positionX="423.61" positionY="204.45000000000005">
+    <antenna direction="1.236616831826002"/>
+  </rsu>
+  <rsu id="cluster_1246670076_130111570_207637620" positionX="475.85" positionY="408.2600000000001">
+    <antenna direction="-1.737604052333656"/>
+    <antenna direction="1.3342889464328413"/>
+    <antenna direction="0.13375531066686158"/>
+    <antenna direction="2.419926457679074"/>
+    <antenna direction="-1.737604052333656"/>
+    <antenna direction="1.3274773352198892"/>
+  </rsu>
+  <rsu id="cluster_1245210249_1652845440_1652845453_30357647_#8more" positionX="510.13" positionY="550.4900000000001">
+    <antenna direction="-1.807303707156952"/>
+    <antenna direction="0.7659796754505878"/>
+    <antenna direction="-1.799641675518703"/>
+    <antenna direction="2.4798129483270843"/>
+    <antenna direction="0.7536368202949493"/>
+    <antenna direction="-0.6160048173430391"/>
+    <antenna direction="2.4798129483270843"/>
+    <antenna direction="-0.3227596357897666"/>
+    <antenna direction="2.0606114419514303"/>
+  </rsu>
+  <rsu id="498381514" positionX="653.43" positionY="688.33">
+    <antenna direction="-2.3756129781392055"/>
+    <antenna direction="0.6802124874124384"/>
+    <antenna direction="-0.7168665999612488"/>
+  </rsu>
+  <rsu id="264656246" positionX="323.34" positionY="952.8400000000001">
+    <antenna direction="3.0530461565044815"/>
+    <antenna direction="-2.2363873350608325"/>
+    <antenna direction="-0.12755365041199326"/>
+    <antenna direction="-1.872208240389528"/>
+    <antenna direction="2.957458725896009"/>
+  </rsu>
+  <rsu id="271223502" positionX="16.96" positionY="980.0400000000001">
+    <antenna direction="-0.08854649708531194"/>
+  </rsu>
+  <rsu id="4095923186" positionX="1529.54" positionY="578.08">
+    <antenna direction="-1.695917898424157"/>
+    <antenna direction="0.05807415956295972"/>
+    <antenna direction="-3.060816415321223"/>
+  </rsu>
+  <rsu id="9907418968" positionX="1524.29" positionY="536.34">
+    <antenna direction="1.4456747551656364"/>
+    <antenna direction="-0.1427719450196054"/>
+  </rsu>
+  <rsu id="1245210203" positionX="365.37" positionY="693.0500000000001">
+    <antenna direction="-2.2736635644426393"/>
+  </rsu>
+  <rsu id="cluster_1245210097_1245210274" positionX="336.76" positionY="659.2800000000001">
+    <antenna direction="0.5317240672588057"/>
+    <antenna direction="-2.2348955933579107"/>
+    <antenna direction="0.8679290891471539"/>
+    <antenna direction="-2.2348955933579107"/>
+    <antenna direction="0.6719474216240954"/>
+  </rsu>
+  <rsu id="10051046344" positionX="1343.39" positionY="754.34">
+    <antenna direction="-3.0765480628578654"/>
+    <antenna direction="-1.5028690613242883"/>
+    <antenna direction="0.06554066835015256"/>
+    <antenna direction="1.628082975001201"/>
+  </rsu>
+  <rsu id="10051046335" positionX="1327.27" positionY="753.2900000000001">
+    <antenna direction="1.6325708166378707"/>
+    <antenna direction="-1.5052096513711375"/>
+    <antenna direction="0.0650445907319276"/>
+  </rsu>
+  <rsu id="10051046346" positionX="1359.54" positionY="755.4000000000001">
+    <antenna direction="-3.0760519852396406"/>
+    <antenna direction="-1.5006692957627787"/>
+    <antenna direction="0.05882850769887956"/>
+    <antenna direction="1.6308110424337128"/>
+  </rsu>
+  <rsu id="10051046348" positionX="1375.67" positionY="756.3500000000001">
+    <antenna direction="-3.0827641458909136"/>
+    <antenna direction="-1.512385338646335"/>
+    <antenna direction="0.06339701526363171"/>
+    <antenna direction="1.6336504872204711"/>
+  </rsu>
+  <rsu id="10051046350" positionX="1391.58" positionY="757.3600000000001">
+    <antenna direction="-3.0781956383261617"/>
+    <antenna direction="-1.514915339257634"/>
+    <antenna direction="0.0638628804932165"/>
+    <antenna direction="1.6336807350510147"/>
+  </rsu>
+  <rsu id="10051046352" positionX="1407.53" positionY="758.3800000000001">
+    <antenna direction="-3.0777297730965767"/>
+    <antenna direction="-1.5026262604119847"/>
+    <antenna direction="0.06303519022454576"/>
+    <antenna direction="1.6327791318269753"/>
+  </rsu>
+  <rsu id="208987363" positionX="1423.69" positionY="759.4000000000001">
+    <antenna direction="-3.0785574633652475"/>
+    <antenna direction="-1.5176329242988"/>
+    <antenna direction="-1.1969107653332693"/>
+    <antenna direction="1.6330496784728226"/>
+  </rsu>
+  <rsu id="2841195629" positionX="1324.7" positionY="794.84">
+    <antenna direction="-1.5090218369519224"/>
+    <antenna direction="0.0612354237717566"/>
+  </rsu>
+  <rsu id="10051046378" positionX="1310.04" positionY="712.6400000000001">
+    <antenna direction="-1.5186893422724774"/>
+    <antenna direction="1.6374948856671092"/>
+    <antenna direction="-0.00972068863723083"/>
+  </rsu>
+  <rsu id="2354444043" positionX="1310.73" positionY="699.4100000000001">
+    <antenna direction="0.053158010212887144"/>
+    <antenna direction="1.6229033113173157"/>
+    <antenna direction="-2.9150222620794977"/>
+  </rsu>
+  <rsu id="2354444057" positionX="1309.7" positionY="717.7300000000001">
+    <antenna direction="-1.504097767922684"/>
+    <antenna direction="1.6764548779303852"/>
+  </rsu>
+  <rsu id="10051046342" positionX="1329.18" positionY="724.21">
+    <antenna direction="1.6363830022186558"/>
+  </rsu>
+  <rsu id="10051046343" positionX="1345.35" positionY="725.5300000000001">
+    <antenna direction="1.6387235922655048"/>
+  </rsu>
+  <rsu id="10051046345" positionX="1361.57" positionY="726.5000000000001">
+    <antenna direction="1.6409233578270144"/>
+  </rsu>
+  <rsu id="10051046347" positionX="1377.36" positionY="727.45">
+    <antenna direction="1.6292073149434583"/>
+  </rsu>
+  <rsu id="10051046349" positionX="1393.2" positionY="728.4000000000001">
+    <antenna direction="1.6266773143321591"/>
+  </rsu>
+  <rsu id="10051046351" positionX="1409.51" positionY="729.3800000000001">
+    <antenna direction="1.6389663931778085"/>
+  </rsu>
+  <rsu id="10051046353" positionX="1425.23" positionY="730.46">
+    <antenna direction="1.6239597292909933"/>
+  </rsu>
+  <rsu id="10051046354" positionX="1341.01" positionY="795.84">
+    <antenna direction="-1.5135096785885924"/>
+    <antenna direction="0.06226355460207995"/>
+  </rsu>
+  <rsu id="10051046355" positionX="1357.05" positionY="796.84">
+    <antenna direction="-1.5107816111560803"/>
+    <antenna direction="0.061135463107756506"/>
+  </rsu>
+  <rsu id="10051046356" positionX="1373.06" positionY="797.82">
+    <antenna direction="-1.507942166369322"/>
+    <antenna direction="0.06214489100456937"/>
+  </rsu>
+  <rsu id="10051046357" positionX="1388.97" positionY="798.8100000000001">
+    <antenna direction="-1.5079119185387784"/>
+    <antenna direction="0.06121173948181885"/>
+  </rsu>
+  <rsu id="10051046358" positionX="1404.96" positionY="799.7900000000001">
+    <antenna direction="-1.508813521762818"/>
+    <antenna direction="0.06184055254306305"/>
+  </rsu>
+  <rsu id="208987367" positionX="1421.11" positionY="800.7900000000001">
+    <antenna direction="-1.5085429751169708"/>
+  </rsu>
+  <rsu id="10266143923" positionX="583.97" positionY="670.6600000000001">
+    <antenna direction="0.7175676017349722"/>
+    <antenna direction="2.263155677997549"/>
+    <antenna direction="-2.5302147443237923"/>
+  </rsu>
+  <rsu id="10266143932" positionX="603.62" positionY="687.8100000000001">
+    <antenna direction="-2.424025051854821"/>
+  </rsu>
+  <rsu id="10266143926" positionX="559.92" positionY="699.6600000000001">
+    <antenna direction="-0.8784369755922443"/>
+    <antenna direction="0.744629665005866"/>
+  </rsu>
+  <rsu id="1027189686" positionX="869.5" positionY="1023.4000000000001">
+    <antenna direction="-0.9402601223228343"/>
+  </rsu>
+  <rsu id="207639448" positionX="875.23" positionY="1015.5500000000001">
+    <antenna direction="2.201332531266959"/>
+    <antenna direction="-0.9498043454565295"/>
+  </rsu>
+  <rsu id="10576265122" positionX="1288.04" positionY="651.6500000000001">
+    <antenna direction="-2.6110901835733062"/>
+  </rsu>
+  <rsu id="cluster_10576265121_5755481467" positionX="1282.67" positionY="648.5000000000001">
+    <antenna direction="-1.49829247400454"/>
+    <antenna direction="0.530502470016487"/>
+    <antenna direction="0.05230925132351295"/>
+  </rsu>
+  <rsu id="cluster_10576308466_10576308467_3048247364_9006355488_#1more" positionX="1286.38" positionY="597.4200000000001">
+    <antenna direction="3.051125222121855"/>
+    <antenna direction="2.172669727594301"/>
+    <antenna direction="0.6353566008947191"/>
+    <antenna direction="1.643300179585253"/>
+    <antenna direction="-2.647095173060329"/>
+    <antenna direction="-2.0812846487116805"/>
+  </rsu>
+  <rsu id="10576308468" positionX="1258.27" positionY="599.97">
+    <antenna direction="-0.09046743146793833"/>
+  </rsu>
+  <rsu id="1368411399" positionX="1013.77" positionY="822.4000000000001">
+    <antenna direction="-2.949015894189136"/>
+    <antenna direction="-2.206817014732011"/>
+    <antenna direction="0.11086518623276811"/>
+  </rsu>
+  <rsu id="130112543" positionX="982.72" positionY="659.3600000000001">
+    <antenna direction="-1.4549113022173088"/>
+    <antenna direction="-2.8990750191285044"/>
+    <antenna direction="1.717178290703886"/>
+  </rsu>
+  <rsu id="cluster_130112541_130112542_1646121737_1646121740" positionX="988.24" positionY="611.94">
+    <antenna direction="-1.7319021690928715"/>
+    <antenna direction="3.1176737710918863"/>
+    <antenna direction="-2.222844236020802"/>
+    <antenna direction="1.6866813513724845"/>
+    <antenna direction="-2.8421723325389743"/>
+    <antenna direction="0.8215331404227084"/>
+  </rsu>
+  <rsu id="3256984903" positionX="1297.9" positionY="819.9000000000001">
+    <antenna direction="-0.09722696503009157"/>
+    <antenna direction="-3.0266796918078183"/>
+    <antenna direction="3.1351556649296426"/>
+  </rsu>
+  <rsu id="602663726" positionX="1832.07" positionY="767.8000000000001">
+    <antenna direction="3.0443656885597017"/>
+  </rsu>
+  <rsu id="3256984906" positionX="1256.14" positionY="815.08">
+    <antenna direction="0.11491296178197494"/>
+    <antenna direction="-3.0196542375534876"/>
+    <antenna direction="0.43903137023061267"/>
+  </rsu>
+  <rsu id="1027189658" positionX="994.28" positionY="782.9900000000001">
+    <antenna direction="0.12193841603630556"/>
+    <antenna direction="-2.6190395070131425"/>
+    <antenna direction="3.078851893781436"/>
+  </rsu>
+  <rsu id="2841195630" positionX="942.07" positionY="786.2700000000001">
+    <antenna direction="-0.06274075980835717"/>
+    <antenna direction="-2.77311163097364"/>
+  </rsu>
+  <rsu id="1027189895" positionX="892.37" positionY="767.08">
+    <antenna direction="0.3684810226161533"/>
+    <antenna direction="0.14341228695284802"/>
+  </rsu>
+  <rsu id="3270358607" positionX="1055.99" positionY="827.1000000000001">
+    <antenna direction="-3.0307274673570253"/>
+    <antenna direction="0.09815162000535665"/>
+  </rsu>
+  <rsu id="1027190009" positionX="1146.07" positionY="835.97">
+    <antenna direction="-3.0434410335844366"/>
+    <antenna direction="0.08294678412255417"/>
+    <antenna direction="0.4533583379751243"/>
+  </rsu>
+  <rsu id="cluster_130111571_498381506" positionX="604.79" positionY="425.6100000000001">
+    <antenna direction="-3.0078373429229317"/>
+    <antenna direction="2.2194026879793363"/>
+    <antenna direction="-1.3988662790101938"/>
+  </rsu>
+  <rsu id="130111835" positionX="1226.64" positionY="410.71000000000004">
+    <antenna direction="2.3918245479893954"/>
+    <antenna direction="-2.3363656565645132"/>
+  </rsu>
+  <rsu id="130111834" positionX="1181.17" positionY="453.05000000000007">
+    <antenna direction="0.5079248594268064"/>
+    <antenna direction="-0.749768105600398"/>
+  </rsu>
+  <rsu id="2479447888" positionX="896.75" positionY="388.96000000000004">
+    <antenna direction="0.13197097528229243"/>
+    <antenna direction="-3.09657190077516"/>
+    <antenna direction="1.5940047866219607"/>
+  </rsu>
+  <rsu id="cluster_128525094_3331748904" positionX="999.43" positionY="402.59000000000003">
+    <antenna direction="-0.9965220524303728"/>
+    <antenna direction="-3.009621678307501"/>
+    <antenna direction="2.0495215227946564"/>
+    <antenna direction="0.16646946251419528"/>
+  </rsu>
+  <rsu id="130111832" positionX="1052.11" positionY="321.1700000000001">
+    <antenna direction="-0.6901406926775214"/>
+    <antenna direction="0.6405398827036806"/>
+    <antenna direction="2.1450706011594205"/>
+  </rsu>
+  <rsu id="6602161198" positionX="939.87" positionY="807.9900000000001">
+    <antenna direction="2.921394477052837"/>
+    <antenna direction="0.19257675940065738"/>
+  </rsu>
+  <rsu id="266556536" positionX="894.88" positionY="818.0600000000001">
+    <antenna direction="1.8227043891662733"/>
+    <antenna direction="-0.11070722367397609"/>
+    <antenna direction="-0.2201981765369564"/>
+    <antenna direction="2.3120055875547267"/>
+  </rsu>
+  <rsu id="266555512" positionX="892.35" positionY="827.8900000000001">
+    <antenna direction="2.2704164644801326"/>
+    <antenna direction="-0.4646275204950967"/>
+    <antenna direction="-1.31888826442352"/>
+  </rsu>
+  <rsu id="2841194894" positionX="818.21" positionY="915.98">
+    <antenna direction="2.5094110920041497"/>
+    <antenna direction="-0.8711761891096605"/>
+  </rsu>
+  <rsu id="264656253" positionX="742.22" positionY="854.1400000000001">
+    <antenna direction="2.3191095430957893"/>
+    <antenna direction="3.103545179909812"/>
+    <antenna direction="-1.0429598463677863"/>
+  </rsu>
+  <rsu id="6598281625" positionX="725.74" positionY="871.8900000000001">
+    <antenna direction="2.378051274812048"/>
+    <antenna direction="-0.8224831104940038"/>
+    <antenna direction="0.5820189506917121"/>
+  </rsu>
+  <rsu id="cluster_264656252_6598281616" positionX="713.82" positionY="883.3000000000001">
+    <antenna direction="2.5604519601448192"/>
+    <antenna direction="-2.531125047678977"/>
+    <antenna direction="-0.7635413787777454"/>
+    <antenna direction="-2.531125047678977"/>
+  </rsu>
+  <rsu id="432824843" positionX="638.82" positionY="932.5600000000001">
+    <antenna direction="-3.122293093498629"/>
+    <antenna direction="-0.581140693444974"/>
+    <antenna direction="3.126608087395265"/>
+  </rsu>
+  <rsu id="220424982" positionX="1444.29" positionY="220.26999999999998">
+    <antenna direction="-2.314691382603114"/>
+    <antenna direction="0.21569826071405732"/>
+    <antenna direction="0.5684543451968441"/>
+  </rsu>
+  <rsu id="220424980" positionX="1369.97" positionY="139.51">
+    <antenna direction="0.8269012709866795"/>
+  </rsu>
+  <rsu id="482758144" positionX="1727.12" positionY="282.24">
+    <antenna direction="-2.925894392875736"/>
+  </rsu>
+  <rsu id="10266143922" positionX="375.38" positionY="296.1500000000001">
+    <antenna direction="-3.0166065452107595"/>
+    <antenna direction="-1.396480757518534"/>
+    <antenna direction="0.102374796118316"/>
+  </rsu>
+  <rsu id="207095027" positionX="351.98" positionY="293.21000000000004">
+    <antenna direction="0.12498610837903382"/>
+    <antenna direction="-2.813614589587893"/>
+  </rsu>
+  <rsu id="3262154325" positionX="1318.43" positionY="1054.45">
+    <antenna direction="-1.295647162715725"/>
+    <antenna direction="2.073209586938539"/>
+  </rsu>
+  <rsu id="6005182085" positionX="1336.08" positionY="991.9300000000001">
+    <antenna direction="-1.1459081746255464"/>
+    <antenna direction="1.845945490874068"/>
+  </rsu>
+  <rsu id="207119264" positionX="1289.48" positionY="1107.14">
+    <antenna direction="-1.0683830666512542"/>
+  </rsu>
+  <rsu id="cluster_1245210173_271236575_30395547_30484614_#2more" positionX="397.96" positionY="695.2800000000001">
+    <antenna direction="2.478275653998179"/>
+    <antenna direction="-0.6755951561387885"/>
+    <antenna direction="-2.6098685863309874"/>
+    <antenna direction="0.6857665795202732"/>
+    <antenna direction="2.7702588751823916"/>
+    <antenna direction="-0.6755951561387885"/>
+    <antenna direction="2.478275653998179"/>
+  </rsu>
+  <rsu id="2349992186" positionX="1491.2" positionY="657.32">
+    <antenna direction="1.5875387087012736"/>
+    <antenna direction="-1.436074083260184"/>
+  </rsu>
+  <rsu id="208968043" positionX="1490.55" positionY="696.1400000000001">
+    <antenna direction="-3.0745379097320877"/>
+    <antenna direction="-1.5540539448885198"/>
+  </rsu>
+  <rsu id="cluster_208969465_3995137512" positionX="1502.24" positionY="575.8700000000001">
+    <antenna direction="1.7055185703296094"/>
+    <antenna direction="0.08077623826857012"/>
+  </rsu>
+  <rsu id="208977940" positionX="1538.69" positionY="534.2700000000001">
+    <antenna direction="-1.7602853760940558"/>
+    <antenna direction="-0.1299855918749619"/>
+  </rsu>
+  <rsu id="486488610" positionX="1535.84" positionY="519.4100000000001">
+    <antenna direction="1.3813072774957376"/>
+    <antenna direction="3.0041438055864993"/>
+    <antenna direction="-0.13595294818162412"/>
+  </rsu>
+  <rsu id="486488614" positionX="1512.85" positionY="522.59">
+    <antenna direction="-2.1488174106647144"/>
+    <antenna direction="-0.1374488480032938"/>
+    <antenna direction="1.4053239898813779"/>
+  </rsu>
+  <rsu id="208979797" positionX="1484.46" positionY="479.07000000000005">
+    <antenna direction="0.9927752429250789"/>
+  </rsu>
+  <rsu id="208986764" positionX="1440.49" positionY="716.58">
+    <antenna direction="0.04127566172150327"/>
+    <antenna direction="1.944681888256524"/>
+  </rsu>
+  <rsu id="211205634" positionX="1501.63" positionY="293.1500000000001">
+    <antenna direction="0.3064985900461263"/>
+    <antenna direction="-3.1100349056892287"/>
+    <antenna direction="1.5206705656572364"/>
+  </rsu>
+  <rsu id="128525236" positionX="1632.89" positionY="334.69000000000005">
+    <antenna direction="-2.835094063543667"/>
+  </rsu>
+  <rsu id="211452771" positionX="1472.17" positionY="292.22">
+    <antenna direction="0.03155774790056451"/>
+    <antenna direction="-1.351516134053329"/>
+    <antenna direction="-2.970749646134845"/>
+  </rsu>
+  <rsu id="7091222275" positionX="1007.17" positionY="632.2900000000001">
+    <antenna direction="-2.320059513167085"/>
+    <antenna direction="0.12921741176557072"/>
+    <antenna direction="-0.39527869858796166"/>
+  </rsu>
+  <rsu id="7091222278" positionX="1034.49" positionY="635.84">
+    <antenna direction="-3.0123752418242224"/>
+    <antenna direction="0.09357499754862612"/>
+  </rsu>
+  <rsu id="211329380" positionX="1066.03" positionY="638.8000000000001">
+    <antenna direction="-3.048017656041167"/>
+    <antenna direction="1.5992260116969912"/>
+    <antenna direction="-0.057739218525105246"/>
+  </rsu>
+  <rsu id="211331305" positionX="1061.97" positionY="781.57">
+    <antenna direction="-1.5423666418928021"/>
+    <antenna direction="0.10713865469461974"/>
+    <antenna direction="-2.9366616516656516"/>
+  </rsu>
+  <rsu id="6694348512" positionX="1051.51" positionY="261.18000000000006">
+    <antenna direction="2.4101385517646325"/>
+    <antenna direction="-0.7326071006801652"/>
+    <antenna direction="0.8848472769239808"/>
+  </rsu>
+  <rsu id="211353735" positionX="1021.84" positionY="287.8100000000002">
+    <antenna direction="-0.7314541018251608"/>
+  </rsu>
+  <rsu id="211353736" positionX="1075.42" positionY="239.67000000000007">
+    <antenna direction="2.4089855529096282"/>
+  </rsu>
+  <rsu id="211487413" positionX="1328.56" positionY="225.75">
+    <antenna direction="1.019631962645518"/>
+    <antenna direction="2.610172653216319"/>
+  </rsu>
+  <rsu id="cluster_128525014_211231231" positionX="1357.23" positionY="272.3900000000001">
+    <antenna direction="0.17084300745494854"/>
+    <antenna direction="2.2850343903368184"/>
+    <antenna direction="-2.121960690944275"/>
+    <antenna direction="3.1035208359041304"/>
+  </rsu>
+  <rsu id="cluster_2271353439_485655119" positionX="1111.68" positionY="224.66000000000008">
+    <antenna direction="-2.088422077325294"/>
+    <antenna direction="1.1090225444579116"/>
+    <antenna direction="-0.42644873016847196"/>
+  </rsu>
+  <rsu id="211333573" positionX="1096.34" positionY="197.72000000000003">
+    <antenna direction="1.0531705762644992"/>
+  </rsu>
+  <rsu id="480251752" positionX="1482.5" positionY="250.17000000000007">
+    <antenna direction="-1.3381871465738813"/>
+    <antenna direction="1.8172542787835497"/>
+  </rsu>
+  <rsu id="cluster_211460125_480424951" positionX="1483.63" positionY="245.4000000000001">
+    <antenna direction="-2.573138308392949"/>
+    <antenna direction="1.8034055070159118"/>
+    <antenna direction="0.24659626119834832"/>
+  </rsu>
+  <rsu id="266556546" positionX="1198.82" positionY="861.6700000000001">
+    <antenna direction="1.7288568399585231"/>
+    <antenna direction="-2.688234315614669"/>
+    <antenna direction="-1.4491254196290144"/>
+  </rsu>
+  <rsu id="cluster_207118636_6535020480" positionX="1184.29" positionY="952.8300000000002">
+    <antenna direction="1.2591955198648712"/>
+    <antenna direction="-1.5518279909414918"/>
+    <antenna direction="0.15494020264204947"/>
+    <antenna direction="-1.41273581363127"/>
+    <antenna direction="-3.1024430628741047"/>
+    <antenna direction="0.8444105279238566"/>
+  </rsu>
+  <rsu id="cluster_2481819883_4472240034" positionX="806.26" positionY="315.4000000000001">
+    <antenna direction="1.1595762964094616"/>
+    <antenna direction="-2.016628992330499"/>
+    <antenna direction="-0.965297520024851"/>
+    <antenna direction="-2.036205235660228"/>
+  </rsu>
+  <rsu id="264656791" positionX="810.49" positionY="325.10000000000014">
+    <antenna direction="1.385434569984158"/>
+    <antenna direction="-1.9820163571803318"/>
+    <antenna direction="-0.9729019059714827"/>
+  </rsu>
+  <rsu id="6598335490" positionX="774.65" positionY="249.26">
+    <antenna direction="1.1249636612592941"/>
+    <antenna direction="2.143762469683594"/>
+    <antenna direction="-2.603736652714309"/>
+  </rsu>
+  <rsu id="cluster_10084641774_484799030" positionX="768.33" positionY="245.49">
+    <antenna direction="0.5378560008754845"/>
+    <antenna direction="-1.0314130955834295"/>
+    <antenna direction="-2.771675043720639"/>
+    <antenna direction="-1.6152115420418314"/>
+  </rsu>
+  <rsu id="10051046337" positionX="1387.41" positionY="703.4900000000001">
+    <antenna direction="1.3546558205391606"/>
+    <antenna direction="-3.088434643376906"/>
+  </rsu>
+  <rsu id="4101867356" positionX="945.0" positionY="862.09">
+    <antenna direction="1.7578683619822255"/>
+    <antenna direction="-1.3515360511093677"/>
+  </rsu>
+  <rsu id="549089558" positionX="929.56" positionY="943.6600000000001">
+    <antenna direction="0.23166891623679745"/>
+    <antenna direction="2.219686144013213"/>
+    <antenna direction="-1.3837242916075676"/>
+  </rsu>
+  <rsu id="3187775242" positionX="1085.06" positionY="637.7">
+    <antenna direction="1.6126595190814423"/>
+    <antenna direction="-1.4431282576776945"/>
+    <antenna direction="-1.4431282576776945"/>
+  </rsu>
+  <rsu id="3187775241" positionX="1081.98" positionY="711.2300000000001">
+    <antenna direction="-1.5289331345083508"/>
+  </rsu>
+  <rsu id="3187775245" positionX="1087.92" positionY="615.4200000000001">
+    <antenna direction="1.6984643959120989"/>
+    <antenna direction="-1.442725331359213"/>
+  </rsu>
+  <rsu id="10576265118" positionX="1091.16" positionY="590.2600000000001">
+    <antenna direction="1.6988673222305801"/>
+    <antenna direction="0.08658478745622718"/>
+    <antenna direction="-1.3956235159695436"/>
+  </rsu>
+  <rsu id="cluster_3187775239_9006355492" positionX="1094.79" positionY="569.7500000000001">
+    <antenna direction="1.7459691376202497"/>
+    <antenna direction="-2.0234721336737396"/>
+    <antenna direction="-0.014267580913706786"/>
+  </rsu>
+  <rsu id="9006355493" positionX="1161.37" positionY="568.8000000000001">
+    <antenna direction="3.1273250726760864"/>
+    <antenna direction="-0.036793204146487714"/>
+    <antenna direction="1.6612591308290885"/>
+  </rsu>
+  <rsu id="cluster_10576265116_10576265117_10576308461_2367683631_#1more" positionX="1195.6" positionY="567.5400000000001">
+    <antenna direction="3.1047994494433055"/>
+    <antenna direction="-2.99347948103003"/>
+    <antenna direction="0.40989174461904404"/>
+    <antenna direction="-1.6150711714644015"/>
+  </rsu>
+  <rsu id="207132974" positionX="1209.03" positionY="1029.64">
+    <antenna direction="-0.41496655073608385"/>
+    <antenna direction="-1.8823971337249221"/>
+  </rsu>
+  <rsu id="211317222" positionX="983.99" positionY="432.34000000000003">
+    <antenna direction="-1.092071130795137"/>
+    <antenna direction="-2.9560906484435736"/>
+    <antenna direction="1.8167679096438096"/>
+  </rsu>
+  <rsu id="2841195729" positionX="970.31" positionY="486.83000000000004">
+    <antenna direction="-1.3248247439459837"/>
+    <antenna direction="1.616770852370817"/>
+  </rsu>
+  <rsu id="130112539" positionX="969.78" positionY="498.35000000000014">
+    <antenna direction="-1.5248218012189763"/>
+    <antenna direction="1.4096904844969218"/>
+  </rsu>
+  <rsu id="264656247" positionX="460.65" positionY="935.23">
+    <antenna direction="3.0140390031778"/>
+    <antenna direction="-0.20496468122156813"/>
+  </rsu>
+  <rsu id="2514997026" positionX="869.91" positionY="854.94">
+    <antenna direction="0.04734158305677665"/>
+    <antenna direction="2.2537653746443054"/>
+    <antenna direction="0.04734158305677665"/>
+  </rsu>
+  <rsu id="2514997024" positionX="919.09" positionY="857.2700000000001">
+    <antenna direction="-3.0942510705330166"/>
+    <antenna direction="-3.0942510705330166"/>
+    <antenna direction="1.5542608690283344"/>
+  </rsu>
+  <rsu id="2514997017" positionX="855.53" positionY="926.0800000000002">
+    <antenna direction="0.5807675876714125"/>
+    <antenna direction="-1.7767641365105162"/>
+    <antenna direction="-1.7767641365105162"/>
+  </rsu>
+  <rsu id="2514997014" positionX="913.86" positionY="964.3600000000001">
+    <antenna direction="2.2440391427984157"/>
+    <antenna direction="-2.560825065918381"/>
+    <antenna direction="-0.9219065095765802"/>
+  </rsu>
+  <rsu id="2514997021" positionX="846.64" positionY="883.5300000000001">
+    <antenna direction="1.364828517079277"/>
+    <antenna direction="-0.887434200679506"/>
+    <antenna direction="1.364828517079277"/>
+  </rsu>
+  <rsu id="6595183081" positionX="858.65" positionY="868.7800000000001">
+    <antenna direction="2.2541584529102874"/>
+    <antenna direction="-0.887827278945488"/>
+  </rsu>
+  <rsu id="10266143929" positionX="543.84" positionY="642.5300000000001">
+    <antenna direction="-0.8436828214288508"/>
+    <antenna direction="2.3123594092930335"/>
+  </rsu>
+  <rsu id="cluster_266184195_266541040" positionX="573.13" positionY="609.6100000000001">
+    <antenna direction="-2.387955833294844"/>
+    <antenna direction="2.2979098321609426"/>
+    <antenna direction="0.7754626332132936"/>
+    <antenna direction="-0.8549635237024947"/>
+  </rsu>
+  <rsu id="10266143939" positionX="520.08" positionY="668.47">
+    <antenna direction="-0.8292332442967598"/>
+    <antenna direction="0.6642153400822355"/>
+    <antenna direction="2.312618489243653"/>
+  </rsu>
+  <rsu id="266541041" positionX="506.81" positionY="682.95">
+    <antenna direction="-0.8289741643461401"/>
+  </rsu>
+  <rsu id="6602276539" positionX="433.55" positionY="511.9200000000001">
+    <antenna direction="-0.43719277569102427"/>
+    <antenna direction="2.724761808564103"/>
+    <antenna direction="-2.0317961043844206"/>
+  </rsu>
+  <rsu id="cluster_266541502_6682242286" positionX="494.51" positionY="483.43000000000006">
+    <antenna direction="-1.814115318369904"/>
+    <antenna direction="2.704399877898769"/>
+    <antenna direction="1.3419509780710903"/>
+  </rsu>
+  <rsu id="9264050726" positionX="385.58" positionY="533.1600000000001">
+    <antenna direction="-0.4168308450256899"/>
+    <antenna direction="2.6978570640361226"/>
+  </rsu>
+  <rsu id="30395545" positionX="428.72" positionY="644.2400000000001">
+    <antenna direction="-2.1258588618068854"/>
+    <antenna direction="2.1131727717297784"/>
+  </rsu>
+  <rsu id="1721061907" positionX="73.71" positionY="1166.88">
+    <antenna direction="0.24975897192384183"/>
+  </rsu>
+  <rsu id="266554152" positionX="697.58" positionY="1326.02">
+    <antenna direction="-2.8918336816659513"/>
+  </rsu>
+  <rsu id="cluster_536938217_6598281623_6598281624" positionX="656.66" positionY="843.3100000000001">
+    <antenna direction="-2.4748822401764956"/>
+    <antenna direction="1.4350945282060286"/>
+    <antenna direction="0.6104676059108162"/>
+    <antenna direction="0.6104676059108162"/>
+    <antenna direction="-2.693049150597671"/>
+    <antenna direction="-2.693049150597671"/>
+  </rsu>
+  <rsu id="432823905" positionX="307.83" positionY="902.95">
+    <antenna direction="1.2693844132002654"/>
+    <antenna direction="2.764349638325255"/>
+    <antenna direction="-0.9794261560686846"/>
+  </rsu>
+  <rsu id="267727836" positionX="334.92" positionY="862.6100000000001">
+    <antenna direction="2.162166497521109"/>
+    <antenna direction="-3.067516671292135"/>
+  </rsu>
+  <rsu id="6618652176" positionX="836.69" positionY="286.6300000000001">
+    <antenna direction="2.1686907476183106"/>
+    <antenna direction="-0.9979802689532631"/>
+  </rsu>
+  <rsu id="6618652167" positionX="845.5" positionY="272.97">
+    <antenna direction="2.1436123846365303"/>
+    <antenna direction="-1.0295989048438559"/>
+  </rsu>
+  <rsu id="6618652169" positionX="869.35" positionY="233.2900000000002">
+    <antenna direction="2.1119937487459373"/>
+    <antenna direction="-1.2646419179823059"/>
+  </rsu>
+  <rsu id="2911940388" positionX="901.74" positionY="130.82000000000016">
+    <antenna direction="1.8769507356074875"/>
+  </rsu>
+  <rsu id="8743772914" positionX="272.66" positionY="266.22">
+    <antenna direction="0.3279780640019003"/>
+  </rsu>
+  <rsu id="1027189925" positionX="936.98" positionY="749.9200000000001">
+    <antenna direction="0.2612215001520254"/>
+    <antenna direction="-2.9359061979517325"/>
+    <antenna direction="1.7951763380639194"/>
+  </rsu>
+  <rsu id="484793969" positionX="808.85" positionY="385.0">
+    <antenna direction="0.04502075281463293"/>
+    <antenna direction="-2.8618054538447715"/>
+  </rsu>
+  <rsu id="211489250" positionX="1300.26" positionY="274.5600000000002">
+    <antenna direction="-0.03807181768566266"/>
+    <antenna direction="-3.0773123533950004"/>
+  </rsu>
+  <rsu id="cluster_211232402_485655146" positionX="1280.53" positionY="273.2900000000002">
+    <antenna direction="0.06428030019479271"/>
+    <antenna direction="2.2753028651533223"/>
+    <antenna direction="-2.7935100390664895"/>
+  </rsu>
+  <rsu id="485655149" positionX="1224.53" positionY="252.97000000000003">
+    <antenna direction="0.34808261452330364"/>
+    <antenna direction="0.8774813281478941"/>
+    <antenna direction="-2.723131656296458"/>
+  </rsu>
+  <rsu id="289869242" positionX="1103.32" positionY="308.93000000000006">
+    <antenna direction="2.487522522999421"/>
+    <antenna direction="0.8810608676370851"/>
+    <antenna direction="-0.6619780392545538"/>
+  </rsu>
+  <rsu id="289869231" positionX="1069.98" positionY="334.49">
+    <antenna direction="0.8848492069787833"/>
+    <antenna direction="-0.6540701305903723"/>
+  </rsu>
+  <rsu id="289869234" positionX="1121.08" positionY="295.09000000000015">
+    <antenna direction="2.4796146143352393"/>
+    <antenna direction="-2.2914043481708193"/>
+  </rsu>
+  <rsu id="289869241" positionX="1148.92" positionY="364.21000000000004">
+    <antenna direction="-2.260531785952708"/>
+    <antenna direction="-0.6905026037097011"/>
+  </rsu>
+  <rsu id="2841195601" positionX="1185.51" positionY="888.5200000000001">
+    <antenna direction="1.5897646626483015"/>
+  </rsu>
+  <rsu id="2841194880" positionX="1158.76" positionY="951.8300000000002">
+    <antenna direction="-2.741635922550764"/>
+    <antenna direction="0.03914959071568871"/>
+    <antenna direction="3.1198130303843037"/>
+  </rsu>
+  <rsu id="2841194890" positionX="1107.05" positionY="929.97">
+    <antenna direction="0.3999567310390293"/>
+  </rsu>
+  <rsu id="208974233" positionX="1308.84" positionY="512.57">
+    <antenna direction="-0.9324133795006686"/>
+    <antenna direction="-1.8879333037753487"/>
+  </rsu>
+  <rsu id="2841195728" positionX="1323.51" positionY="492.80000000000007">
+    <antenna direction="2.2091792740891245"/>
+    <antenna direction="2.9354713117144864"/>
+  </rsu>
+  <rsu id="6246197622" positionX="266.8" positionY="748.1500000000001">
+    <antenna direction="-3.06270928855927"/>
+    <antenna direction="-0.1020802674377402"/>
+    <antenna direction="-3.06270928855927"/>
+  </rsu>
+  <rsu id="2878751072" positionX="98.42" positionY="734.84">
+    <antenna direction="0.07888336503052296"/>
+    <antenna direction="0.07888336503052296"/>
+  </rsu>
+  <rsu id="267724801" positionX="487.54" positionY="929.6400000000001">
+    <antenna direction="2.936627972368225"/>
+    <antenna direction="0.019299560091164403"/>
+    <antenna direction="-1.643064440575861"/>
+  </rsu>
+  <rsu id="3048247363" positionX="1313.26" positionY="617.2400000000001">
+    <antenna direction="-2.506236052695074"/>
+  </rsu>
+  <rsu id="3187775195" positionX="1194.83" positionY="550.1600000000001">
+    <antenna direction="1.5265214821253916"/>
+    <antenna direction="-1.04716427671658"/>
+    <antenna direction="-1.3134549630001027"/>
+  </rsu>
+  <rsu id="3187775203" positionX="1209.9" positionY="524.0600000000001">
+    <antenna direction="2.0944283768732133"/>
+    <antenna direction="-1.0215885517551533"/>
+    <antenna direction="-1.0215885517551533"/>
+  </rsu>
+  <rsu id="3187775197" positionX="1220.8" positionY="506.2500000000001">
+    <antenna direction="2.12000410183464"/>
+    <antenna direction="2.12000410183464"/>
+    <antenna direction="-2.331156545696408"/>
+  </rsu>
+  <rsu id="cluster_3187775198_3187775199" positionX="1209.51" positionY="494.3800000000001">
+    <antenna direction="0.810436107893385"/>
+    <antenna direction="1.8281376905896904"/>
+    <antenna direction="2.601224990963659"/>
+    <antenna direction="-0.9073863443758792"/>
+  </rsu>
+  <rsu id="3187775209" positionX="1181.14" positionY="511.4000000000001">
+    <antenna direction="-0.5403676626261343"/>
+    <antenna direction="-1.4167553532672867"/>
+    <antenna direction="2.0890441704543687"/>
+  </rsu>
+  <rsu id="3187775201" positionX="1167.46" positionY="535.3900000000001">
+    <antenna direction="-1.0525484831354248"/>
+  </rsu>
+  <rsu id="3187775207" positionX="1186.84" positionY="474.69000000000005">
+    <antenna direction="1.7248373003225064"/>
+  </rsu>
+  <rsu id="3187775231" positionX="1002.17" positionY="490.7600000000001">
+    <antenna direction="1.4977070949549247"/>
+    <antenna direction="-0.7440215901447151"/>
+    <antenna direction="-3.0188604697200048"/>
+  </rsu>
+  <rsu id="3187775234" positionX="1005.82" positionY="540.6100000000001">
+    <antenna direction="-1.6438855586348686"/>
+  </rsu>
+  <rsu id="3187775220" positionX="1048.58" positionY="448.0400000000001">
+    <antenna direction="2.397571063445078"/>
+    <antenna direction="1.7029006011567605"/>
+    <antenna direction="0.12073496243251025"/>
+  </rsu>
+  <rsu id="3187775226" positionX="1046.05" positionY="467.08000000000004">
+    <antenna direction="1.7031330916879726"/>
+    <antenna direction="0.13491770999446837"/>
+    <antenna direction="-1.4386920524330329"/>
+  </rsu>
+  <rsu id="7782784665" positionX="1072.73" positionY="450.97">
+    <antenna direction="-3.020857691157283"/>
+    <antenna direction="0.1209749977611041"/>
+    <antenna direction="-1.4881960252539848"/>
+  </rsu>
+  <rsu id="7782776816" positionX="1082.93" positionY="452.21000000000004">
+    <antenna direction="-3.0206176558286892"/>
+    <antenna direction="0.18222612271299574"/>
+    <antenna direction="-2.306889065395737"/>
+  </rsu>
+  <rsu id="3187775218" positionX="1118.15" positionY="458.70000000000005">
+    <antenna direction="-2.9593665308767974"/>
+    <antenna direction="2.0316197493763437"/>
+  </rsu>
+  <rsu id="3187775224" positionX="1109.7" positionY="475.72">
+    <antenna direction="-1.1099729042134494"/>
+    <antenna direction="2.032515917619133"/>
+    <antenna direction="-3.006674943595325"/>
+  </rsu>
+  <rsu id="3187775227" positionX="1103.5" positionY="488.18000000000006">
+    <antenna direction="-1.1090767359706601"/>
+    <antenna direction="2.9055658636633415"/>
+    <antenna direction="-3.043555565454599"/>
+  </rsu>
+  <rsu id="7782776817" positionX="1065.04" positionY="497.43000000000006">
+    <antenna direction="-0.2360267899264519"/>
+    <antenna direction="-2.5186482406061037"/>
+  </rsu>
+  <rsu id="3187775229" positionX="1044.02" positionY="482.33000000000004">
+    <antenna direction="0.6229444129836894"/>
+    <antenna direction="0.09803708813519392"/>
+    <antenna direction="-1.4384595619018206"/>
+  </rsu>
+  <rsu id="cluster_267724745_6268753561_6268753562_6268753563_#1more" positionX="481.81" positionY="850.4900000000001">
+    <antenna direction="1.4985282130139321"/>
+    <antenna direction="-0.24609170220843393"/>
+    <antenna direction="2.800306780895662"/>
+    <antenna direction="1.5734118395752714"/>
+    <antenna direction="-0.8993914856226881"/>
+    <antenna direction="-2.711294419152401"/>
+  </rsu>
+  <rsu id="2841195623" positionX="529.57" positionY="790.3800000000001">
+    <antenna direction="2.2422011679671052"/>
+    <antenna direction="-2.655958459438973"/>
+    <antenna direction="-1.6328284392076582"/>
+    <antenna direction="-0.35321786734982974"/>
+  </rsu>
+  <rsu id="3262154331" positionX="1304.89" positionY="987.94">
+    <antenna direction="-0.5802852782130073"/>
+    <antenna direction="2.7269478370991314"/>
+    <antenna direction="1.3699623685215676"/>
+    <antenna direction="-1.7773276801365703"/>
+  </rsu>
+  <rsu id="6535017726" positionX="1342.46" positionY="963.3100000000001">
+    <antenna direction="2.561307375376786"/>
+    <antenna direction="-0.4307940061268868"/>
+    <antenna direction="3.014931744605863"/>
+    <antenna direction="0.6835701779742065"/>
+  </rsu>
+  <rsu id="3262154328" positionX="1236.87" positionY="1017.8800000000001">
+    <antenna direction="-0.4146448164906618"/>
+    <antenna direction="-1.4500173970024306"/>
+    <antenna direction="2.7466680715438905"/>
+    <antenna direction="1.222079484123005"/>
+  </rsu>
+  <rsu id="3262154326" positionX="1215.59" positionY="1026.75">
+    <antenna direction="-0.3949245820459028"/>
+    <antenna direction="2.7266261028537095"/>
+  </rsu>
+  <rsu id="3256984902" positionX="1266.83" positionY="820.1000000000001">
+    <antenna direction="1.670421572740378"/>
+    <antenna direction="-0.0064369886601506245"/>
+  </rsu>
+  <rsu id="3256984892" positionX="1264.55" positionY="842.9100000000001">
+    <antenna direction="-1.4711710808494154"/>
+    <antenna direction="2.117585167684138"/>
+  </rsu>
+  <rsu id="3262154351" positionX="1390.83" positionY="941.0800000000002">
+    <antenna direction="2.7107986474629064"/>
+    <antenna direction="-0.27286342569747185"/>
+  </rsu>
+  <rsu id="243206812" positionX="1763.61" positionY="836.7600000000001">
+    <antenna direction="2.8687292278923215"/>
+  </rsu>
+  <rsu id="3256984896" positionX="1201.4" positionY="840.57">
+    <antenna direction="-3.058645869467239"/>
+    <antenna direction="0.1430287559176003"/>
+    <antenna direction="1.692467233960779"/>
+  </rsu>
+  <rsu id="3256984874" positionX="1279.36" positionY="867.5100000000001">
+    <antenna direction="-2.840998816606594"/>
+    <antenna direction="1.3609315099037953"/>
+    <antenna direction="0.37093352282284076"/>
+  </rsu>
+  <rsu id="3262156211" positionX="1256.23" positionY="860.34">
+    <antenna direction="-1.1863010171726407"/>
+    <antenna direction="0.30059383698319947"/>
+    <antenna direction="1.6938932625620637"/>
+  </rsu>
+  <rsu id="3262156220" positionX="1260.77" positionY="849.1200000000001">
+    <antenna direction="-1.0240074859056552"/>
+    <antenna direction="-2.998563897672193"/>
+    <antenna direction="1.9552916364171526"/>
+  </rsu>
+  <rsu id="3262154335" positionX="1300.84" positionY="968.6100000000001">
+    <antenna direction="1.364264973453223"/>
+    <antenna direction="-0.12666090898393023"/>
+    <antenna direction="-1.7795701097611591"/>
+    <antenna direction="-3.0282690789871167"/>
+  </rsu>
+  <rsu id="3256984873" positionX="1290.73" positionY="920.8900000000001">
+    <antenna direction="1.3620225438286342"/>
+    <antenna direction="-1.780661143685998"/>
+  </rsu>
+  <rsu id="3256984866" positionX="1243.64" positionY="962.1000000000001">
+    <antenna direction="-1.4476993910277294"/>
+    <antenna direction="0.11332357460267647"/>
+    <antenna direction="1.6915752565873627"/>
+    <antenna direction="-2.986652450947744"/>
+  </rsu>
+  <rsu id="3270351047" positionX="1040.48" positionY="930.1000000000001">
+    <antenna direction="2.9749974433018287"/>
+    <antenna direction="2.9749974433018287"/>
+  </rsu>
+  <rsu id="3270351049" positionX="982.2" positionY="939.9000000000001">
+    <antenna direction="-0.16659521028796453"/>
+    <antenna direction="-0.16659521028796453"/>
+    <antenna direction="1.6691496850426697"/>
+  </rsu>
+  <rsu id="2841194875" positionX="980.64" positionY="955.71">
+    <antenna direction="-1.4724429685471234"/>
+    <antenna direction="-0.02177962320548949"/>
+    <antenna direction="-2.9099237373529956"/>
+  </rsu>
+  <rsu id="3331748906" positionX="1019.07" positionY="405.8900000000001">
+    <antenna direction="-2.975123191075598"/>
+  </rsu>
+  <rsu id="30357633" positionX="1244.21" positionY="801.1700000000001">
+    <antenna direction="0.03682458139513867"/>
+    <antenna direction="-3.0344539988951733"/>
+  </rsu>
+  <rsu id="267728038" positionX="247.95" positionY="793.5400000000001">
+    <antenna direction="0.27262118540359553"/>
+  </rsu>
+  <rsu id="3534973027" positionX="300.6" positionY="808.2600000000001">
+    <antenna direction="-2.8689714681861975"/>
+  </rsu>
+  <rsu id="130111836" positionX="1105.37" positionY="277.20000000000005">
+    <antenna direction="-0.6071683752990078"/>
+    <antenna direction="2.4514519609122716"/>
+    <antenna direction="0.850188305418974"/>
+  </rsu>
+  <rsu id="1042292017" positionX="613.46" positionY="319.5500000000002">
+    <antenna direction="1.0115336371843713"/>
+    <antenna direction="-3.045980527778806"/>
+    <antenna direction="-1.4473502716109472"/>
+  </rsu>
+  <rsu id="cluster_128525164_240988053" positionX="625.39" positionY="223.4000000000001">
+    <antenna direction="1.694242381978846"/>
+    <antenna direction="0.1355902189337268"/>
+    <antenna direction="-1.8013518637277328"/>
+    <antenna direction="-2.9662143069981233"/>
+    <antenna direction="-2.9662143069981233"/>
+  </rsu>
+  <rsu id="208977939" positionX="1515.36" positionY="537.6200000000001">
+    <antenna direction="-1.7362686637084155"/>
+    <antenna direction="-0.1423673477188964"/>
+    <antenna direction="1.9012273544857554"/>
+  </rsu>
+  <rsu id="10559967452" positionX="253.87" positionY="924.3300000000002">
+    <antenna direction="-0.3772430152645381"/>
+  </rsu>
+  <rsu id="3840896086" positionX="1578.19" positionY="712.2500000000001">
+    <antenna direction="-3.087466896811376"/>
+    <antenna direction="-3.0870524104016974"/>
+    <antenna direction="0.07161644052084777"/>
+  </rsu>
+  <rsu id="3840896076" positionX="1526.14" positionY="709.4300000000001">
+    <antenna direction="-3.1206144532838995"/>
+    <antenna direction="0.05412575677841758"/>
+    <antenna direction="0.053711729303231794"/>
+  </rsu>
+  <rsu id="211452769" positionX="1474.1" positionY="283.5600000000002">
+    <antenna direction="-1.3243383748062436"/>
+    <antenna direction="1.790076519536464"/>
+  </rsu>
+  <rsu id="1652845456" positionX="749.36" positionY="238.17000000000007">
+    <antenna direction="0.36120375549365524"/>
+    <antenna direction="2.013424576083301"/>
+    <antenna direction="-2.783676197234449"/>
+  </rsu>
+  <rsu id="240994595" positionX="752.96" positionY="239.52999999999997">
+    <antenna direction="0.36991760986915423"/>
+    <antenna direction="-2.170248811636653"/>
+    <antenna direction="-2.7803888980961378"/>
+  </rsu>
+  <rsu id="240988050" positionX="745.51" positionY="236.73000000000002">
+    <antenna direction="0.35791645635534397"/>
+    <antenna direction="2.01386685921844"/>
+    <antenna direction="3.0436719853344507"/>
+  </rsu>
+  <rsu id="1390046129" positionX="750.31" positionY="322.25">
+    <antenna direction="-1.754445057098303"/>
+    <antenna direction="0.5915023456050684"/>
+  </rsu>
+  <rsu id="cluster_10084641784_10084641804_128525132" positionX="743.51" positionY="285.6400000000001">
+    <antenna direction="-1.0291162473252877"/>
+    <antenna direction="-1.4307946874702424"/>
+    <antenna direction="1.3871475964914903"/>
+    <antenna direction="-1.1411442985797704"/>
+  </rsu>
+  <rsu id="1802550113" positionX="802.28" positionY="357.1600000000001">
+    <antenna direction="-2.550090307984725"/>
+    <antenna direction="1.733981141848141"/>
+    <antenna direction="-0.1518506703109458"/>
+  </rsu>
+  <rsu id="484814907" positionX="811.69" positionY="355.72">
+    <antenna direction="2.9897419832788477"/>
+    <antenna direction="-1.7046635195740467"/>
+  </rsu>
+  <rsu id="6679873059" positionX="919.46" positionY="632.96">
+    <antenna direction="-1.4167681515429706"/>
+    <antenna direction="1.8157749899217597"/>
+    <antenna direction="2.799142985694004"/>
+  </rsu>
+  <rsu id="130113067" positionX="925.72" positionY="592.6400000000001">
+    <antenna direction="-1.6152806081460862"/>
+    <antenna direction="1.7248245020468225"/>
+  </rsu>
+  <rsu id="6679873063" positionX="913.69" positionY="656.0400000000001">
+    <antenna direction="-1.3258176636680337"/>
+    <antenna direction="1.8324862177461285"/>
+    <antenna direction="-2.2084245719819697"/>
+  </rsu>
+  <rsu id="6679873067" positionX="896.68" positionY="719.5500000000001">
+    <antenna direction="-1.3091064358436648"/>
+    <antenna direction="1.8331191230827477"/>
+  </rsu>
+  <rsu id="208965977" positionX="1495.16" positionY="708.7800000000001">
+    <antenna direction="-1.9205198319957613"/>
+    <antenna direction="0.020978200305893695"/>
+  </rsu>
+  <rsu id="208972169" positionX="1552.18" positionY="710.83">
+    <antenna direction="-3.0878809242865612"/>
+    <antenna direction="-1.5335986068024203"/>
+    <antenna direction="1.610853731348688"/>
+    <antenna direction="0.054540243188096"/>
+  </rsu>
+  <rsu id="208970875" positionX="1582.79" positionY="712.58">
+    <antenna direction="-3.0699762130689456"/>
+  </rsu>
+  <rsu id="485353326" positionX="1260.75" positionY="296.5600000000002">
+    <antenna direction="1.3132967503630744"/>
+    <antenna direction="-0.866289788436471"/>
+    <antenna direction="-2.264111325441899"/>
+  </rsu>
+  <rsu id="cluster_211228663_2836748486" positionX="1273.28" positionY="344.1400000000001">
+    <antenna direction="-1.8282959032267188"/>
+    <antenna direction="1.6582252481406974"/>
+    <antenna direction="2.0200506875036157"/>
+  </rsu>
+  <rsu id="2836749433" positionX="1161.98" positionY="229.20000000000005">
+    <antenna direction="-2.791765582810163"/>
+    <antenna direction="0.35970031086782384"/>
+    <antenna direction="-0.07658964231972248"/>
+  </rsu>
+  <rsu id="485655130" positionX="1128.54" positionY="217.0">
+    <antenna direction="2.7151439234213215"/>
+    <antenna direction="0.3498270707796303"/>
+    <antenna direction="0.1441777887793513"/>
+  </rsu>
+  <rsu id="2836749434" positionX="1182.96" positionY="227.59000000000015">
+    <antenna direction="3.0650030112700706"/>
+    <antenna direction="1.4311332813198179"/>
+    <antenna direction="-0.06032427314366409"/>
+  </rsu>
+  <rsu id="485655126" positionX="1196.04" positionY="226.80000000000018">
+    <antenna direction="3.081268380446129"/>
+    <antenna direction="-2.997414864810442"/>
+    <antenna direction="1.6344813921031225"/>
+  </rsu>
+  <rsu id="485869277" positionX="1301.96" positionY="291.43000000000006">
+    <antenna direction="0.8535884631550595"/>
+    <antenna direction="-2.414278140933251"/>
+  </rsu>
+  <rsu id="211231227" positionX="1321.4" positionY="313.72">
+    <antenna direction="-2.2880041904347337"/>
+    <antenna direction="2.554426636573217"/>
+  </rsu>
+  <rsu id="485937225" positionX="1422.02" positionY="431.98000000000013">
+    <antenna direction="1.3434801214484555"/>
+  </rsu>
+  <rsu id="211211371" positionX="1428.55" positionY="460.21000000000004">
+    <antenna direction="-1.7981125321413378"/>
+    <antenna direction="2.840747281407957"/>
+  </rsu>
+  <rsu id="211207749" positionX="1504.62" positionY="352.75">
+    <antenna direction="-1.620922087932557"/>
+    <antenna direction="1.5762675041128702"/>
+  </rsu>
+  <rsu id="211207755" positionX="1504.31" positionY="409.4100000000001">
+    <antenna direction="-1.5653251494769231"/>
+    <antenna direction="2.6570781007766313"/>
+  </rsu>
+  <rsu id="486051767" positionX="1453.89" positionY="409.69000000000005">
+    <antenna direction="0.809697918242696"/>
+  </rsu>
+  <rsu id="211211373" positionX="1470.55" positionY="427.18000000000006">
+    <antenna direction="-2.331894735347097"/>
+    <antenna direction="2.475181929058263"/>
+  </rsu>
+  <rsu id="2349992160" positionX="1645.59" positionY="565.7400000000001">
+    <antenna direction="-0.2794251119577997"/>
+    <antenna direction="2.5247015658092153"/>
+    <antenna direction="3.0106958105707418"/>
+  </rsu>
+  <rsu id="2367716527" positionX="1798.1" positionY="521.9800000000001">
+    <antenna direction="2.8621675416319934"/>
+  </rsu>
+  <rsu id="208978963" positionX="1545.02" positionY="578.9800000000001">
+    <antenna direction="-0.13089684301905152"/>
+    <antenna direction="-1.7114406416848327"/>
+    <antenna direction="-3.0835184940268334"/>
+  </rsu>
+  <rsu id="30357644" positionX="718.85" positionY="704.4100000000001">
+    <antenna direction="0.20568645563806068"/>
+    <antenna direction="-2.7948442877722175"/>
+  </rsu>
+  <rsu id="6618617797" positionX="821.81" positionY="700.4300000000001">
+    <antenna direction="-3.127026265183278"/>
+    <antenna direction="0.5809672223439152"/>
+    <antenna direction="1.1982420683400028"/>
+  </rsu>
+  <rsu id="6618617800" positionX="765.52" positionY="699.6100000000001">
+    <antenna direction="-2.9272345293970305"/>
+    <antenna direction="0.014566388406515451"/>
+    <antenna direction="0.16967525217688234"/>
+  </rsu>
+  <rsu id="cluster_264656256_498477915" positionX="829.06" positionY="705.19">
+    <antenna direction="-2.560625431245878"/>
+    <antenna direction="2.098632807222007"/>
+    <antenna direction="-2.3467071088227724"/>
+    <antenna direction="-1.4662892724148955"/>
+  </rsu>
+  <rsu id="502614979" positionX="326.88" positionY="178.97000000000003">
+    <antenna direction="2.1672973093147223"/>
+  </rsu>
+  <rsu id="502614983" positionX="274.08" positionY="256.73">
+    <antenna direction="-0.9742953442750708"/>
+  </rsu>
+  <rsu id="502632392" positionX="296.34" positionY="322.52">
+    <antenna direction="-2.828491509105858"/>
+  </rsu>
+  <rsu id="502632391" positionX="249.73" positionY="307.43000000000006">
+    <antenna direction="0.3131011444839353"/>
+  </rsu>
+  <rsu id="1246670021" positionX="360.11" positionY="357.74">
+    <antenna direction="0.00770846169302659"/>
+  </rsu>
+  <rsu id="502632393" positionX="463.89" positionY="358.5400000000002">
+    <antenna direction="-3.1338841918967666"/>
+    <antenna direction="1.334734141459223"/>
+  </rsu>
+  <rsu id="3517230723" positionX="343.5" positionY="924.99">
+    <antenna direction="1.8091549038858195"/>
+    <antenna direction="2.6377422092327496"/>
+  </rsu>
+  <rsu id="271220246" positionX="320.75" positionY="1018.6200000000001">
+    <antenna direction="-1.3324377497039739"/>
+  </rsu>
+  <rsu id="3517230719" positionX="314.17" positionY="941.1600000000001">
+    <antenna direction="-0.5038504443570435"/>
+    <antenna direction="-0.5038504443570435"/>
+    <antenna direction="0.9052053185289608"/>
+  </rsu>
+  <rsu id="2912877008" positionX="657.71" positionY="851.0000000000001">
+    <antenna direction="-1.7064981253837646"/>
+  </rsu>
+  <rsu id="cluster_6598281618_6598281620_6598281621_6598281622" positionX="606.5" positionY="819.1700000000001">
+    <antenna direction="0.44854350299212215"/>
+    <antenna direction="0.44854350299212215"/>
+    <antenna direction="2.895500951381359"/>
+    <antenna direction="-2.0710994912491665"/>
+  </rsu>
+  <rsu id="33598297" positionX="1831.04" positionY="756.6700000000001">
+    <antenna direction="3.053035219926971"/>
+  </rsu>
+  <rsu id="208942200" positionX="1309.77" positionY="543.57">
+    <antenna direction="0.18574185753834868"/>
+    <antenna direction="2.1077124278164328"/>
+  </rsu>
+  <rsu id="3048242202" positionX="1332.76" positionY="547.8900000000001">
+    <antenna direction="-2.1660809862766883"/>
+    <antenna direction="-2.9558507960514446"/>
+    <antenna direction="0.16623681626698592"/>
+  </rsu>
+  <rsu id="6618637099" positionX="934.36" positionY="761.4000000000001">
+    <antenna direction="-2.825222929304187"/>
+    <antenna direction="0.4296800963223844"/>
+  </rsu>
+  <rsu id="761060049" positionX="820.42" positionY="724.1000000000001">
+    <antenna direction="-3.0424064563876905"/>
+    <antenna direction="0.3163697242856062"/>
+  </rsu>
+  <rsu id="6680000390" positionX="557.87" positionY="762.82">
+    <antenna direction="0.43647736952108473"/>
+    <antenna direction="-2.8453059044147033"/>
+  </rsu>
+  <rsu id="6268753571" positionX="442.45" positionY="883.7300000000001">
+    <antenna direction="-0.25632146023276714"/>
+  </rsu>
+  <rsu id="6268753572" positionX="481.75" positionY="873.4300000000001">
+    <antenna direction="2.296977598982984"/>
+    <antenna direction="2.885271193357026"/>
+    <antenna direction="-1.568180814014522"/>
+  </rsu>
+  <rsu id="6268753574" positionX="426.74" positionY="870.0500000000001">
+    <antenna direction="-0.3412858726941315"/>
+  </rsu>
+  <rsu id="6268753584" positionX="433.91" positionY="927.3000000000001">
+    <antenna direction="-0.8446150546068091"/>
+  </rsu>
+  <rsu id="6268753575" positionX="415.01" positionY="819.83">
+    <antenna direction="0.4302982344373925"/>
+  </rsu>
+  <rsu id="6410795994" positionX="706.55" positionY="761.32">
+    <antenna direction="-3.018093551815714"/>
+    <antenna direction="0.6613098253526877"/>
+    <antenna direction="2.2169082565955125"/>
+  </rsu>
+  <rsu id="6410795992" positionX="628.89" positionY="751.6800000000001">
+    <antenna direction="-2.4883476388096772"/>
+    <antenna direction="0.12349910177407927"/>
+    <antenna direction="0.6236258249791949"/>
+  </rsu>
+  <rsu id="6410795997" positionX="724.72" positionY="775.46">
+    <antenna direction="2.22578889728357"/>
+    <antenna direction="2.22578889728357"/>
+    <antenna direction="-2.4802828282371054"/>
+  </rsu>
+  <rsu id="6410795989" positionX="694.08" positionY="815.3500000000001">
+    <antenna direction="-1.9693001913174628"/>
+    <antenna direction="-0.9158037563062228"/>
+    <antenna direction="-0.9158037563062228"/>
+  </rsu>
+  <rsu id="6410795985" positionX="609.33" positionY="736.71">
+    <antenna direction="0.6532450147801162"/>
+    <antenna direction="2.3609581982031993"/>
+    <antenna direction="-2.313966088079348"/>
+    <antenna direction="-0.5101061890367186"/>
+  </rsu>
+  <rsu id="6410795987" positionX="683.95" positionY="791.2900000000001">
+    <antenna direction="-2.5179668286105983"/>
+    <antenna direction="-0.9246843969942808"/>
+    <antenna direction="1.1722924622723305"/>
+  </rsu>
+  <rsu id="6535023590" positionX="1201.49" positionY="972.19">
+    <antenna direction="-2.2971821256659366"/>
+  </rsu>
+  <rsu id="6568027036" positionX="1248.99" positionY="394.5200000000001">
+    <antenna direction="-1.1215419660861776"/>
+  </rsu>
+  <rsu id="6568142027" positionX="1067.87" positionY="514.4000000000001">
+    <antenna direction="1.1181205199160535"/>
+  </rsu>
+  <rsu id="cluster_6597415971_6679917472" positionX="662.75" positionY="695.8700000000001">
+    <antenna direction="1.76428015569716"/>
+    <antenna direction="0.29209823120837236"/>
+    <antenna direction="0.29209823120837236"/>
+    <antenna direction="-0.9345918223503351"/>
+  </rsu>
+  <rsu id="761060039" positionX="660.34" positionY="708.1700000000001">
+    <antenna direction="-1.3773124978926332"/>
+    <antenna direction="2.631486464553075"/>
+    <antenna direction="0.0991861972021027"/>
+  </rsu>
+  <rsu id="1245210047" positionX="669.59" positionY="686.6100000000001">
+    <antenna direction="2.207000831239458"/>
+    <antenna direction="-2.429856150735456"/>
+    <antenna direction="-0.9134560828012442"/>
+  </rsu>
+  <rsu id="6618637089" positionX="674.8" positionY="679.8600000000001">
+    <antenna direction="2.228136570788549"/>
+    <antenna direction="-0.7662379817749532"/>
+    <antenna direction="0.21435812419276254"/>
+  </rsu>
+  <rsu id="cluster_1042291815_266183835_288140307_498468097_#1more" positionX="832.76" positionY="527.84">
+    <antenna direction="2.37535467181484"/>
+    <antenna direction="0.0013422810730629234"/>
+    <antenna direction="0.0013422810730629234"/>
+    <antenna direction="-2.1636173408237793"/>
+    <antenna direction="-1.8473572890920653"/>
+    <antenna direction="-1.6748426780458308"/>
+    <antenna direction="-2.6708863382960524"/>
+  </rsu>
+  <rsu id="cluster_1027189974_2841194888_6595183047" positionX="803.87" positionY="925.1200000000001">
+    <antenna direction="1.8557782808419039"/>
+    <antenna direction="1.8712604188705537"/>
+    <antenna direction="-0.4656691695892758"/>
+  </rsu>
+  <rsu id="1027189891" positionX="770.64" positionY="1038.5500000000002">
+    <antenna direction="-1.2858143727478892"/>
+  </rsu>
+  <rsu id="6595183046" positionX="809.8" positionY="922.1400000000001">
+    <antenna direction="2.6759234840005175"/>
+    <antenna direction="-0.6321815615856433"/>
+  </rsu>
+  <rsu id="6568144247" positionX="919.26" positionY="867.5500000000001">
+    <antenna direction="-1.587331784561459"/>
+    <antenna direction="0.02040533068656554"/>
+    <antenna direction="1.5907629510668615"/>
+  </rsu>
+  <rsu id="2514997020" positionX="918.87" positionY="887.08">
+    <antenna direction="-1.5508297025229316"/>
+  </rsu>
+  <rsu id="271236572" positionX="271.95" positionY="580.3900000000001">
+    <antenna direction="0.4834470015672026"/>
+  </rsu>
+  <rsu id="9672198466" positionX="380.95" positionY="694.4300000000001">
+    <antenna direction="-2.4696452319656976"/>
+    <antenna direction="0.04992907450805427"/>
+  </rsu>
+  <rsu id="1245210178" positionX="439.8" positionY="743.0000000000001">
+    <antenna direction="0.48563419415082004"/>
+    <antenna direction="-1.7028897739197624"/>
+  </rsu>
+  <rsu id="6598281617" positionX="591.69" positionY="792.08">
+    <antenna direction="1.0704931623406266"/>
+    <antenna direction="-2.5481003312403154"/>
+  </rsu>
+  <rsu id="9918746012" positionX="570.33" positionY="777.6700000000001">
+    <antenna direction="0.5934923223494777"/>
+    <antenna direction="-1.5794541191246854"/>
+  </rsu>
+  <rsu id="6598281626" positionX="735.42" positionY="878.2600000000001">
+    <antenna direction="-2.559573702898081"/>
+  </rsu>
+  <rsu id="cluster_1042291953_6679917473" positionX="847.66" positionY="527.8600000000001">
+    <antenna direction="-0.2856044715663805"/>
+    <antenna direction="1.6753033811748979"/>
+    <antenna direction="-3.1402503725167303"/>
+    <antenna direction="-1.7498059901437208"/>
+    <antenna direction="-3.1402503725167303"/>
+  </rsu>
+  <rsu id="6598281627" positionX="856.14" positionY="525.3700000000001">
+    <antenna direction="2.8559881820234128"/>
+  </rsu>
+  <rsu id="1027189463" positionX="823.88" positionY="396.44000000000005">
+    <antenna direction="1.3917866634460723"/>
+    <antenna direction="-2.970857442114504"/>
+    <antenna direction="-1.7566034637786299"/>
+  </rsu>
+  <rsu id="6618652173" positionX="818.69" positionY="368.83000000000015">
+    <antenna direction="1.3849891898111633"/>
+    <antenna direction="-1.7561580836056354"/>
+  </rsu>
+  <rsu id="6602276540" positionX="422.28" positionY="489.23000000000013">
+    <antenna direction="2.7019134840298737"/>
+    <antenna direction="1.1097965492053727"/>
+    <antenna direction="-0.43992622457787367"/>
+  </rsu>
+  <rsu id="6602276537" positionX="389.86" positionY="504.48000000000013">
+    <antenna direction="-0.4396791695599193"/>
+  </rsu>
+  <rsu id="6602276538" positionX="445.31" positionY="478.3900000000001">
+    <antenna direction="2.7016664290119197"/>
+  </rsu>
+  <rsu id="7170043434" positionX="602.87" positionY="729.6800000000001">
+    <antenna direction="0.8276265655104454"/>
+    <antenna direction="-0.7689204500621053"/>
+  </rsu>
+  <rsu id="6535017734" positionX="1347.26" positionY="967.22">
+    <antenna direction="0.030389474130570783"/>
+    <antenna direction="1.995684478964247"/>
+  </rsu>
+  <rsu id="3262154336" positionX="1593.98" positionY="974.72">
+    <antenna direction="-3.1112031794592223"/>
+  </rsu>
+  <rsu id="6593487861" positionX="822.49" positionY="702.1700000000001">
+    <antenna direction="-1.9433505852497905"/>
+    <antenna direction="0.0906598872007477"/>
+  </rsu>
+  <rsu id="6618617798" positionX="816.71" positionY="708.3800000000001">
+    <antenna direction="-2.971917401412911"/>
+    <antenna direction="-0.25277466414778627"/>
+    <antenna direction="0.28754337062529994"/>
+  </rsu>
+  <rsu id="6618617801" positionX="824.69" positionY="710.7400000000001">
+    <antenna direction="-2.8540492829644935"/>
+    <antenna direction="0.2824686920322886"/>
+  </rsu>
+  <rsu id="6618637094" positionX="893.67" positionY="730.7600000000001">
+    <antenna direction="-2.8591239615575046"/>
+    <antenna direction="0.24398737634351012"/>
+  </rsu>
+  <rsu id="6618637093" positionX="938.78" positionY="741.9900000000001">
+    <antenna direction="-2.8976052772462833"/>
+    <antenna direction="-0.5979125259495971"/>
+    <antenna direction="1.7940003889692002"/>
+  </rsu>
+  <rsu id="6618635702" positionX="964.96" positionY="573.9900000000001">
+    <antenna direction="-2.429891469504712"/>
+  </rsu>
+  <rsu id="2841195702" positionX="923.29" positionY="538.0500000000001">
+    <antenna direction="-1.7562799527954573"/>
+    <antenna direction="0.7117011840850814"/>
+  </rsu>
+  <rsu id="1027189999" positionX="732.48" positionY="238.01">
+    <antenna direction="-0.09792066825534262"/>
+    <antenna direction="-0.17041367603089136"/>
+    <antenna direction="-3.0060024346560663"/>
+  </rsu>
+  <rsu id="cluster_499458026_499458037" positionX="571.27" positionY="213.81000000000017">
+    <antenna direction="0.17537834659167018"/>
+    <antenna direction="-2.9025445682382274"/>
+    <antenna direction="-2.9535960813636355"/>
+  </rsu>
+  <rsu id="1025492263" positionX="459.62" positionY="186.60000000000014">
+    <antenna direction="0.23904808535156566"/>
+  </rsu>
+  <rsu id="3262154324" positionX="1269.21" positionY="1106.8300000000002">
+    <antenna direction="-1.9195131694667882"/>
+  </rsu>
+  <rsu id="267727842" positionX="127.81" positionY="847.2400000000001">
+    <antenna direction="0.07407598229765795"/>
+  </rsu>
+  <rsu id="2841195610" positionX="938.97" positionY="817.57">
+    <antenna direction="0.18860282082491467"/>
+    <antenna direction="-1.4771255341273934"/>
+    <antenna direction="-3.053743464107875"/>
+  </rsu>
+  <rsu id="6595183082" positionX="941.38" positionY="818.0300000000001">
+    <antenna direction="-1.4608043431605373"/>
+    <antenna direction="-2.9529898327648785"/>
+  </rsu>
+  <rsu id="2841195612" positionX="916.83" positionY="815.6200000000001">
+    <antenna direction="0.08784918948191829"/>
+    <antenna direction="2.6769651330946966"/>
+    <antenna direction="3.030885429915817"/>
+  </rsu>
+  <rsu id="6679873047" positionX="1003.59" positionY="238.98000000000002">
+    <antenna direction="-2.2296023629124053"/>
+    <antenna direction="0.33529829855442034"/>
+  </rsu>
+  <rsu id="6679873046" positionX="1002.39" positionY="237.43000000000006">
+    <antenna direction="0.9119902906773878"/>
+  </rsu>
+  <rsu id="6679873054" positionX="882.89" positionY="374.4100000000001">
+    <antenna direction="1.584937550077274"/>
+    <antenna direction="-0.21024832250913975"/>
+    <antenna direction="-1.51161521348956"/>
+  </rsu>
+  <rsu id="cluster_6679873049_6679873053" positionX="882.51" positionY="401.2800000000001">
+    <antenna direction="0.7727910012435473"/>
+    <antenna direction="-1.5566551035125191"/>
+    <antenna direction="-2.6437260418371338"/>
+    <antenna direction="1.8374151689358527"/>
+  </rsu>
+  <rsu id="cluster_211316849_211316852" positionX="897.77" positionY="416.1600000000001">
+    <antenna direction="1.3585768921538655"/>
+    <antenna direction="-1.9088203088816391"/>
+    <antenna direction="-2.368801652346246"/>
+  </rsu>
+  <rsu id="6679873055" positionX="892.59" positionY="372.34000000000015">
+    <antenna direction="2.9313443310806533"/>
+  </rsu>
+  <rsu id="484793989" positionX="883.87" positionY="357.8700000000001">
+    <antenna direction="1.6299774401002332"/>
+    <antenna direction="-0.7934328080421291"/>
+  </rsu>
+  <rsu id="6679873060" positionX="916.15" positionY="634.1400000000001">
+    <antenna direction="-0.34244966789578923"/>
+    <antenna direction="1.8798333594693504"/>
+  </rsu>
+  <rsu id="6679873064" positionX="911.46" positionY="653.0300000000001">
+    <antenna direction="0.9331680816078235"/>
+    <antenna direction="-1.380808038876193"/>
+  </rsu>
+  <rsu id="cluster_6679873061_6679873062" positionX="911.28" positionY="641.7500000000001">
+    <antenna direction="1.2259890623618608"/>
+    <antenna direction="-0.6040479076962633"/>
+    <antenna direction="1.720548433959512"/>
+  </rsu>
+  <rsu id="6679873065" positionX="912.81" positionY="646.0100000000001">
+    <antenna direction="-1.9156035912279326"/>
+  </rsu>
+  <rsu id="6679873066" positionX="914.41" positionY="639.59">
+    <antenna direction="2.53754474589353"/>
+  </rsu>
+  <rsu id="cluster_128525061_27364471_485655120" positionX="1135.44" positionY="256.3100000000002">
+    <antenna direction="-0.18819058193289862"/>
+    <antenna direction="-2.214752256660517"/>
+    <antenna direction="2.5344242782907855"/>
+  </rsu>
+  <rsu id="cluster_128525047_128525056_2836749420_2836749421_#1more" positionX="1194.88" positionY="244.99">
+    <antenna direction="-1.5071112614866709"/>
+    <antenna direction="-0.31174913319165237"/>
+    <antenna direction="2.4043686972869946"/>
+    <antenna direction="2.9534020716568947"/>
+    <antenna direction="0.26291006382104326"/>
+  </rsu>
+  <rsu id="271237316" positionX="438.66" positionY="734.4200000000001">
+    <antenna direction="1.438702879670031"/>
+    <antenna direction="-0.9786285269250545"/>
+  </rsu>
+  <rsu id="6681876840" positionX="528.87" positionY="779.1100000000001">
+    <antenna direction="-0.3408763723984606"/>
+    <antenna direction="1.5087642143821351"/>
+  </rsu>
+  <rsu id="6694348513" positionX="1055.57" positionY="266.1400000000001">
+    <antenna direction="-2.2567453766658123"/>
+  </rsu>
+  <rsu id="3256984876" positionX="1336.49" positionY="889.7300000000001">
+    <antenna direction="-2.7706591307669526"/>
+  </rsu>
+  <rsu id="6593487860" positionX="826.45" positionY="702.5300000000001">
+    <antenna direction="0.7948855447670207"/>
+  </rsu>
+  <rsu id="7165977721" positionX="894.36" positionY="988.8100000000001">
+    <antenna direction="2.1917883081332636"/>
+    <antenna direction="-0.8975535107913775"/>
+  </rsu>
+  <rsu id="2841195656" positionX="1027.57" positionY="774.4200000000001">
+    <antenna direction="0.20493100192414143"/>
+    <antenna direction="-2.875938690491957"/>
+  </rsu>
+  <rsu id="7253348172" positionX="1568.37" positionY="514.96">
+    <antenna direction="3.005639705408169"/>
+    <antenna direction="-1.8271525014936185"/>
+    <antenna direction="-0.1678183888446369"/>
+  </rsu>
+  <rsu id="7259118351" positionX="1734.12" positionY="486.8800000000001">
+    <antenna direction="2.973774264745156"/>
+  </rsu>
+  <rsu id="1736088065" positionX="807.77" positionY="913.23">
+    <antenna direction="-0.8295870660350665"/>
+    <antenna direction="1.8877453007053948"/>
+  </rsu>
+  <rsu id="1030443102" positionX="931.96" positionY="1020.5">
+    <antenna direction="-2.17316250768087"/>
+    <antenna direction="0.7302128432338818"/>
+  </rsu>
+  <rsu id="1030391965" positionX="358.22" positionY="186.11000000000013"/>
+  <rsu id="1030443197" positionX="1112.52" positionY="1158.0">
+    <antenna direction="-2.4907596001111707"/>
+  </rsu>
+  <rsu id="1042291852" positionX="824.29" positionY="523.5300000000001">
+    <antenna direction="0.4707063152937408"/>
+  </rsu>
+  <rsu id="502614948" positionX="435.0" positionY="205.51999999999998">
+    <antenna direction="1.3389581999773876"/>
+  </rsu>
+  <rsu id="9006355489" positionX="1260.22" positionY="593.0000000000001">
+    <antenna direction="0.07342545430777726"/>
+  </rsu>
+  <rsu id="10576308476" positionX="1281.02" positionY="594.5300000000001">
+    <antenna direction="0.4944974805294644"/>
+    <antenna direction="0.4944974805294644"/>
+    <antenna direction="-3.068167199282016"/>
+  </rsu>
+  <rsu id="9263435423" positionX="951.04" positionY="733.6400000000001">
+    <antenna direction="0.9635421909931887"/>
+    <antenna direction="-1.2775754847534733"/>
+  </rsu>
+  <rsu id="9263435430" positionX="966.63" positionY="738.46"/>
+  <rsu id="9263435434" positionX="1017.59" positionY="761.7400000000001">
+    <antenna direction="-3.0711331455997866"/>
+  </rsu>
+  <rsu id="9263435432" positionX="982.48" positionY="751.7400000000001">
+    <antenna direction="-2.444191844985049"/>
+    <antenna direction="1.8345081612571459"/>
+  </rsu>
+  <rsu id="9263435438" positionX="981.94" positionY="753.7400000000001"/>
+  <rsu id="9263435449" positionX="974.11" positionY="657.2300000000001">
+    <antenna direction="-1.3983998394442387"/>
+  </rsu>
+  <rsu id="9263435452" positionX="981.97" positionY="612.09">
+    <antenna direction="-1.4932184715650447"/>
+  </rsu>
+  <rsu id="9263435454" positionX="982.56" positionY="604.5000000000001"/>
+  <rsu id="9340089356" positionX="1436.39" positionY="810.7800000000001">
+    <antenna direction="-3.0531189896773117"/>
+  </rsu>
+  <rsu id="9340074300" positionX="1819.95" positionY="744.3900000000001">
+    <antenna direction="2.9702018441781997"/>
+  </rsu>
+  <rsu id="9340102448" positionX="1298.44" positionY="798.44"/>
+  <rsu id="1042292042" positionX="480.62" positionY="320.09000000000015">
+    <antenna direction="0.08274648498885383"/>
+  </rsu>
+  <rsu id="1245210000" positionX="389.45" positionY="701.9300000000001">
+    <antenna direction="0.5843422977860412"/>
+    <antenna direction="2.681758787421151"/>
+  </rsu>
+  <rsu id="6670697472" positionX="392.61" positionY="704.0200000000001">
+    <antenna direction="0.5837395355849971"/>
+  </rsu>
+  <rsu id="1245209979" positionX="396.41" positionY="706.5300000000001">
+    <antenna direction="0.5828568513671472"/>
+    <antenna direction="-1.4338805510397528"/>
+  </rsu>
+  <rsu id="9918746010" positionX="558.36" positionY="765.95">
+    <antenna direction="-1.7260854378753088"/>
+    <antenna direction="0.041032674319383726"/>
+  </rsu>
+  <rsu id="9918746013" positionX="567.69" positionY="774.8000000000001"/>
+  <rsu id="498381510" positionX="531.67" positionY="765.96">
+    <antenna direction="-0.0003746721443259708"/>
+    <antenna direction="0.008057121976290698"/>
+  </rsu>
+  <rsu id="10012400453" positionX="968.02" positionY="349.26">
+    <antenna direction="2.283595036461815"/>
+  </rsu>
+  <rsu id="10012400468" positionX="964.96" positionY="352.8000000000002">
+    <antenna direction="0.6984385368295198"/>
+    <antenna direction="0.6877959520914495"/>
+  </rsu>
+  <rsu id="10012400467" positionX="975.56" positionY="361.70000000000005"/>
+  <rsu id="10012400491" positionX="968.38" positionY="355.6100000000001">
+    <antenna direction="0.4270506839606912"/>
+    <antenna direction="-0.7329253675264941"/>
+  </rsu>
+  <rsu id="10012400490" positionX="975.5" positionY="358.85000000000014">
+    <antenna direction="-1.836611599384824"/>
+  </rsu>
+  <rsu id="10012400495" positionX="973.39" positionY="351.10000000000014">
+    <antenna direction="1.3049810542049693"/>
+  </rsu>
+  <rsu id="2841195636" positionX="1308.62" positionY="787.46">
+    <antenna direction="-1.071183086064962"/>
+    <antenna direction="-1.5553092530416166"/>
+  </rsu>
+  <rsu id="2354444053" positionX="1275.93" positionY="710.08">
+    <antenna direction="0.07491086514411036"/>
+    <antenna direction="1.210220300550572"/>
+  </rsu>
+  <rsu id="1042292056" positionX="731.0" positionY="244.59000000000015">
+    <antenna direction="-1.3495542119458968"/>
+    <antenna direction="-2.9435780566039242"/>
+  </rsu>
+  <rsu id="10084641760" positionX="746.02" positionY="235.68000000000006">
+    <antenna direction="0.3446870944477029"/>
+    <antenna direction="2.022950189080682"/>
+  </rsu>
+  <rsu id="cluster_10084641759_10084641761" positionX="751.73" positionY="237.73000000000002">
+    <antenna direction="0.3462413339458478"/>
+    <antenna direction="-1.0801072710458608"/>
+    <antenna direction="2.958028595687527"/>
+  </rsu>
+  <rsu id="10084641757" positionX="768.25" positionY="243.69000000000005">
+    <antenna direction="0.3878999577280517"/>
+    <antenna direction="-1.0595116858109268"/>
+  </rsu>
+  <rsu id="10084641773" positionX="769.18" positionY="244.07000000000016">
+    <antenna direction="0.392340144215505"/>
+    <antenna direction="-1.314761603118182"/>
+  </rsu>
+  <rsu id="10084641758" positionX="773.53" positionY="245.87000000000012">
+    <antenna direction="1.2517029849219075"/>
+  </rsu>
+  <rsu id="10084641780" positionX="782.33" positionY="267.75">
+    <antenna direction="-2.2280265500460708"/>
+    <antenna direction="-2.371344846067125"/>
+  </rsu>
+  <rsu id="10084641777" positionX="771.65" positionY="253.91000000000008">
+    <antenna direction="-1.9463786567119792"/>
+    <antenna direction="2.1435495678345506"/>
+  </rsu>
+  <rsu id="10084641771" positionX="770.18" positionY="240.25">
+    <antenna direction="-1.3085468545107135"/>
+  </rsu>
+  <rsu id="1042291787" positionX="770.27" positionY="256.0500000000002">
+    <antenna direction="2.3060148222472194"/>
+    <antenna direction="-2.7368703875607356"/>
+  </rsu>
+  <rsu id="6576535042" positionX="722.91" positionY="331.72">
+    <antenna direction="-0.45788951524977"/>
+    <antenna direction="2.8061659992573156"/>
+  </rsu>
+  <rsu id="288158473" positionX="735.45" positionY="325.5400000000002">
+    <antenna direction="-0.21788502357159617"/>
+    <antenna direction="-1.5275116526807184"/>
+  </rsu>
+  <rsu id="10084641803" positionX="736.92" positionY="291.60000000000014">
+    <antenna direction="-0.7352410632311158"/>
+  </rsu>
+  <rsu id="484799029" positionX="763.15" positionY="253.0">
+    <antenna direction="-2.803395528929396"/>
+    <antenna direction="-0.9669847637077492"/>
+  </rsu>
+  <rsu id="10084641818" positionX="727.63" positionY="292.6300000000001">
+    <antenna direction="-1.1278641111107275"/>
+  </rsu>
+  <rsu id="128525224" positionX="748.82" positionY="247.96000000000004">
+    <antenna direction="-1.1142914534635082"/>
+    <antenna direction="-2.7755780155429495"/>
+  </rsu>
+  <rsu id="10084641742" positionX="803.25" positionY="141.30000000000018"/>
+  <rsu id="10084641743" positionX="786.5" positionY="165.5400000000002">
+    <antenna direction="2.0196529408348987"/>
+  </rsu>
+  <rsu id="1652845457" positionX="745.35" positionY="246.6300000000001">
+    <antenna direction="2.012135520434549"/>
+    <antenna direction="-2.8320739050297874"/>
+  </rsu>
+  <rsu id="10084641819" positionX="715.12" positionY="310.6200000000001">
+    <antenna direction="1.8940116217217562"/>
+  </rsu>
+  <rsu id="10084641822" positionX="644.5" positionY="398.1500000000001">
+    <antenna direction="-0.8483286567872654"/>
+    <antenna direction="0.7052552278299962"/>
+  </rsu>
+  <rsu id="10084641823" positionX="646.21" positionY="396.21000000000004"/>
+  <rsu id="cluster_1042292090_1652845458" positionX="710.32" positionY="324.95000000000005">
+    <antenna direction="2.284195709871998"/>
+    <antenna direction="-1.07909018959135"/>
+    <antenna direction="-2.6129869496795166"/>
+  </rsu>
+  <rsu id="cluster_6576565629_6576565630" positionX="647.93" positionY="401.07000000000005">
+    <antenna direction="0.7046342773652328"/>
+    <antenna direction="-0.8915296143642324"/>
+    <antenna direction="2.583560295890431"/>
+  </rsu>
+  <rsu id="6576535034" positionX="652.07" positionY="404.59000000000003">
+    <antenna direction="-0.8501722853233714"/>
+  </rsu>
+  <rsu id="cluster_1652845433_1908070556_498381498" positionX="461.61" positionY="615.6000000000001">
+    <antenna direction="2.2221851928859913"/>
+    <antenna direction="2.1504525808526753"/>
+    <antenna direction="-1.192411587234628"/>
+    <antenna direction="-0.07071522321996092"/>
+  </rsu>
+  <rsu id="1652845441" positionX="410.11" positionY="683.1500000000001">
+    <antenna direction="1.2120256565243313"/>
+  </rsu>
+  <rsu id="498381496" positionX="454.65" positionY="608.5100000000001">
+    <antenna direction="0.7946505684040124"/>
+    <antenna direction="2.198576742658658"/>
+  </rsu>
+  <rsu id="5926384587" positionX="456.47" positionY="606.2900000000001">
+    <antenna direction="0.5431895762878255"/>
+    <antenna direction="2.257506229543946"/>
+  </rsu>
+  <rsu id="10084641831" positionX="459.65" positionY="608.21">
+    <antenna direction="0.571855681626853"/>
+  </rsu>
+  <rsu id="cluster_9052745119_9052745120" positionX="463.55" positionY="610.72">
+    <antenna direction="0.6822007068678706"/>
+    <antenna direction="-0.8503832772485981"/>
+    <antenna direction="1.9491810663551652"/>
+  </rsu>
+  <rsu id="10084641828" positionX="466.8" positionY="613.3600000000001">
+    <antenna direction="0.7106712590519992"/>
+    <antenna direction="-0.812007850644392"/>
+  </rsu>
+  <rsu id="10084641827" positionX="468.81" positionY="615.09">
+    <antenna direction="-0.84726826133148"/>
+  </rsu>
+  <rsu id="10084641829" positionX="468.08" positionY="612.0100000000001"/>
+  <rsu id="10084641830" positionX="461.13" positionY="606.3700000000001">
+    <antenna direction="2.2481827654923263"/>
+  </rsu>
+  <rsu id="2878802040" positionX="430.03" positionY="656.0200000000001">
+    <antenna direction="-0.9075645286503435"/>
+  </rsu>
+  <rsu id="cluster_1245210014_9052745118" positionX="410.8" positionY="684.9900000000001">
+    <antenna direction="0.546129373504826"/>
+    <antenna direction="-0.9847878180756949"/>
+    <antenna direction="2.4659974974510046"/>
+  </rsu>
+  <rsu id="1245209968" positionX="414.65" positionY="687.33">
+    <antenna direction="1.6706137150311193"/>
+    <antenna direction="2.6970571619152213"/>
+  </rsu>
+  <rsu id="1245210007" positionX="412.65" positionY="707.3000000000001">
+    <antenna direction="0.5920059056750798"/>
+  </rsu>
+  <rsu id="498492781" positionX="364.23" positionY="714.4200000000001">
+    <antenna direction="2.965876600336544"/>
+  </rsu>
+  <rsu id="cluster_2878751262_30485999" positionX="274.62" positionY="730.33">
+    <antenna direction="-3.070412396385389"/>
+    <antenna direction="1.000630696681403"/>
+    <antenna direction="-2.830711236370423"/>
+  </rsu>
+  <rsu id="10084641847" positionX="107.02" positionY="718.3800000000001"/>
+  <rsu id="2878750913" positionX="192.1" positionY="751.47">
+    <antenna direction="-0.04441521524690997"/>
+  </rsu>
+  <rsu id="cluster_1631803556_498492794" positionX="284.86" positionY="746.3000000000001">
+    <antenna direction="-0.30231789863668856"/>
+    <antenna direction="-0.18549245866520908"/>
+  </rsu>
+  <rsu id="2878751378" positionX="386.31" positionY="714.6600000000001">
+    <antenna direction="-0.6777522556941866"/>
+  </rsu>
+  <rsu id="10266143920" positionX="395.1" positionY="184.17000000000007"/>
+  <rsu id="10266143933" positionX="597.81" positionY="734.58">
+    <antenna direction="-0.7693352880046912"/>
+  </rsu>
+  <rsu id="10576308455" positionX="1202.3" positionY="579.1700000000001">
+    <antenna direction="1.6314505810220061"/>
+  </rsu>
+  <rsu id="9006355496" positionX="1202.15" positionY="581.6400000000001">
+    <antenna direction="-3.0531434259868235"/>
+  </rsu>
+  <rsu id="10576308460" positionX="1207.47" positionY="575.2900000000001">
+    <antenna direction="2.869618687753898"/>
+    <antenna direction="-0.6747409422235593"/>
+  </rsu>
+  <rsu id="10576308462" positionX="1202.45" positionY="576.69">
+    <antenna direction="-2.213422545172745"/>
+    <antenna direction="1.6312066032126546"/>
+  </rsu>
+  <rsu id="10576308458" positionX="1209.57" positionY="573.6100000000001">
+    <antenna direction="-0.6740396800664186"/>
+    <antenna direction="0.09509148828201675"/>
+  </rsu>
+  <rsu id="10576308459" positionX="1216.53" positionY="568.0500000000001">
+    <antenna direction="-3.117230537065911"/>
+  </rsu>
+  <rsu id="10576308475" positionX="1276.49" positionY="607.9800000000001">
+    <antenna direction="-1.4784669920632423"/>
+  </rsu>
+  <rsu id="10576308469" positionX="1276.64" positionY="606.3600000000001">
+    <antenna direction="0.0850881751572981"/>
+  </rsu>
+  <rsu id="10576308470" positionX="1280.04" positionY="606.6500000000001">
+    <antenna direction="1.6788740678480412"/>
+  </rsu>
+  <rsu id="10576308474" positionX="1270.37" positionY="679.3900000000001">
+    <antenna direction="1.1231687090116478"/>
+  </rsu>
+  <rsu id="10576308477" positionX="1271.82" positionY="682.4100000000001">
+    <antenna direction="1.6564060874820372"/>
+  </rsu>
+  <rsu id="10576308473" positionX="1275.84" positionY="615.57">
+    <antenna direction="1.6561960498643498"/>
+    <antenna direction="-1.4853657715320856"/>
+  </rsu>
+  <rsu id="10576308472" positionX="1271.01" positionY="671.9900000000001">
+    <antenna direction="1.6570681387960875"/>
+  </rsu>
+  <rsu id="1143920324" positionX="1269.49" positionY="709.5600000000001">
+    <antenna direction="0.08057054346379498"/>
+    <antenna direction="1.5017579268553263"/>
+  </rsu>
+  <rsu id="485153920" positionX="949.7" positionY="618.1100000000001">
+    <antenna direction="0.3088651968020073"/>
+  </rsu>
+  <rsu id="10778907893" positionX="964.43" positionY="622.8100000000001">
+    <antenna direction="-2.832727456787786"/>
+  </rsu>
+  <rsu id="211333570" positionX="1062.88" positionY="222.77999999999997">
+    <antenna direction="2.623137146968252"/>
+  </rsu>
+  <rsu id="1368411401" positionX="1059.76" positionY="224.56000000000017">
+    <antenna direction="2.5935340402431497"/>
+    <antenna direction="2.918347495352693"/>
+  </rsu>
+  <rsu id="2250762502" positionX="1024.31" positionY="246.20000000000005">
+    <antenna direction="-2.3651709097718117"/>
+  </rsu>
+  <rsu id="30357661" positionX="448.69" positionY="190.49"/>
+  <rsu id="cluster_1245210229_1245210308_1390042856_266184362_#1more" positionX="640.0" positionY="406.0200000000001">
+    <antenna direction="2.633867401617772"/>
+    <antenna direction="-0.558032357699362"/>
+    <antenna direction="-1.051376577310984"/>
+    <antenna direction="-0.11792585565634428"/>
+    <antenna direction="2.2859606116943816"/>
+  </rsu>
+  <rsu id="1245210326" positionX="136.23" positionY="751.6100000000001">
+    <antenna direction="-0.03571111186337927"/>
+  </rsu>
+  <rsu id="266184449" positionX="592.38" positionY="82.76999999999998"/>
+  <rsu id="3048261656" positionX="1110.94" positionY="384.53">
+    <antenna direction="0.8849822635932227"/>
+  </rsu>
+  <rsu id="289869227" positionX="1116.21" positionY="390.97">
+    <antenna direction="0.8987923364547827"/>
+    <antenna direction="-0.6856795650143767"/>
+  </rsu>
+  <rsu id="3187775215" positionX="1146.05" positionY="428.48000000000013">
+    <antenna direction="0.6104583751832606"/>
+    <antenna direction="2.3162982591609977"/>
+  </rsu>
+  <rsu id="3187775211" positionX="1211.98" positionY="470.20000000000005">
+    <antenna direction="1.672593767980938"/>
+    <antenna direction="0.5076915361982783"/>
+  </rsu>
+  <rsu id="130111840" positionX="1303.71" positionY="496.94000000000005">
+    <antenna direction="-2.336707709856872"/>
+  </rsu>
+  <rsu id="7685669678" positionX="1289.12" positionY="481.7700000000001">
+    <antenna direction="-2.268004250544958"/>
+    <antenna direction="-0.8518304576088913"/>
+  </rsu>
+  <rsu id="211226805" positionX="1269.48" positionY="458.32000000000005">
+    <antenna direction="-2.2680214322712393"/>
+    <antenna direction="2.4135186746592425"/>
+    <antenna direction="-0.3260208589258513"/>
+  </rsu>
+  <rsu id="2271353436" positionX="1263.86" positionY="451.6100000000001">
+    <antenna direction="-2.309122273624346"/>
+  </rsu>
+  <rsu id="289869229" positionX="1167.33" positionY="349.0">
+    <antenna direction="-2.279865434876335"/>
+  </rsu>
+  <rsu id="130113068" positionX="918.28" positionY="511.35000000000014">
+    <antenna direction="-0.24726176418276047"/>
+  </rsu>
+  <rsu id="1802550111" positionX="798.2" positionY="381.94000000000005">
+    <antenna direction="-2.630599640380505"/>
+  </rsu>
+  <rsu id="266183440" positionX="662.46" positionY="680.46">
+    <antenna direction="-2.471056878004059"/>
+    <antenna direction="-0.7307023693599874"/>
+  </rsu>
+  <rsu id="1951951746" positionX="813.02" positionY="926.2800000000001">
+    <antenna direction="-2.49853758338644"/>
+  </rsu>
+  <rsu id="1226408797" positionX="726.9" positionY="861.7500000000001"/>
+  <rsu id="1951951761" positionX="732.5" positionY="854.5100000000001">
+    <antenna direction="2.2291564817692553"/>
+  </rsu>
+  <rsu id="1970499758" positionX="1280.65" positionY="217.35000000000014"/>
+  <rsu id="2367683626" positionX="1290.24" positionY="576.3800000000001">
+    <antenna direction="1.7571338855719598"/>
+    <antenna direction="-3.0290596530402505"/>
+  </rsu>
+  <rsu id="2367683632" positionX="1289.32" positionY="581.2600000000001">
+    <antenna direction="1.750758735321415"/>
+  </rsu>
+  <rsu id="5755481465" positionX="1389.25" positionY="711.8700000000001">
+    <antenna direction="0.09166279000516925"/>
+  </rsu>
+  <rsu id="208968038" positionX="1388.25" positionY="689.2700000000001">
+    <antenna direction="1.6297994905889235"/>
+    <antenna direction="-1.5750516202593754"/>
+  </rsu>
+  <rsu id="5755481466" positionX="1388.1" positionY="654.0200000000001">
+    <antenna direction="-1.4321999810340238"/>
+  </rsu>
+  <rsu id="208968765" positionX="1401.3" positionY="559.3900000000001">
+    <antenna direction="0.1674342859490779"/>
+  </rsu>
+  <rsu id="208975188" positionX="1298.17" positionY="516.44">
+    <antenna direction="1.1667500745524542"/>
+    <antenna direction="-0.3479430022676768"/>
+  </rsu>
+  <rsu id="10576308464" positionX="1281.48" positionY="588.6700000000001">
+    <antenna direction="1.6491339787893116"/>
+    <antenna direction="-3.053147679649368"/>
+  </rsu>
+  <rsu id="1143920340" positionX="1275.23" positionY="792.57"/>
+  <rsu id="211201465" positionX="1601.8" positionY="370.07000000000016">
+    <antenna direction="-2.9652185982651775"/>
+  </rsu>
+  <rsu id="211231225" positionX="1296.56" positionY="330.25">
+    <antenna direction="-1.8451264630309911"/>
+    <antenna direction="2.6036404096527517"/>
+  </rsu>
+  <rsu id="211474078" positionX="1563.6" positionY="265.53">
+    <antenna direction="-1.315557437402983"/>
+    <antenna direction="-0.0061560697503000444"/>
+  </rsu>
+  <rsu id="211472915" positionX="1578.64" positionY="207.8900000000001"/>
+  <rsu id="211487415" positionX="1322.81" positionY="229.1300000000001">
+    <antenna direction="2.031534147693734"/>
+    <antenna direction="-0.5314200003734739"/>
+  </rsu>
+  <rsu id="321306208" positionX="487.14" positionY="1194.2">
+    <antenna direction="-1.4706005589142732"/>
+  </rsu>
+  <rsu id="213930372" positionX="590.31" positionY="741.82">
+    <antenna direction="-0.7677609151055997"/>
+  </rsu>
+  <rsu id="1940680379" positionX="1013.07" positionY="235.16000000000008">
+    <antenna direction="-2.333496163020986"/>
+    <antenna direction="-0.2232451582371004"/>
+  </rsu>
+  <rsu id="4172150690" positionX="990.9" positionY="211.96000000000004"/>
+  <rsu id="2349992171" positionX="1552.7" positionY="631.6200000000001">
+    <antenna direction="-1.74148383517429"/>
+  </rsu>
+  <rsu id="2349992173" positionX="1554.04" positionY="660.8500000000001">
+    <antenna direction="-1.6166075639871993"/>
+    <antenna direction="0.21146423561719258"/>
+    <antenna direction="-3.0854772180914045"/>
+  </rsu>
+  <rsu id="2349992179" positionX="1551.49" positionY="624.6000000000001">
+    <antenna direction="-1.7049520348669998"/>
+    <antenna direction="-1.7049520348669998"/>
+  </rsu>
+  <rsu id="2349992185" positionX="1548.68" positionY="603.7800000000001">
+    <antenna direction="-1.7173193215482436"/>
+  </rsu>
+  <rsu id="2349992178" positionX="1670.03" positionY="685.7500000000001"/>
+  <rsu id="2354444052" positionX="1278.76" positionY="692.0400000000001">
+    <antenna direction="-1.481234088526833"/>
+    <antenna direction="1.7264017628255566"/>
+  </rsu>
+  <rsu id="5755481469" positionX="1302.92" positionY="781.6600000000001">
+    <antenna direction="1.4872744325723515"/>
+  </rsu>
+  <rsu id="48265307" positionX="495.2" positionY="1115.0900000000001">
+    <antenna direction="-1.9870837371256245"/>
+  </rsu>
+  <rsu id="249779736" positionX="295.31" positionY="662.9800000000001">
+    <antenna direction="-2.1776682162608174"/>
+  </rsu>
+  <rsu id="7091222283" positionX="1133.27" positionY="558.2400000000001"/>
+  <rsu id="9006355497" positionX="1243.33" positionY="576.83">
+    <antenna direction="0.09602901572950322"/>
+    <antenna direction="1.6337333098142783"/>
+  </rsu>
+  <rsu id="7165977720" positionX="928.57" positionY="1054.96">
+    <antenna direction="-2.5052689600715863"/>
+  </rsu>
+  <rsu id="6597415970" positionX="665.61" positionY="696.7300000000001">
+    <antenna direction="0.14326417963317395"/>
+  </rsu>
+  <rsu id="6679873056" positionX="884.49" positionY="399.4100000000001">
+    <antenna direction="0.033410023253930006"/>
+    <antenna direction="2.3847581480311084"/>
+  </rsu>
+  <rsu id="6578315833" positionX="891.97" positionY="399.6600000000001">
+    <antenna direction="0.015451308883584884"/>
+  </rsu>
+  <rsu id="2479447883" positionX="896.5" positionY="399.73000000000013"/>
+  <rsu id="2481819886" positionX="814.11" positionY="304.0600000000002">
+    <antenna direction="-1.8847165483716641"/>
+  </rsu>
+  <rsu id="1398410108" positionX="181.3" positionY="533.7500000000001">
+    <antenna direction="1.1875372651145684"/>
+  </rsu>
+  <rsu id="215874304" positionX="431.04" positionY="1153.15"/>
+  <rsu id="1390045439" positionX="715.7" positionY="354.07000000000016">
+    <antenna direction="-2.541673083512353"/>
+    <antenna direction="-2.541673083512353"/>
+  </rsu>
+  <rsu id="266184178" positionX="795.01" positionY="394.84000000000003">
+    <antenna direction="-0.6180589089829162"/>
+  </rsu>
+  <rsu id="266184263" positionX="701.04" positionY="462.5400000000001">
+    <antenna direction="-2.394624012930091"/>
+  </rsu>
+  <rsu id="271220703" positionX="0.0" positionY="1013.0600000000001"/>
+  <rsu id="6597374701" positionX="193.14" positionY="708.4300000000001">
+    <antenna direction="0.02727201246809381"/>
+  </rsu>
+  <rsu id="279897137" positionX="283.32" positionY="710.8900000000001">
+    <antenna direction="0.9754281718718495"/>
+  </rsu>
+  <rsu id="2878802046" positionX="229.0" positionY="567.47"/>
+  <rsu id="280705767" positionX="286.91" positionY="716.19">
+    <antenna direction="1.197495668286857"/>
+  </rsu>
+  <rsu id="1398875156" positionX="355.8" positionY="892.08">
+    <antenna direction="1.7067424074096629"/>
+    <antenna direction="1.690388131319236"/>
+  </rsu>
+  <rsu id="6578315369" positionX="818.95" positionY="395.59000000000003">
+    <antenna direction="-1.7509146746246171"/>
+    <antenna direction="-3.1123896629680976"/>
+  </rsu>
+  <rsu id="128525114" positionX="771.66" positionY="367.0600000000002">
+    <antenna direction="-2.8070467396690937"/>
+    <antenna direction="-2.287987067601047"/>
+  </rsu>
+  <rsu id="30396798" positionX="741.41" positionY="245.37000000000012">
+    <antenna direction="-3.0668044493808404"/>
+    <antenna direction="2.038357810135653"/>
+  </rsu>
+  <rsu id="7259118354" positionX="1543.56" positionY="420.31000000000006">
+    <antenna direction="-2.8707115062736177"/>
+  </rsu>
+  <rsu id="2836749429" positionX="1184.37" positionY="237.62000000000012">
+    <antenna direction="0.6115556278659413"/>
+    <antenna direction="0.6115556278659413"/>
+  </rsu>
+  <rsu id="1951951750" positionX="818.47" positionY="919.0800000000002">
+    <antenna direction="2.218727085463677"/>
+    <antenna direction="-1.6544714614622893"/>
+  </rsu>
+  <rsu id="2878751057" positionX="290.6" positionY="739.9800000000001">
+    <antenna direction="-2.102520394053704"/>
+  </rsu>
+  <rsu id="6670697466" positionX="289.0" positionY="737.2600000000001">
+    <antenna direction="1.0390722595360893"/>
+    <antenna direction="-0.31044519714320123"/>
+  </rsu>
+  <rsu id="3048261655" positionX="1099.34" positionY="392.5400000000001">
+    <antenna direction="2.271183203695869"/>
+    <antenna direction="-0.6043333043338738"/>
+  </rsu>
+  <rsu id="3048261658" positionX="1077.28" positionY="418.71000000000004">
+    <antenna direction="-1.7058145905213484"/>
+  </rsu>
+  <rsu id="3048261657" positionX="1072.52" positionY="383.6700000000001">
+    <antenna direction="0.3193997247408516"/>
+  </rsu>
+  <rsu id="3036617944" positionX="1465.33" positionY="542.2600000000001">
+    <antenna direction="1.6894417585884913"/>
+  </rsu>
+  <rsu id="3048247428" positionX="1465.15" positionY="543.7700000000001">
+    <antenna direction="1.689032749119603"/>
+  </rsu>
+  <rsu id="3048247421" positionX="1461.35" positionY="569.5500000000001">
+    <antenna direction="-1.4187723431774082"/>
+    <antenna direction="0.15334758814470378"/>
+  </rsu>
+  <rsu id="3048247423" positionX="1464.48" positionY="549.1200000000001">
+    <antenna direction="-1.4056476493804235"/>
+    <antenna direction="-1.4462112885438758"/>
+  </rsu>
+  <rsu id="3048247420" positionX="1464.6" positionY="548.4000000000001"/>
+  <rsu id="3048247422" positionX="1442.83" positionY="545.4300000000001">
+    <antenna direction="0.1688166001825552"/>
+  </rsu>
+  <rsu id="6568024521" positionX="1455.91" positionY="568.6200000000001">
+    <antenna direction="1.7529374350189504"/>
+    <antenna direction="0.16931904346688964"/>
+  </rsu>
+  <rsu id="3048247572" positionX="1450.74" positionY="596.69"/>
+  <rsu id="3048255193" positionX="1061.86" positionY="524.45">
+    <antenna direction="-1.4536446361254152"/>
+  </rsu>
+  <rsu id="3039659241" positionX="1068.68" positionY="383.22">
+    <antenna direction="0.1166554354410835"/>
+  </rsu>
+  <rsu id="2837204065" positionX="1076.68" positionY="425.5300000000001">
+    <antenna direction="-1.4830457146446152"/>
+  </rsu>
+  <rsu id="1398875145" positionX="338.73" positionY="1016.8700000000001"/>
+  <rsu id="3187775210" positionX="1223.43" positionY="476.57000000000005">
+    <antenna direction="0.508338329103406"/>
+  </rsu>
+  <rsu id="3256984890" positionX="1695.46" positionY="851.09">
+    <antenna direction="2.969822625913469"/>
+  </rsu>
+  <rsu id="5139067484" positionX="1354.44" positionY="910.25">
+    <antenna direction="2.976113103191567"/>
+    <antenna direction="0.1393024953571829"/>
+  </rsu>
+  <rsu id="3262156190" positionX="1595.47" positionY="910.49">
+    <antenna direction="3.104981878459442"/>
+  </rsu>
+  <rsu id="3262156177" positionX="1405.72" positionY="917.44">
+    <antenna direction="2.132886161786577"/>
+  </rsu>
+  <rsu id="3270358603" positionX="1026.53" positionY="843.0100000000001">
+    <antenna direction="-0.4951753118555595"/>
+  </rsu>
+  <rsu id="3272570725" positionX="1054.21" positionY="878.2">
+    <antenna direction="0.13186630052145723"/>
+  </rsu>
+  <rsu id="3272570726" positionX="1078.11" positionY="881.3700000000001"/>
+  <rsu id="1030443233" positionX="992.61" positionY="1074.8000000000002">
+    <antenna direction="0.6517679271971605"/>
+  </rsu>
+  <rsu id="276675583" positionX="1101.09" positionY="1157.5700000000002"/>
+  <rsu id="3331748899" positionX="1073.49" positionY="441.7900000000001"/>
+  <rsu id="213930373" positionX="622.3" positionY="710.8800000000001">
+    <antenna direction="-0.6269027477570016"/>
+    <antenna direction="-0.3553254949583234"/>
+  </rsu>
+  <rsu id="1245210041" positionX="494.16" positionY="562.9300000000001">
+    <antenna direction="2.2863514613411704"/>
+    <antenna direction="0.7497286514048604"/>
+  </rsu>
+  <rsu id="485655118" positionX="1212.77" positionY="247.74">
+    <antenna direction="-2.989069338551276"/>
+  </rsu>
+  <rsu id="208977941" positionX="1591.55" positionY="527.3600000000001"/>
+  <rsu id="3840896087" positionX="1550.96" positionY="741.2700000000001"/>
+  <rsu id="211452767" positionX="1496.78" positionY="171.68000000000006">
+    <antenna direction="1.7473173815046403"/>
+  </rsu>
+  <rsu id="240993792" positionX="818.36" positionY="0.0">
+    <antenna direction="1.8686093465239537"/>
+  </rsu>
+  <rsu id="484793982" positionX="879.0" positionY="402.0300000000001">
+    <antenna direction="-1.6701126184831527"/>
+    <antenna direction="1.3140311372584275"/>
+  </rsu>
+  <rsu id="484793983" positionX="878.72" positionY="399.22">
+    <antenna direction="-1.4468878272326038"/>
+  </rsu>
+  <rsu id="485347048" positionX="1239.17" positionY="485.34000000000003">
+    <antenna direction="0.4851064205743835"/>
+  </rsu>
+  <rsu id="485353187" positionX="1143.81" positionY="287.1300000000001">
+    <antenna direction="-1.835977330300385"/>
+  </rsu>
+  <rsu id="1042291891" positionX="1121.25" positionY="243.8900000000001">
+    <antenna direction="0.7189796554121874"/>
+    <antenna direction="2.5438128835120226"/>
+  </rsu>
+  <rsu id="485869245" positionX="1289.04" positionY="279.93000000000006">
+    <antenna direction="0.7273145126565418"/>
+  </rsu>
+  <rsu id="486051605" positionX="1480.69" positionY="299.53">
+    <antenna direction="2.094160476995871"/>
+  </rsu>
+  <rsu id="486051609" positionX="1470.99" positionY="316.34000000000015">
+    <antenna direction="-1.0474321765939225"/>
+  </rsu>
+  <rsu id="30395550" positionX="343.44" positionY="716.5100000000001">
+    <antenna direction="2.943414796179338"/>
+  </rsu>
+  <rsu id="498492795" positionX="347.53" positionY="734.5400000000001">
+    <antenna direction="-2.2012026772176014"/>
+    <antenna direction="-0.07049706206606896"/>
+  </rsu>
+  <rsu id="499458034" positionX="549.9" positionY="116.88000000000011">
+    <antenna direction="1.353799309513554"/>
+  </rsu>
+  <rsu id="536868041" positionX="349.4" positionY="945.3400000000001">
+    <antenna direction="1.8369544086467184"/>
+  </rsu>
+  <rsu id="30270623" positionX="329.76" positionY="1017.3800000000001"/>
+  <rsu id="8743772916" positionX="314.68" positionY="288.48">
+    <antenna direction="2.0649829225443854"/>
+  </rsu>
+  <rsu id="1908070557" positionX="174.2" positionY="538.9000000000001">
+    <antenna direction="1.0054264333655287"/>
+  </rsu>
+  <rsu id="cluster_6576565649_6576565650" positionX="500.4" positionY="568.7400000000001">
+    <antenna direction="-1.080981211638363"/>
+    <antenna direction="0.7500949762634276"/>
+    <antenna direction="2.291209376341195"/>
+  </rsu>
+  <rsu id="cluster_6576565646_6576565648" positionX="521.53" positionY="542.4200000000001">
+    <antenna direction="-0.8556320418954115"/>
+    <antenna direction="2.525587836246754"/>
+    <antenna direction="2.525587836246754"/>
+  </rsu>
+  <rsu id="2907011318" positionX="499.4" positionY="1415.66">
+    <antenna direction="-1.8899750756226565"/>
+  </rsu>
+  <rsu id="4470946698" positionX="220.83" positionY="572.7300000000001"/>
+  <rsu id="502614934" positionX="351.86" positionY="195.42000000000007">
+    <antenna direction="0.9411074235931567"/>
+  </rsu>
+  <rsu id="6568021718" positionX="1184.77" positionY="254.17000000000007"/>
+  <rsu id="6576565642" positionX="524.99" positionY="545.5200000000001">
+    <antenna direction="-0.881326937076848"/>
+    <antenna direction="-2.411017548056825"/>
+  </rsu>
+  <rsu id="6576535035" positionX="653.8" positionY="402.6200000000001"/>
+  <rsu id="6576535043" positionX="713.74" positionY="360.1100000000001">
+    <antenna direction="-1.2570137312597687"/>
+    <antenna direction="0.9760321303875132"/>
+  </rsu>
+  <rsu id="1042292154" positionX="703.3" positionY="320.85000000000014">
+    <antenna direction="1.8977668188662598"/>
+    <antenna direction="1.8977668188662598"/>
+  </rsu>
+  <rsu id="6576565652" positionX="505.53" positionY="573.5200000000001">
+    <antenna direction="-1.3736512888604417"/>
+  </rsu>
+  <rsu id="6578315365" positionX="799.4" positionY="400.32000000000005">
+    <antenna direction="-2.246204528705894"/>
+  </rsu>
+  <rsu id="6578315368" positionX="808.68" positionY="395.2900000000001">
+    <antenna direction="2.644892228469443"/>
+  </rsu>
+  <rsu id="6595183078" positionX="921.71" positionY="867.6000000000001">
+    <antenna direction="0.07836882379921373"/>
+  </rsu>
+  <rsu id="6595183075" positionX="933.68" positionY="868.5400000000001"/>
+  <rsu id="6595183077" positionX="915.56" positionY="867.4900000000001">
+    <antenna direction="0.01621479500438723"/>
+  </rsu>
+  <rsu id="6595183074" positionX="850.91" positionY="862.58">
+    <antenna direction="0.6753708634000805"/>
+  </rsu>
+  <rsu id="2911940391" positionX="822.18" positionY="114.27999999999997">
+    <antenna direction="1.9067672686675186"/>
+  </rsu>
+  <rsu id="6598335489" positionX="777.75" positionY="241.51">
+    <antenna direction="2.3398789217521503"/>
+  </rsu>
+  <rsu id="6618490934" positionX="944.1" positionY="774.5500000000001">
+    <antenna direction="1.7423029005718367"/>
+    <antenna direction="-0.45267912749641265"/>
+  </rsu>
+  <rsu id="6618638390" positionX="915.81" positionY="595.3800000000001">
+    <antenna direction="-0.26974943316810107"/>
+    <antenna direction="1.6681797815468271"/>
+  </rsu>
+  <rsu id="6618652163" positionX="878.5" positionY="231.66000000000008">
+    <antenna direction="2.124548370359627"/>
+    <antenna direction="2.965299912494782"/>
+  </rsu>
+  <rsu id="6618652165" positionX="848.6" positionY="280.02">
+    <antenna direction="-2.4006097054392788"/>
+    <antenna direction="1.8956514132975921"/>
+  </rsu>
+  <rsu id="6618652166" positionX="845.78" positionY="277.44000000000005">
+    <antenna direction="-1.6333544125559636"/>
+  </rsu>
+  <rsu id="6618652174" positionX="808.42" positionY="280.68000000000006">
+    <antenna direction="0.1919943778050733"/>
+    <antenna direction="-2.235083375526471"/>
+  </rsu>
+  <rsu id="6618652175" positionX="813.41" positionY="281.6500000000001">
+    <antenna direction="0.21074128254199076"/>
+  </rsu>
+  <rsu id="2835340539" positionX="832.84" positionY="6.820000000000164"/>
+  <rsu id="2878769928" positionX="267.92" positionY="759.94">
+    <antenna direction="-0.09823986804624381"/>
+  </rsu>
+  <rsu id="2878769941" positionX="263.63" positionY="740.5000000000001">
+    <antenna direction="-0.12702230150927166"/>
+  </rsu>
+  <rsu id="6672769917" positionX="946.3" positionY="773.4800000000001">
+    <antenna direction="-1.4714410065823744"/>
+    <antenna direction="-0.6089414058085464"/>
+  </rsu>
+  <rsu id="6673899081" positionX="756.39" positionY="257.53">
+    <antenna direction="-0.1717889705270199"/>
+  </rsu>
+  <rsu id="2481819889" positionX="807.75" positionY="284.47">
+    <antenna direction="-1.9551567444344404"/>
+  </rsu>
+  <rsu id="6673899083" positionX="794.2" positionY="250.97000000000003">
+    <antenna direction="-1.3801048834314993"/>
+  </rsu>
+  <rsu id="6598326169" positionX="824.03" positionY="96.44000000000005"/>
+  <rsu id="6679873057" positionX="880.62" positionY="408.20000000000005">
+    <antenna direction="1.3849645760983464"/>
+  </rsu>
+  <rsu id="1375656050" positionX="233.07" positionY="716.9800000000001"/>
+  <rsu id="7091222276" positionX="1036.29" positionY="620.1400000000001">
+    <antenna direction="-1.4591627341288784"/>
+    <antenna direction="1.6849475938477014"/>
+  </rsu>
+  <rsu id="7091222277" positionX="1037.55" positionY="608.9000000000001"/>
+  <rsu id="486488639" positionX="1664.11" positionY="422.72">
+    <antenna direction="-3.1216036116143675"/>
+  </rsu>
+  <rsu id="7685669677" positionX="1301.75" positionY="447.4100000000001"/>
+  <rsu id="7685669679" positionX="1307.36" positionY="460.93000000000006"/>
+  <rsu id="1375498475" positionX="1737.41" positionY="264.46000000000004"/>
+  <rsu id="4451775262" positionX="319.64" positionY="164.33000000000015">
+    <antenna direction="2.1789000352017673"/>
+  </rsu>
+  <rsu id="1030443073" positionX="259.49" positionY="250.74"/>
+  <rsu id="1030443317" positionX="936.99" positionY="1014.2600000000001">
+    <antenna direction="0.660113504491561"/>
+  </rsu>
+  <rsu id="1030443277" positionX="1086.78" positionY="1130.54"/>
+  <rsu id="1042292044" positionX="1094.05" positionY="262.4100000000001"/>
+  <rsu id="1042291914" positionX="620.92" positionY="326.0500000000002">
+    <antenna direction="1.5409282346167068"/>
+  </rsu>
+  <rsu id="281556553" positionX="266.32" positionY="265.8900000000001">
+    <antenna direction="0.3087368677093713"/>
+  </rsu>
+  <rsu id="9006355498" positionX="1242.8" positionY="585.2400000000001">
+    <antenna direction="-3.053262213090737"/>
+  </rsu>
+  <rsu id="9006355494" positionX="1160.54" positionY="577.95">
+    <antenna direction="-3.017518452745874"/>
+  </rsu>
+</RSUs>

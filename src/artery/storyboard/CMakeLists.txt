@@ -33,4 +33,3 @@ target_include_directories(pybind11 INTERFACE
     ${PYTHON_INCLUDE_DIRS})
 target_link_libraries(pybind11 INTERFACE ${PYTHON_LIBRARIES})
 target_link_libraries(storyboard PRIVATE pybind11)
-set_property(TARGET storyboard PROPERTY CXX_VISIBILITY_PRESET hidden)

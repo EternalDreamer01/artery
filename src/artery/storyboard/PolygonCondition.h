@@ -9,7 +9,7 @@
 namespace artery
 {
 
-class STORYBOARD_API PolygonCondition : public Condition
+class PolygonCondition : public Condition
 {
 public:
     /**
@@ -31,7 +31,7 @@ public:
 private:
     std::vector<Position> m_vertices;
     bool mDraw;
-    int STORYBOARD_LOCAL edges() const;
+    int edges() const;
 };
 
 } // namespace artery

@@ -8,7 +8,6 @@
 #include <omnetpp/csimplemodule.h>
 #include "artery/storyboard/Condition.h"
 #include "artery/storyboard/EffectStack.h"
-#include "artery/storyboard/Macros.h"
 #include "artery/storyboard/Vehicle.h"
 #include "artery/utility/Geometry.h"
 #include "traci/Boundary.h"
@@ -22,7 +21,7 @@ class Effect;
 class Story;
 class Vehicle;
 
-class STORYBOARD_API Storyboard : public omnetpp::cSimpleModule, public omnetpp::cListener
+class Storyboard : public omnetpp::cSimpleModule, public omnetpp::cListener
 {
 public:
     Storyboard();
@@ -58,27 +57,27 @@ private:
      * Updates the storyboard by checking all stories
      * Is called each time TraCIScenarioManager processes one omnet step
      */
-    void STORYBOARD_LOCAL updateStoryboard();
+    void updateStoryboard();
 
     /**
      * Adds all effects generated from a story
      * \param list all effects to add, all effects needs to be from the same story and the same car
      */
-    void STORYBOARD_LOCAL addEffect(const std::vector<std::shared_ptr<Effect>>&);
+    void addEffect(const std::vector<std::shared_ptr<Effect>>&);
 
     /**
      * Removes all Effects from one car related to one Story
      * \param Vehicle from which the Effects should be removed
      * \param Story to remove
      */
-    void STORYBOARD_LOCAL removeStory(Vehicle*, const Story*);
+    void removeStory(Vehicle*, const Story*);
 
     /**
      * Checks if a specific Story is already applied on a TraCIMobility
      * \param Vehicle which should be tested
      * \param Story that should be tested
      */
-    bool STORYBOARD_LOCAL storyApplied(Vehicle*, const Story*);
+    bool storyApplied(Vehicle*, const Story*);
 
     /**
      * Checks if the story has to be applied or removed
@@ -87,12 +86,12 @@ private:
      * param: bool result of condition test
      * param: Story which was tested in the update function
      */
-    void STORYBOARD_LOCAL checkCar(Vehicle&, ConditionResult&, Story*);
+    void checkCar(Vehicle&, ConditionResult&, Story*);
 
     /**
      * Iterate over all conditions associated with registered stories and draw them on canvas
      */
-    void STORYBOARD_LOCAL drawConditions();
+    void drawConditions();
 
     std::unique_ptr<PythonContext> m_python;
     std::vector<std::shared_ptr<Story>> m_stories;
