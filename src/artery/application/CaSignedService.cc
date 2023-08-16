@@ -31,6 +31,9 @@
 #include <vanetza/common/byte_buffer.hpp>
 #include <vanetza/asn1/security/Ieee1609Dot2Data.h>
 #include <vanetza/asn1/signedCam.hpp>
+#include <vanetza/common/byte_buffer_sink.hpp>
+#include <boost/iostreams/stream.hpp>
+
 
 
 
@@ -51,39 +54,6 @@ Define_Module(CaSignedService)
 CaSignedService::CaSignedService() : CaService(), runtime(Clock::at("2016-08-01 00:00")), certificateProvider(runtime)
 {
     EV_TRACE << "hello world!" << std::endl;
-	createCertificate();
-}
-
-void CaSignedService::createCertificate() {
-	/*
-	auto securityBackend = vanetza::security::builtin_backends().create();
-	BackendCryptoPP cryptoBackend;
-
-    vanetza::security::ecdsa256::KeyPair keypair = cryptoBackend.generate_key_pair();
-
-    vehiculeCert.subject_attributes.push_back(VerificationKey { keypair.public_key });
-    vehiculeCert.subject_attributes.push_back(vanetza::security::SubjectAssurance());
-
-    vehiculeCert.validity_restriction = vanetza::security::StartAndEndValidity();
-
-	std::string name = "testCert";
-	std::vector<unsigned char> v(name.begin(), name.end());
-    
-    vanetza::security::SubjectInfo subjectInfo;
-    subjectInfo.subject_type = vanetza::security::SubjectType::Root_CA;
-    subjectInfo.subject_name = v;
-
-    vehiculeCert.subject_info = subjectInfo;
-    vehiculeCert.signer_info = vanetza::security::calculate_hash(vehiculeCert);
-
-    auto certificateByteBuffer = vanetza::security::convert_for_signing(vehiculeCert);
-
-
-    vehiculeCert.signature = securityBackend.get()->sign_data(keypair.private_key, certificateByteBuffer);
-
-    vehiculeCertificate = vehiculeCert;
-    vehiculeKeyPair = keypair;
-	*/
 }
 
 void CaSignedService::trigger()
@@ -169,6 +139,19 @@ void CaSignedService::checkTriggeringConditions(const SimTime& T_now)
 	}
 }
 
+ByteBuffer serializeForSigning(asn1::SignedCam message) {
+	ByteBuffer buf;
+    byte_buffer_sink sink(buf);
+
+    boost::iostreams::stream_buffer<byte_buffer_sink> stream(sink);
+    OutputArchive ar(stream);
+
+	const uint8_t version = message->protocolVersion;
+	ar << version;
+	stream.close();
+	return buf;
+}
+
 Certificate_t *convertCertificateHighToLow(vanetza::security::Certificate cert) {
 
 	Certificate_t *good_cert = vanetza::asn1::allocate<Certificate_t>();
@@ -252,11 +235,7 @@ void CaSignedService::sendSignedCam(const SimTime& T_now)
 	securedMessage.header_fields.push_back(aid::CA);
 
 
-	auto securedMessageByteBuffer = security::convert_for_signing(securedMessage, securedMessage.trailer_fields);
-	auto securityBackend = security::create_backend("default");
-	auto backendObject = securityBackend.get();
-	auto signature = backendObject->sign_data(certificateProvider.own_private_key(), securedMessageByteBuffer);
-	securedMessage.trailer_fields.push_back(signature);
+
 
 	std::unique_ptr<geonet::DownPacket> payload { new geonet::DownPacket() };
 
@@ -278,10 +257,6 @@ void CaSignedService::sendSignedCam(const SimTime& T_now)
 		ASN_SEQUENCE_ADD(&correctSignedMessage->content->choice.signedData->signer.choice.certificate, (void *)convertCertificateHighToLow(certificateProvider.own_certificate()));
 	}
 	
-	correctSignedMessage->content->choice.signedData->signature.present = Signature_PR::Signature_PR_ecdsaNistP256Signature;
-	correctSignedMessage->content->choice.signedData->signature.choice.ecdsaNistP256Signature.rSig.present = EccP256CurvePoint_PR::EccP256CurvePoint_PR_x_only;
-	correctSignedMessage->content->choice.signedData->signature.choice.ecdsaNistP256Signature.rSig.choice.x_only = *OCTET_STRING_new_fromBuf(&asn_DEF_EccP256CurvePoint, (char *)boost::get<X_Coordinate_Only>(signature.R).x.data(), boost::get<X_Coordinate_Only>(signature.R).x.size());
-	correctSignedMessage->content->choice.signedData->signature.choice.ecdsaNistP256Signature.sSig = *OCTET_STRING_new_fromBuf(&asn_DEF_EcdsaP256Signature, (char *)signature.s.data(), signature.s.size());
 
 	correctSignedMessage->content->choice.signedData->tbsData = vanetza::asn1::allocate<ToBeSignedData_t>();
 	correctSignedMessage->content->choice.signedData->tbsData->headerInfo.psid = aid::CA;
@@ -293,6 +268,19 @@ void CaSignedService::sendSignedCam(const SimTime& T_now)
 	correctSignedMessage->content->choice.signedData->tbsData->payload->data->content = vanetza::asn1::allocate<Ieee1609Dot2Content_t>();
 	correctSignedMessage->content->choice.signedData->tbsData->payload->data->content->present = Ieee1609Dot2Content_PR::Ieee1609Dot2Content_PR_unsecuredData;
 	correctSignedMessage->content->choice.signedData->tbsData->payload->data->content->choice.unsecuredData = *OCTET_STRING_new_fromBuf(&asn_DEF_Ieee1609Dot2Data, (char *)&camByteBuffer[0], camByteBuffer.size());
+
+	correctSignedMessage->content->choice.signedData->signature.present = Signature_PR::Signature_PR_ecdsaNistP256Signature;
+	correctSignedMessage->content->choice.signedData->signature.choice.ecdsaNistP256Signature.rSig.present = EccP256CurvePoint_PR::EccP256CurvePoint_PR_x_only;
+	auto securityBackend = security::create_backend("default");
+	auto backendObject = securityBackend.get();
+	auto signature = backendObject->sign_data(certificateProvider.own_private_key(), serializeForSigning(correctSignedMessage));
+	correctSignedMessage->content->choice.signedData->signature.choice.ecdsaNistP256Signature.rSig.choice.x_only = *OCTET_STRING_new_fromBuf(&asn_DEF_EccP256CurvePoint, (char *)boost::get<X_Coordinate_Only>(signature.R).x.data(), boost::get<X_Coordinate_Only>(signature.R).x.size());
+	correctSignedMessage->content->choice.signedData->signature.choice.ecdsaNistP256Signature.sSig = *OCTET_STRING_new_fromBuf(&asn_DEF_EcdsaP256Signature, (char *)signature.s.data(), signature.s.size());
+	auto verif_key = boost::get<Uncompressed>(boost::get<ecdsa_nistp256_with_sha256>(boost::get<VerificationKey>(certificateProvider.own_certificate().get_attribute(SubjectAttributeType::Verification_Key))->key).public_key);
+	ecdsa256::PublicKey key;
+	std::copy_n(verif_key.x.begin(), 32, key.x.begin());
+	std::copy_n(verif_key.y.begin(), 32, key.y.begin());
+	bool test = backendObject->verify_data(key, serializeForSigning(correctSignedMessage), signature);
 
 	auto signedCamSharedPtr = std::make_shared<asn1::SignedCam>(correctSignedMessage);
 
@@ -309,6 +297,7 @@ void CaSignedService::sendSignedCam(const SimTime& T_now)
 	payload->layer(OsiLayer::Application) = std::move(signedBuffer);
 	this->request(request, std::move(payload));
 }
+
 
 
 }  // namespace artery

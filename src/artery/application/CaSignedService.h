@@ -26,7 +26,6 @@ class CaSignedService : public CaService
 	protected:
 		void checkTriggeringConditions(const omnetpp::SimTime&);
 		void sendSignedCam(const omnetpp::SimTime&);
-		void createCertificate();
     	vanetza::asn1::Cam *createCooperativeAwarenessMessagePointer(const VehicleDataProvider& vdp, uint16_t genDeltaTime);
 
 		vanetza::ManualRuntime runtime;
