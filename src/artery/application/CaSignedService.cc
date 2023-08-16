@@ -16,6 +16,7 @@
 #include "veins/base/utils/Coord.h"
 #include <boost/units/cmath.hpp>
 #include <boost/units/systems/si/prefixes.hpp>
+#include <boost/iostreams/stream.hpp>
 #include <omnetpp/cexception.h>
 #include <vanetza/btp/ports.hpp>
 #include <vanetza/dcc/transmission.hpp>
@@ -28,12 +29,10 @@
 #include <vanetza/security/subject_attribute.hpp>
 #include <vanetza/security/naive_certificate_provider.hpp>
 #include <vanetza/security/signature.hpp>
+#include <vanetza/common/byte_buffer_sink.hpp>
 #include <vanetza/common/byte_buffer.hpp>
 #include <vanetza/asn1/security/Ieee1609Dot2Data.h>
 #include <vanetza/asn1/signedCam.hpp>
-#include <vanetza/common/byte_buffer_sink.hpp>
-#include <boost/iostreams/stream.hpp>
-
 
 
 
@@ -73,6 +72,49 @@ std::string get_hex_string(unsigned char *buf, int size) {
 	return str;
 }
 
+void encodeArray(OutputArchive ar, unsigned char *arr, size_t size) {
+	for (int i = 0; i < size; i++) {
+		ar << arr[i];
+	}
+}
+
+ByteBuffer encodeToSign(const asn1::SignedCam *message) {
+
+	ByteBuffer buf;
+    byte_buffer_sink sink(buf);
+
+    boost::iostreams::stream_buffer<byte_buffer_sink> stream(sink);
+    OutputArchive ar(stream);
+
+	SignedData *signedData = (*message)->content->choice.signedData;
+
+	ar << (*message)->protocolVersion;
+	ar << 3; // length of header field;
+	if (signedData->signer.present == SignerIdentifier_PR_certificate) {
+		Certificate_t *cert = (Certificate_t *)signedData->signer.choice.certificate.list.array[0];
+		ar << cert->version;
+		ar << cert->type;
+		encodeArray(ar, cert->issuer.choice.sha256AndDigest.buf, cert->issuer.choice.sha256AndDigest.size);
+	} else {
+		encodeArray(ar, signedData->signer.choice.digest.buf, signedData->signer.choice.digest.size);
+	}
+
+	encodeArray(ar, signedData->tbsData->headerInfo.generationTime->buf, signedData->tbsData->headerInfo.generationTime->size);
+	ar << signedData->tbsData->headerInfo.psid;
+
+	ar << signedData->tbsData->payload->data->protocolVersion;
+	ar << static_cast<int>(signedData->tbsData->payload->data->content->present);
+
+
+	encodeArray(ar, signedData->tbsData->payload->data->content->choice.unsecuredData.buf, signedData->tbsData->payload->data->content->choice.unsecuredData.size);
+
+	ar << 1; // length of trail field 
+	ar << static_cast<int>(signedData->signature.present);
+
+	stream.close();
+	return buf;
+}
+
 void CaSignedService::indicate(const vanetza::btp::DataIndication& ind, std::unique_ptr<vanetza::UpPacket> packet)
 {
 	Enter_Method("indicate");
@@ -88,6 +130,22 @@ void CaSignedService::indicate(const vanetza::btp::DataIndication& ind, std::uni
 		if (content->choice.signedData->signer.present == SignerIdentifier_PR::SignerIdentifier_PR_certificate) {
 			Certificate_t *cert = (Certificate_t *)content->choice.signedData->signer.choice.certificate.list.array[0];
 			EV_INFO << "Received a certificate" << std::endl;
+			EcdsaSignature signature;
+			std::vector<uint8_t> s(content->choice.signedData->signature.choice.ecdsaNistP256Signature.sSig.buf, content->choice.signedData->signature.choice.ecdsaNistP256Signature.sSig.buf + cert->signature->choice.ecdsaNistP256Signature.sSig.size);
+			signature.s = s;
+			std::vector<uint8_t> r(content->choice.signedData->signature.choice.ecdsaNistP256Signature.rSig.choice.x_only.buf, content->choice.signedData->signature.choice.ecdsaNistP256Signature.rSig.choice.x_only.buf + cert->signature->choice.ecdsaNistP256Signature.rSig.choice.x_only.size);
+			X_Coordinate_Only x;
+			x.x = r;
+			signature.R = x;
+
+			EV_INFO << "Secure message signature R:" << get_hex_string(&r[0], r.size()) << std::endl << "S: " << get_hex_string(&s[0], s.size()) << std::endl;
+			ecdsa256::PublicKey p_key;
+			auto key = cert->toBeSigned.verifyKeyIndicator.choice.verificationKey.choice.ecdsaNistP256;
+			std::copy_n(key.choice.uncompressedP256.x.buf, 32, p_key.x.begin());
+			std::copy_n(key.choice.uncompressedP256.y.buf, 32, p_key.y.begin());
+			auto securityBackend = security::create_backend("default");
+			auto backendObject = securityBackend.get();
+			auto test = backendObject->verify_data(p_key, encodeToSign(visitor.shared_wrapper.get()), signature);
 		}
 		
 		OCTET_STRING signature = content->choice.signedData->signature.choice.ecdsaNistP256Signature.sSig;
@@ -111,6 +169,9 @@ void CaSignedService::indicate(const vanetza::btp::DataIndication& ind, std::uni
 
 		}
 }
+
+
+
 
 void CaSignedService::checkTriggeringConditions(const SimTime& T_now)
 {
@@ -139,56 +200,44 @@ void CaSignedService::checkTriggeringConditions(const SimTime& T_now)
 	}
 }
 
-ByteBuffer serializeForSigning(asn1::SignedCam message) {
-	ByteBuffer buf;
-    byte_buffer_sink sink(buf);
-
-    boost::iostreams::stream_buffer<byte_buffer_sink> stream(sink);
-    OutputArchive ar(stream);
-
-	const uint8_t version = message->protocolVersion;
-	ar << version;
-	stream.close();
-	return buf;
-}
-
 Certificate_t *convertCertificateHighToLow(vanetza::security::Certificate cert) {
 
-	Certificate_t *good_cert = vanetza::asn1::allocate<Certificate_t>();
+	Certificate_t *ll_certificate = vanetza::asn1::allocate<Certificate_t>();
 
-	good_cert->version = 3;
-	good_cert->type = CertificateType::CertificateType_explicit;
+	ll_certificate->version = 3;
+	ll_certificate->type = CertificateType::CertificateType_explicit;
 
-	good_cert->issuer.present = IssuerIdentifier_PR::IssuerIdentifier_PR_sha256AndDigest;
-	good_cert->issuer.choice.sha256AndDigest = *OCTET_STRING_new_fromBuf(&asn_DEF_IssuerIdentifier, (char *)&boost::get<HashedId8>(cert.signer_info), 8);
+	ll_certificate->issuer.present = IssuerIdentifier_PR::IssuerIdentifier_PR_sha256AndDigest;
+	ll_certificate->issuer.choice.sha256AndDigest = *OCTET_STRING_new_fromBuf(&asn_DEF_IssuerIdentifier, (char *)&boost::get<HashedId8>(cert.signer_info), 8);
 
-	good_cert->toBeSigned.id.present = CertificateId_PR::CertificateId_PR_none;
-	good_cert->toBeSigned.cracaId.buf = (uint8_t *)std::calloc(3, 1);
-	good_cert->toBeSigned.cracaId.size = 3;
+	ll_certificate->toBeSigned.id.present = CertificateId_PR::CertificateId_PR_none;
+	ll_certificate->toBeSigned.cracaId.buf = (uint8_t *)std::calloc(3, 1);
+	ll_certificate->toBeSigned.cracaId.size = 3;
 
 	const ValidityRestriction *sev = cert.get_restriction(ValidityRestrictionType::Time_Start_And_End);
-	good_cert->toBeSigned.validityPeriod.start = boost::get<StartAndEndValidity>(sev)->start_validity;
-	good_cert->toBeSigned.validityPeriod.duration.present = Duration_PR::Duration_PR_seconds;
-	good_cert->toBeSigned.validityPeriod.duration.choice.seconds = boost::get<StartAndEndValidity>(sev)->end_validity / 1000 - boost::get<StartAndEndValidity>(sev)->start_validity / 1000;
+	ll_certificate->toBeSigned.validityPeriod.start = boost::get<StartAndEndValidity>(sev)->start_validity;
+	ll_certificate->toBeSigned.validityPeriod.duration.present = Duration_PR::Duration_PR_seconds;
+	ll_certificate->toBeSigned.validityPeriod.duration.choice.seconds = boost::get<StartAndEndValidity>(sev)->end_validity / 1000 - boost::get<StartAndEndValidity>(sev)->start_validity / 1000;
 
 	const VerificationKey *key = boost::get<VerificationKey>(cert.get_attribute(SubjectAttributeType::Verification_Key));
-	good_cert->toBeSigned.verifyKeyIndicator.present = VerificationKeyIndicator_PR::VerificationKeyIndicator_PR_verificationKey;
-	good_cert->toBeSigned.verifyKeyIndicator.choice.verificationKey.present = PublicVerificationKey_PR::PublicVerificationKey_PR_ecdsaNistP256;
-	good_cert->toBeSigned.verifyKeyIndicator.choice.verificationKey.choice.ecdsaNistP256.present = EccP256CurvePoint_PR::EccP256CurvePoint_PR_uncompressedP256;
+	ll_certificate->toBeSigned.verifyKeyIndicator.present = VerificationKeyIndicator_PR::VerificationKeyIndicator_PR_verificationKey;
+	ll_certificate->toBeSigned.verifyKeyIndicator.choice.verificationKey.present = PublicVerificationKey_PR::PublicVerificationKey_PR_ecdsaNistP256;
+	ll_certificate->toBeSigned.verifyKeyIndicator.choice.verificationKey.choice.ecdsaNistP256.present = EccP256CurvePoint_PR::EccP256CurvePoint_PR_uncompressedP256;
 	EccPoint pkey = boost::get<ecdsa_nistp256_with_sha256>(key->key).public_key;
-	good_cert->toBeSigned.verifyKeyIndicator.choice.verificationKey.choice.ecdsaNistP256.choice.uncompressedP256.x = *OCTET_STRING_new_fromBuf(&asn_DEF_EccP256CurvePoint, (char *)boost::get<Uncompressed>(pkey).x.data(), boost::get<Uncompressed>(pkey).x.size());
-	good_cert->toBeSigned.verifyKeyIndicator.choice.verificationKey.choice.ecdsaNistP256.choice.uncompressedP256.y = *OCTET_STRING_new_fromBuf(&asn_DEF_EccP256CurvePoint, (char *)boost::get<Uncompressed>(pkey).y.data(), boost::get<Uncompressed>(pkey).y.size());
+	ll_certificate->toBeSigned.verifyKeyIndicator.choice.verificationKey.choice.ecdsaNistP256.choice.uncompressedP256.x = *OCTET_STRING_new_fromBuf(&asn_DEF_EccP256CurvePoint, (char *)boost::get<Uncompressed>(pkey).x.data(), boost::get<Uncompressed>(pkey).x.size());
+	ll_certificate->toBeSigned.verifyKeyIndicator.choice.verificationKey.choice.ecdsaNistP256.choice.uncompressedP256.y = *OCTET_STRING_new_fromBuf(&asn_DEF_EccP256CurvePoint, (char *)boost::get<Uncompressed>(pkey).y.data(), boost::get<Uncompressed>(pkey).y.size());
 
 
-	good_cert->signature = vanetza::asn1::allocate<Signature_t>();
-	good_cert->signature->present = Signature_PR::Signature_PR_ecdsaNistP256Signature;
+	ll_certificate->signature = vanetza::asn1::allocate<Signature_t>();
+	ll_certificate->signature->present = Signature_PR::Signature_PR_ecdsaNistP256Signature;
 	EcdsaSignature signature = boost::get<EcdsaSignature>(cert.signature);
-	good_cert->signature->choice.ecdsaNistP256Signature.rSig.present = EccP256CurvePoint_PR::EccP256CurvePoint_PR_x_only;
-	good_cert->signature->choice.ecdsaNistP256Signature.rSig.choice.x_only = *OCTET_STRING_new_fromBuf(&asn_DEF_EccP256CurvePoint, (char *)boost::get<X_Coordinate_Only>(signature.R).x.data(), boost::get<X_Coordinate_Only>(signature.R).x.size());
-	good_cert->signature->choice.ecdsaNistP256Signature.sSig = *OCTET_STRING_new_fromBuf(&asn_DEF_EcdsaP256Signature, (char *)signature.s.data(), signature.s.size());;
+	ll_certificate->signature->choice.ecdsaNistP256Signature.rSig.present = EccP256CurvePoint_PR::EccP256CurvePoint_PR_x_only;
+	ll_certificate->signature->choice.ecdsaNistP256Signature.rSig.choice.x_only = *OCTET_STRING_new_fromBuf(&asn_DEF_EccP256CurvePoint, (char *)boost::get<X_Coordinate_Only>(signature.R).x.data(), boost::get<X_Coordinate_Only>(signature.R).x.size());
+	ll_certificate->signature->choice.ecdsaNistP256Signature.sSig = *OCTET_STRING_new_fromBuf(&asn_DEF_EcdsaP256Signature, (char *)signature.s.data(), signature.s.size());;
 
-	return good_cert;
+	return ll_certificate;
 }
+
 
 void CaSignedService::sendSignedCam(const SimTime& T_now)
 {
@@ -221,19 +270,6 @@ void CaSignedService::sendSignedCam(const SimTime& T_now)
 	emit(artery::scSignalCamSent, &obj);
 
 
-	using CamByteBuffer = convertible::byte_buffer_impl<asn1::Cam>;
-	std::unique_ptr<convertible::byte_buffer> buffer { new CamByteBuffer(obj.shared_ptr()) };
-
-    vanetza::security::Payload securedPayload;
-    securedPayload.type = vanetza::security::PayloadType::Signed;
-    securedPayload.data = vanetza::CohesivePacket(vanetza::buffer_copy(buffer.get()), OsiLayer::Application);
-
-    security::SecuredMessage securedMessage;
-
-    securedMessage.payload = securedPayload;
-	securedMessage.header_fields.push_back(convert_time64(Clock::at("2016-08-01 00:00")));
-	securedMessage.header_fields.push_back(aid::CA);
-
 
 
 
@@ -257,8 +293,7 @@ void CaSignedService::sendSignedCam(const SimTime& T_now)
 		ASN_SEQUENCE_ADD(&correctSignedMessage->content->choice.signedData->signer.choice.certificate, (void *)convertCertificateHighToLow(certificateProvider.own_certificate()));
 	}
 	
-
-	correctSignedMessage->content->choice.signedData->tbsData = vanetza::asn1::allocate<ToBeSignedData_t>();
+		correctSignedMessage->content->choice.signedData->tbsData = vanetza::asn1::allocate<ToBeSignedData_t>();
 	correctSignedMessage->content->choice.signedData->tbsData->headerInfo.psid = aid::CA;
 	correctSignedMessage->content->choice.signedData->tbsData->headerInfo.generationTime = vanetza::asn1::allocate<Time64_t>();
 	asn_uint642INTEGER(correctSignedMessage->content->choice.signedData->tbsData->headerInfo.generationTime, convert_time64(Clock::at("2016-08-01 00:00")));
@@ -270,17 +305,25 @@ void CaSignedService::sendSignedCam(const SimTime& T_now)
 	correctSignedMessage->content->choice.signedData->tbsData->payload->data->content->choice.unsecuredData = *OCTET_STRING_new_fromBuf(&asn_DEF_Ieee1609Dot2Data, (char *)&camByteBuffer[0], camByteBuffer.size());
 
 	correctSignedMessage->content->choice.signedData->signature.present = Signature_PR::Signature_PR_ecdsaNistP256Signature;
-	correctSignedMessage->content->choice.signedData->signature.choice.ecdsaNistP256Signature.rSig.present = EccP256CurvePoint_PR::EccP256CurvePoint_PR_x_only;
+
 	auto securityBackend = security::create_backend("default");
 	auto backendObject = securityBackend.get();
-	auto signature = backendObject->sign_data(certificateProvider.own_private_key(), serializeForSigning(correctSignedMessage));
+	auto test = encodeToSign(&correctSignedMessage);
+	auto signature = backendObject->sign_data(certificateProvider.own_private_key(), encodeToSign(&correctSignedMessage));
+
+	correctSignedMessage->content->choice.signedData->signature.choice.ecdsaNistP256Signature.rSig.present = EccP256CurvePoint_PR::EccP256CurvePoint_PR_x_only;
 	correctSignedMessage->content->choice.signedData->signature.choice.ecdsaNistP256Signature.rSig.choice.x_only = *OCTET_STRING_new_fromBuf(&asn_DEF_EccP256CurvePoint, (char *)boost::get<X_Coordinate_Only>(signature.R).x.data(), boost::get<X_Coordinate_Only>(signature.R).x.size());
 	correctSignedMessage->content->choice.signedData->signature.choice.ecdsaNistP256Signature.sSig = *OCTET_STRING_new_fromBuf(&asn_DEF_EcdsaP256Signature, (char *)signature.s.data(), signature.s.size());
-	auto verif_key = boost::get<Uncompressed>(boost::get<ecdsa_nistp256_with_sha256>(boost::get<VerificationKey>(certificateProvider.own_certificate().get_attribute(SubjectAttributeType::Verification_Key))->key).public_key);
-	ecdsa256::PublicKey key;
-	std::copy_n(verif_key.x.begin(), 32, key.x.begin());
-	std::copy_n(verif_key.y.begin(), 32, key.y.begin());
-	bool test = backendObject->verify_data(key, serializeForSigning(correctSignedMessage), signature);
+
+
+	Certificate_t *cert = (Certificate_t *)correctSignedMessage->content->choice.signedData->signer.choice.certificate.list.array[0];
+
+	ecdsa256::PublicKey p_key;
+	auto key = cert->toBeSigned.verifyKeyIndicator.choice.verificationKey.choice.ecdsaNistP256;
+	std::copy_n(key.choice.uncompressedP256.x.buf, 32, p_key.x.begin());
+	std::copy_n(key.choice.uncompressedP256.y.buf, 32, p_key.y.begin());
+
+	auto boo = backendObject->verify_data(p_key, encodeToSign(&correctSignedMessage), signature);
 
 	auto signedCamSharedPtr = std::make_shared<asn1::SignedCam>(correctSignedMessage);
 
@@ -297,7 +340,6 @@ void CaSignedService::sendSignedCam(const SimTime& T_now)
 	payload->layer(OsiLayer::Application) = std::move(signedBuffer);
 	this->request(request, std::move(payload));
 }
-
 
 
 }  // namespace artery
