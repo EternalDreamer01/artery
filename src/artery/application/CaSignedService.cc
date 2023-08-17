@@ -12,6 +12,7 @@
 #include "artery/application/Asn1PacketVisitor.h"
 #include "artery/application/MultiChannelPolicy.h"
 #include "artery/application/VehicleDataProvider.h"
+#include "artery/application/SignedCam.hpp"
 #include "artery/utility/simtime_cast.h"
 #include "veins/base/utils/Coord.h"
 #include <boost/units/cmath.hpp>
@@ -32,7 +33,7 @@
 #include <vanetza/common/byte_buffer_sink.hpp>
 #include <vanetza/common/byte_buffer.hpp>
 #include <vanetza/asn1/security/Ieee1609Dot2Data.h>
-#include <vanetza/asn1/signedCam.hpp>
+
 
 
 
