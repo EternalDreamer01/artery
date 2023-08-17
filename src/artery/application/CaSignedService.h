@@ -8,7 +8,9 @@
 #define ARTERY_CASIGNEDSERVICE_H_
 
 #include "artery/application/CaService.h"
+#include "artery/application/SignedCam.hpp"
 #include <vanetza/security/certificate.hpp>
+#include <vanetza/common/byte_buffer.hpp>
 #include <vanetza/security/naive_certificate_provider.hpp>
 #include <vanetza/common/clock.hpp>
 #include <vanetza/common/manual_runtime.hpp>
@@ -27,6 +29,7 @@ class CaSignedService : public CaService
 		void checkTriggeringConditions(const omnetpp::SimTime&);
 		void sendSignedCam(const omnetpp::SimTime&);
     	vanetza::asn1::Cam *createCooperativeAwarenessMessagePointer(const VehicleDataProvider& vdp, uint16_t genDeltaTime);
+		vanetza::asn1::SignedCam createSignedCam(vanetza::ByteBuffer camByteBuffer);
 
 		vanetza::ManualRuntime runtime;
 		vanetza::security::NaiveCertificateProvider certificateProvider;

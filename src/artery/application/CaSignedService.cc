@@ -12,7 +12,7 @@
 #include "artery/application/Asn1PacketVisitor.h"
 #include "artery/application/MultiChannelPolicy.h"
 #include "artery/application/VehicleDataProvider.h"
-#include "artery/application/SignedCam.hpp"
+
 #include "artery/utility/simtime_cast.h"
 #include "veins/base/utils/Coord.h"
 #include <boost/units/cmath.hpp>
@@ -239,6 +239,44 @@ Certificate_t *convertCertificateHighToLow(vanetza::security::Certificate cert) 
 	return ll_certificate;
 }
 
+asn1::SignedCam CaSignedService::createSignedCam(ByteBuffer camByteBuffer) {
+
+	asn1::SignedCam signedMessage;
+	signedMessage->protocolVersion = 3;
+
+	bool send_certificate = true;
+
+	signedMessage->content = vanetza::asn1::allocate<Ieee1609Dot2Content_t>();
+	signedMessage->content->present = Ieee1609Dot2Content_PR::Ieee1609Dot2Content_PR_signedData;
+
+	signedMessage->content->choice.signedData = vanetza::asn1::allocate<SignedData_t>();
+	signedMessage->content->choice.signedData->hashId = 0;
+	if (!send_certificate){
+		signedMessage->content->choice.signedData->signer.present =  SignerIdentifier_PR::SignerIdentifier_PR_digest;
+		HashedId8 hashed = calculate_hash(certificateProvider.own_certificate());
+		signedMessage->content->choice.signedData->signer.choice.digest = *OCTET_STRING_new_fromBuf(&asn_DEF_HashedId8, (char *)hashed.data(), hashed.size());
+	} else {
+		signedMessage->content->choice.signedData->signer.present = SignerIdentifier_PR::SignerIdentifier_PR_certificate;
+		
+		ASN_SEQUENCE_ADD(&signedMessage->content->choice.signedData->signer.choice.certificate, (void *)convertCertificateHighToLow(certificateProvider.own_certificate()));
+	}
+	
+		signedMessage->content->choice.signedData->tbsData = vanetza::asn1::allocate<ToBeSignedData_t>();
+	signedMessage->content->choice.signedData->tbsData->headerInfo.psid = aid::CA;
+	signedMessage->content->choice.signedData->tbsData->headerInfo.generationTime = vanetza::asn1::allocate<Time64_t>();
+	asn_uint642INTEGER(signedMessage->content->choice.signedData->tbsData->headerInfo.generationTime, convert_time64(Clock::at("2016-08-01 00:00")));
+	signedMessage->content->choice.signedData->tbsData->payload = vanetza::asn1::allocate<SignedDataPayload_t>();
+	signedMessage->content->choice.signedData->tbsData->payload->data = vanetza::asn1::allocate<Ieee1609Dot2Data_t>();
+	signedMessage->content->choice.signedData->tbsData->payload->data->protocolVersion = 3;
+	signedMessage->content->choice.signedData->tbsData->payload->data->content = vanetza::asn1::allocate<Ieee1609Dot2Content_t>();
+	signedMessage->content->choice.signedData->tbsData->payload->data->content->present = Ieee1609Dot2Content_PR::Ieee1609Dot2Content_PR_unsecuredData;
+	signedMessage->content->choice.signedData->tbsData->payload->data->content->choice.unsecuredData = *OCTET_STRING_new_fromBuf(&asn_DEF_Ieee1609Dot2Data, (char *)&camByteBuffer[0], camByteBuffer.size());
+
+	signedMessage->content->choice.signedData->signature.present = Signature_PR::Signature_PR_ecdsaNistP256Signature;
+	return signedMessage;
+}
+
+
 
 void CaSignedService::sendSignedCam(const SimTime& T_now)
 {
@@ -270,72 +308,23 @@ void CaSignedService::sendSignedCam(const SimTime& T_now)
 	CaObject obj(std::move(cam));
 	emit(artery::scSignalCamSent, &obj);
 
-
-
-
-
 	std::unique_ptr<geonet::DownPacket> payload { new geonet::DownPacket() };
+	asn1::SignedCam signedCam = createSignedCam(camByteBuffer);
 
-	asn1::SignedCam correctSignedMessage;
-	correctSignedMessage->protocolVersion = 3;
-
-	correctSignedMessage->content = vanetza::asn1::allocate<Ieee1609Dot2Content_t>();
-	correctSignedMessage->content->present = Ieee1609Dot2Content_PR::Ieee1609Dot2Content_PR_signedData;
-
-	correctSignedMessage->content->choice.signedData = vanetza::asn1::allocate<SignedData_t>();
-	correctSignedMessage->content->choice.signedData->hashId = 0;
-	if (!send_certificate){
-		correctSignedMessage->content->choice.signedData->signer.present =  SignerIdentifier_PR::SignerIdentifier_PR_digest;
-		HashedId8 hashed = calculate_hash(certificateProvider.own_certificate());
-		correctSignedMessage->content->choice.signedData->signer.choice.digest = *OCTET_STRING_new_fromBuf(&asn_DEF_HashedId8, (char *)hashed.data(), hashed.size());
-	} else {
-		correctSignedMessage->content->choice.signedData->signer.present = SignerIdentifier_PR::SignerIdentifier_PR_certificate;
-		
-		ASN_SEQUENCE_ADD(&correctSignedMessage->content->choice.signedData->signer.choice.certificate, (void *)convertCertificateHighToLow(certificateProvider.own_certificate()));
-	}
-	
-		correctSignedMessage->content->choice.signedData->tbsData = vanetza::asn1::allocate<ToBeSignedData_t>();
-	correctSignedMessage->content->choice.signedData->tbsData->headerInfo.psid = aid::CA;
-	correctSignedMessage->content->choice.signedData->tbsData->headerInfo.generationTime = vanetza::asn1::allocate<Time64_t>();
-	asn_uint642INTEGER(correctSignedMessage->content->choice.signedData->tbsData->headerInfo.generationTime, convert_time64(Clock::at("2016-08-01 00:00")));
-	correctSignedMessage->content->choice.signedData->tbsData->payload = vanetza::asn1::allocate<SignedDataPayload_t>();
-	correctSignedMessage->content->choice.signedData->tbsData->payload->data = vanetza::asn1::allocate<Ieee1609Dot2Data_t>();
-	correctSignedMessage->content->choice.signedData->tbsData->payload->data->protocolVersion = 3;
-	correctSignedMessage->content->choice.signedData->tbsData->payload->data->content = vanetza::asn1::allocate<Ieee1609Dot2Content_t>();
-	correctSignedMessage->content->choice.signedData->tbsData->payload->data->content->present = Ieee1609Dot2Content_PR::Ieee1609Dot2Content_PR_unsecuredData;
-	correctSignedMessage->content->choice.signedData->tbsData->payload->data->content->choice.unsecuredData = *OCTET_STRING_new_fromBuf(&asn_DEF_Ieee1609Dot2Data, (char *)&camByteBuffer[0], camByteBuffer.size());
-
-	correctSignedMessage->content->choice.signedData->signature.present = Signature_PR::Signature_PR_ecdsaNistP256Signature;
 
 	auto securityBackend = security::create_backend("default");
 	auto backendObject = securityBackend.get();
-	auto test = encodeToSign(&correctSignedMessage);
-	auto signature = backendObject->sign_data(certificateProvider.own_private_key(), encodeToSign(&correctSignedMessage));
+	auto test = encodeToSign(&signedCam);
+	auto signature = backendObject->sign_data(certificateProvider.own_private_key(), encodeToSign(&signedCam));
 
-	correctSignedMessage->content->choice.signedData->signature.choice.ecdsaNistP256Signature.rSig.present = EccP256CurvePoint_PR::EccP256CurvePoint_PR_x_only;
-	correctSignedMessage->content->choice.signedData->signature.choice.ecdsaNistP256Signature.rSig.choice.x_only = *OCTET_STRING_new_fromBuf(&asn_DEF_EccP256CurvePoint, (char *)boost::get<X_Coordinate_Only>(signature.R).x.data(), boost::get<X_Coordinate_Only>(signature.R).x.size());
-	correctSignedMessage->content->choice.signedData->signature.choice.ecdsaNistP256Signature.sSig = *OCTET_STRING_new_fromBuf(&asn_DEF_EcdsaP256Signature, (char *)signature.s.data(), signature.s.size());
+	signedCam->content->choice.signedData->signature.choice.ecdsaNistP256Signature.rSig.present = EccP256CurvePoint_PR::EccP256CurvePoint_PR_x_only;
+	signedCam->content->choice.signedData->signature.choice.ecdsaNistP256Signature.rSig.choice.x_only = *OCTET_STRING_new_fromBuf(&asn_DEF_EccP256CurvePoint, (char *)boost::get<X_Coordinate_Only>(signature.R).x.data(), boost::get<X_Coordinate_Only>(signature.R).x.size());
+	signedCam->content->choice.signedData->signature.choice.ecdsaNistP256Signature.sSig = *OCTET_STRING_new_fromBuf(&asn_DEF_EcdsaP256Signature, (char *)signature.s.data(), signature.s.size());
 
-
-	Certificate_t *cert = (Certificate_t *)correctSignedMessage->content->choice.signedData->signer.choice.certificate.list.array[0];
-
-	ecdsa256::PublicKey p_key;
-	auto key = cert->toBeSigned.verifyKeyIndicator.choice.verificationKey.choice.ecdsaNistP256;
-	std::copy_n(key.choice.uncompressedP256.x.buf, 32, p_key.x.begin());
-	std::copy_n(key.choice.uncompressedP256.y.buf, 32, p_key.y.begin());
-
-	auto boo = backendObject->verify_data(p_key, encodeToSign(&correctSignedMessage), signature);
-
-	auto signedCamSharedPtr = std::make_shared<asn1::SignedCam>(correctSignedMessage);
+	auto signedCamSharedPtr = std::make_shared<asn1::SignedCam>(signedCam);
 
 	using SignedCamByteBuffer = convertible::byte_buffer_impl<asn1::SignedCam>;
 	std::unique_ptr<convertible::byte_buffer> signedBuffer { new SignedCamByteBuffer(signedCamSharedPtr) };
-
-	
-
-	//std::string signatureStr(signature.s.begin(), signature.s.end());
-
-	EV_INFO << getName() << ": Send a signed CAM packet! signature: " << get_hex_string(&signature.s[0], signature.s.size()) << std::endl;
 
 
 	payload->layer(OsiLayer::Application) = std::move(signedBuffer);
