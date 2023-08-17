@@ -126,49 +126,52 @@ void CaSignedService::indicate(const vanetza::btp::DataIndication& ind, std::uni
 
 	if (signedCam) {
 		Ieee1609Dot2Content *content = (*visitor.shared_wrapper.get())->content;
-		OCTET_STRING obj_string = content->choice.signedData->tbsData->payload->data->content->choice.unsecuredData;
 		
+		ecdsa256::PublicKey p_key;
+
 		if (content->choice.signedData->signer.present == SignerIdentifier_PR::SignerIdentifier_PR_certificate) {
 			Certificate_t *cert = (Certificate_t *)content->choice.signedData->signer.choice.certificate.list.array[0];
 			EV_INFO << "Received a certificate" << std::endl;
-			EcdsaSignature signature;
-			std::vector<uint8_t> s(content->choice.signedData->signature.choice.ecdsaNistP256Signature.sSig.buf, content->choice.signedData->signature.choice.ecdsaNistP256Signature.sSig.buf + cert->signature->choice.ecdsaNistP256Signature.sSig.size);
-			signature.s = s;
-			std::vector<uint8_t> r(content->choice.signedData->signature.choice.ecdsaNistP256Signature.rSig.choice.x_only.buf, content->choice.signedData->signature.choice.ecdsaNistP256Signature.rSig.choice.x_only.buf + cert->signature->choice.ecdsaNistP256Signature.rSig.choice.x_only.size);
-			X_Coordinate_Only x;
-			x.x = r;
-			signature.R = x;
-
-			EV_INFO << "Secure message signature R:" << get_hex_string(&r[0], r.size()) << std::endl << "S: " << get_hex_string(&s[0], s.size()) << std::endl;
-			ecdsa256::PublicKey p_key;
-			auto key = cert->toBeSigned.verifyKeyIndicator.choice.verificationKey.choice.ecdsaNistP256;
-			std::copy_n(key.choice.uncompressedP256.x.buf, 32, p_key.x.begin());
-			std::copy_n(key.choice.uncompressedP256.y.buf, 32, p_key.y.begin());
-			auto securityBackend = security::create_backend("default");
-			auto backendObject = securityBackend.get();
-			auto test = backendObject->verify_data(p_key, encodeToSign(visitor.shared_wrapper.get()), signature);
-		}
-		
-		OCTET_STRING signature = content->choice.signedData->signature.choice.ecdsaNistP256Signature.sSig;
-		
-		std::string signatureStr(get_hex_string(signature.buf, signature.size));
-
-		EV_INFO << getName() << ": Received a signed CAM packet. signature: " << signatureStr << std::endl;
-		
-		std::vector<uint8_t> vec;
-		vec.insert(vec.end(), obj_string.buf, obj_string.buf+obj_string.size);
-		ByteBuffer camByteBuffer(vec);
-		vanetza::asn1::Cam cam;
-		cam.decode(camByteBuffer);
-
-		if (cam.validate()) {
-			EV_INFO << getName() << ": Cam packet is valid!" << std::endl;
-			CaObject obj(std::move(cam));
-			emit(scSignalCamReceived, &obj);
-			mLocalDynamicMap->updateAwareness(obj);
+		} else {
+			// TODO: Not implemented yet
 		}
 
+		auto key = cert->toBeSigned.verifyKeyIndicator.choice.verificationKey.choice.ecdsaNistP256;
+		std::copy_n(key.choice.uncompressedP256.x.buf, 32, p_key.x.begin());
+		std::copy_n(key.choice.uncompressedP256.y.buf, 32, p_key.y.begin());
+		
+		EcdsaSignature signature;
+		std::vector<uint8_t> s(content->choice.signedData->signature.choice.ecdsaNistP256Signature.sSig.buf, content->choice.signedData->signature.choice.ecdsaNistP256Signature.sSig.buf + cert->signature->choice.ecdsaNistP256Signature.sSig.size);
+		signature.s = s;
+		std::vector<uint8_t> r(content->choice.signedData->signature.choice.ecdsaNistP256Signature.rSig.choice.x_only.buf, content->choice.signedData->signature.choice.ecdsaNistP256Signature.rSig.choice.x_only.buf + cert->signature->choice.ecdsaNistP256Signature.rSig.choice.x_only.size);
+		X_Coordinate_Only x;
+		x.x = r;
+		signature.R = x;
+
+		auto securityBackend = security::create_backend("default");
+		auto backendObject = securityBackend.get();
+		auto test = ;
+		
+		if (backendObject->verify_data(p_key, encodeToSign(visitor.shared_wrapper.get()), signature)) {
+
+			vanetza::asn1::Cam cam;
+			OCTET_STRING obj_string = content->choice.signedData->tbsData->payload->data->content->choice.unsecuredData;
+
+			std::vector<uint8_t> vec;
+			vec.insert(vec.end(), obj_string.buf, obj_string.buf+obj_string.size);
+			ByteBuffer camByteBuffer(vec);
+			cam.decode(camByteBuffer);
+
+			if (cam.validate()) {
+				EV_INFO << getName() << ": Cam packet is valid!" << std::endl;
+				CaObject obj(std::move(cam));
+				emit(scSignalCamReceived, &obj);
+				mLocalDynamicMap->updateAwareness(obj);
+			}
+		} else {
+			EV_WARN << "Signature is not valid!" << std::endl;
 		}
+	}
 }
 
 
@@ -310,7 +313,6 @@ void CaSignedService::sendSignedCam(const SimTime& T_now)
 
 	std::unique_ptr<geonet::DownPacket> payload { new geonet::DownPacket() };
 	asn1::SignedCam signedCam = createSignedCam(camByteBuffer);
-
 
 	auto securityBackend = security::create_backend("default");
 	auto backendObject = securityBackend.get();
