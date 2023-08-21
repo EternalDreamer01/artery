@@ -7,12 +7,10 @@
 
 #include "artery/application/CaSignedService.h"
 
-
 #include "artery/application/CaObject.h"
 #include "artery/application/Asn1PacketVisitor.h"
 #include "artery/application/MultiChannelPolicy.h"
 #include "artery/application/VehicleDataProvider.h"
-
 #include "artery/utility/simtime_cast.h"
 #include "veins/base/utils/Coord.h"
 #include <boost/units/cmath.hpp>
@@ -53,6 +51,14 @@ static const auto scLowFrequencyContainerInterval = std::chrono::milliseconds(50
 Define_Module(CaSignedService)
 CaSignedService::CaSignedService() : CaService(), runtime(Clock::at("2016-08-01 00:00")), certificateProvider(runtime)
 {
+	std::fstream logFile;
+	std::ostringstream logFilePathStr;
+	auto test = getParentModule()->getFullName();
+	logFilePathStr << "results/" << getName() << ".log";
+	logFilePath = logFilePathStr.str();
+	logFile.open(logFilePath, std::ios::app | std::ios::trunc);
+	logFile << "\n";
+	logFile.close();
     EV_TRACE << "hello world!" << std::endl;
 }
 
@@ -78,6 +84,13 @@ void encodeArray(OutputArchive ar, unsigned char *arr, size_t size) {
 		ar << arr[i];
 	}
 }
+
+void CaSignedService::logMessage(asn1::SignedCam message) {
+	std::fstream logFile;
+	logFile.open(logFilePath, std::ios::app);
+	logFile << "[" << simTime() << "]" << " Message sent" << std::endl;
+	logFile.close();
+} 
 
 ByteBuffer encodeToSign(const asn1::SignedCam *message) {
 
@@ -127,15 +140,17 @@ void CaSignedService::indicate(const vanetza::btp::DataIndication& ind, std::uni
 	if (signedCam) {
 		Ieee1609Dot2Content *content = (*visitor.shared_wrapper.get())->content;
 		
-		ecdsa256::PublicKey p_key;
+
+		Certificate_t *cert;
 
 		if (content->choice.signedData->signer.present == SignerIdentifier_PR::SignerIdentifier_PR_certificate) {
-			Certificate_t *cert = (Certificate_t *)content->choice.signedData->signer.choice.certificate.list.array[0];
+			cert = (Certificate_t *)content->choice.signedData->signer.choice.certificate.list.array[0];
 			EV_INFO << "Received a certificate" << std::endl;
 		} else {
 			// TODO: Not implemented yet
 		}
 
+		ecdsa256::PublicKey p_key;
 		auto key = cert->toBeSigned.verifyKeyIndicator.choice.verificationKey.choice.ecdsaNistP256;
 		std::copy_n(key.choice.uncompressedP256.x.buf, 32, p_key.x.begin());
 		std::copy_n(key.choice.uncompressedP256.y.buf, 32, p_key.y.begin());
@@ -150,7 +165,6 @@ void CaSignedService::indicate(const vanetza::btp::DataIndication& ind, std::uni
 
 		auto securityBackend = security::create_backend("default");
 		auto backendObject = securityBackend.get();
-		auto test = ;
 		
 		if (backendObject->verify_data(p_key, encodeToSign(visitor.shared_wrapper.get()), signature)) {
 
@@ -173,9 +187,6 @@ void CaSignedService::indicate(const vanetza::btp::DataIndication& ind, std::uni
 		}
 	}
 }
-
-
-
 
 void CaSignedService::checkTriggeringConditions(const SimTime& T_now)
 {
@@ -279,11 +290,8 @@ asn1::SignedCam CaSignedService::createSignedCam(ByteBuffer camByteBuffer) {
 	return signedMessage;
 }
 
-
-
 void CaSignedService::sendSignedCam(const SimTime& T_now)
 {
-	bool send_certificate = true;
 	uint16_t genDeltaTimeMod = countTaiMilliseconds(mTimer->getTimeFor(mVehicleDataProvider->updated()));
 	auto cam = createCooperativeAwarenessMessage(*mVehicleDataProvider, genDeltaTimeMod);
 
@@ -323,6 +331,8 @@ void CaSignedService::sendSignedCam(const SimTime& T_now)
 	signedCam->content->choice.signedData->signature.choice.ecdsaNistP256Signature.rSig.choice.x_only = *OCTET_STRING_new_fromBuf(&asn_DEF_EccP256CurvePoint, (char *)boost::get<X_Coordinate_Only>(signature.R).x.data(), boost::get<X_Coordinate_Only>(signature.R).x.size());
 	signedCam->content->choice.signedData->signature.choice.ecdsaNistP256Signature.sSig = *OCTET_STRING_new_fromBuf(&asn_DEF_EcdsaP256Signature, (char *)signature.s.data(), signature.s.size());
 
+	logMessage(signedCam);
+
 	auto signedCamSharedPtr = std::make_shared<asn1::SignedCam>(signedCam);
 
 	using SignedCamByteBuffer = convertible::byte_buffer_impl<asn1::SignedCam>;
@@ -332,6 +342,4 @@ void CaSignedService::sendSignedCam(const SimTime& T_now)
 	payload->layer(OsiLayer::Application) = std::move(signedBuffer);
 	this->request(request, std::move(payload));
 }
-
-
 }  // namespace artery
