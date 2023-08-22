@@ -33,8 +33,6 @@
 #include <vanetza/asn1/security/Ieee1609Dot2Data.h>
 
 
-
-
 #include <chrono>
 
 namespace artery
@@ -51,14 +49,7 @@ static const auto scLowFrequencyContainerInterval = std::chrono::milliseconds(50
 Define_Module(CaSignedService)
 CaSignedService::CaSignedService() : CaService(), runtime(Clock::at("2016-08-01 00:00")), certificateProvider(runtime)
 {
-	std::fstream logFile;
-	std::ostringstream logFilePathStr;
-	auto test = getParentModule()->getFullName();
-	logFilePathStr << "results/" << getName() << ".log";
-	logFilePath = logFilePathStr.str();
-	logFile.open(logFilePath, std::ios::app | std::ios::trunc);
-	logFile << "\n";
-	logFile.close();
+	system("rm results/*");
     EV_TRACE << "hello world!" << std::endl;
 }
 
@@ -79,17 +70,24 @@ std::string get_hex_string(unsigned char *buf, int size) {
 	return str;
 }
 
+
+void CaSignedService::logMessage(asn1::SignedCam message) {
+	std::fstream logFile;
+	std::ostringstream logFilePathStr;
+	auto signed_date = message->content->choice.signedData;
+	logFilePathStr << "results/" << getParentModule()->getParentModule()->getFullName() << ".log";
+	logFilePath = logFilePathStr.str();
+	logFile.open(logFilePath, std::ios::app);
+	logFile << "[" << simTime() << "]" << " Cam Message sent : ";
+	logFile << "{ contains certificate : " << (signed_date->signer.present == SignerIdentifier_PR::SignerIdentifier_PR_certificate ? "true" : "false");
+	logFile << ", signature : " << get_hex_string(signed_date->signature.choice.ecdsaNistP256Signature.sSig.buf, signed_date->signature.choice.ecdsaNistP256Signature.sSig.size).c_str() << " }" << std::endl;
+	logFile.close();
+}
+
 void encodeArray(OutputArchive ar, unsigned char *arr, size_t size) {
 	for (int i = 0; i < size; i++) {
 		ar << arr[i];
 	}
-}
-
-void CaSignedService::logMessage(asn1::SignedCam message) {
-	std::fstream logFile;
-	logFile.open(logFilePath, std::ios::app);
-	logFile << "[" << simTime() << "]" << " Message sent" << std::endl;
-	logFile.close();
 } 
 
 ByteBuffer encodeToSign(const asn1::SignedCam *message) {
@@ -305,6 +303,7 @@ void CaSignedService::sendSignedCam(const SimTime& T_now)
 	}
 
 
+
 	using namespace vanetza;
 	btp::DataRequestB request;
 	request.destination_port = btp::ports::CAM;
@@ -324,7 +323,6 @@ void CaSignedService::sendSignedCam(const SimTime& T_now)
 
 	auto securityBackend = security::create_backend("default");
 	auto backendObject = securityBackend.get();
-	auto test = encodeToSign(&signedCam);
 	auto signature = backendObject->sign_data(certificateProvider.own_private_key(), encodeToSign(&signedCam));
 
 	signedCam->content->choice.signedData->signature.choice.ecdsaNistP256Signature.rSig.present = EccP256CurvePoint_PR::EccP256CurvePoint_PR_x_only;

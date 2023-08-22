@@ -36,6 +36,7 @@ class CaSignedService : public CaService
 		vanetza::ManualRuntime runtime;
 		vanetza::security::NaiveCertificateProvider certificateProvider;
 
+
 	private:
 		std::string logFilePath;
 };
