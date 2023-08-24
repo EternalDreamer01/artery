@@ -52,7 +52,7 @@ static const auto scLowFrequencyContainerInterval = std::chrono::milliseconds(50
 Define_Module(CaSignedService)
 CaSignedService::CaSignedService() : CaService(), runtime(Clock::at("2016-08-01 00:00")), certificateProvider(runtime)
 {
-	system("rm results/*");
+	system("rm results/*"); // remove all previously log files
     EV_TRACE << "hello world!" << std::endl;
 }
 
