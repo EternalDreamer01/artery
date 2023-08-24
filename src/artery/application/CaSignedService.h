@@ -15,6 +15,7 @@
 #include <vanetza/security/naive_certificate_provider.hpp>
 #include <vanetza/common/clock.hpp>
 #include <vanetza/common/manual_runtime.hpp>
+#include <vanetza/security/secured_message.hpp>
 
 namespace artery
 {
@@ -30,8 +31,8 @@ class CaSignedService : public CaService
 		void checkTriggeringConditions(const omnetpp::SimTime&);
 		void sendSignedCam(const omnetpp::SimTime&);
     	vanetza::asn1::Cam *createCooperativeAwarenessMessagePointer(const VehicleDataProvider& vdp, uint16_t genDeltaTime);
-		vanetza::asn1::SignedCam createSignedCam(vanetza::ByteBuffer camByteBuffer);
-		void logMessage(vanetza::asn1::SignedCam message);
+		vanetza::security::SecuredMessage createSignedCam(vanetza::ByteBuffer camByteBuffer, bool includeCertificate);
+		void logMessage(vanetza::security::SecuredMessage message);
 
 		vanetza::ManualRuntime runtime;
 		vanetza::security::NaiveCertificateProvider certificateProvider;
