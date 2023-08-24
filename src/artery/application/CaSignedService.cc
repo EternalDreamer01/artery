@@ -29,6 +29,7 @@
 #include <vanetza/security/naive_certificate_provider.hpp>
 #include <vanetza/security/signature.hpp>
 #include <vanetza/common/byte_buffer_sink.hpp>
+#include <vanetza/common/byte_buffer_source.hpp>
 #include <vanetza/common/byte_buffer.hpp>
 #include <vanetza/asn1/security/Ieee1609Dot2Data.h>
 
@@ -138,7 +139,21 @@ void CaSignedService::indicate(const vanetza::btp::DataIndication& ind, std::uni
 	if (signedCam) {
 		Ieee1609Dot2Content *content = (*visitor.shared_wrapper.get())->content;
 		
+		ByteBuffer buffer(content->choice.unsecuredData.buf, content->choice.unsecuredData.buf + content->choice.unsecuredData.size);
 
+		byte_buffer_source source(buffer);
+    	boost::iostreams::stream_buffer<byte_buffer_source> outstream(source);
+		
+    	InputArchive iar(outstream);
+
+		SecuredMessage test_des;
+
+		deserialize(iar, test_des);
+
+		asn1::Cam cam;
+
+		cam.decode(boost::get<CohesivePacket>(test_des.payload.data).buffer());
+		/*
 		Certificate_t *cert;
 
 		if (content->choice.signedData->signer.present == SignerIdentifier_PR::SignerIdentifier_PR_certificate) {
@@ -183,6 +198,7 @@ void CaSignedService::indicate(const vanetza::btp::DataIndication& ind, std::uni
 		} else {
 			EV_WARN << "Signature is not valid!" << std::endl;
 		}
+		*/
 	}
 }
 
@@ -317,8 +333,8 @@ void CaSignedService::sendSignedCam(const SimTime& T_now)
 
 	CaObject obj(std::move(cam));
 	emit(artery::scSignalCamSent, &obj);
+	/*
 
-	std::unique_ptr<geonet::DownPacket> payload { new geonet::DownPacket() };
 	asn1::SignedCam signedCam = createSignedCam(camByteBuffer);
 
 	auto securityBackend = security::create_backend("default");
@@ -331,13 +347,47 @@ void CaSignedService::sendSignedCam(const SimTime& T_now)
 
 	logMessage(signedCam);
 
-	auto signedCamSharedPtr = std::make_shared<asn1::SignedCam>(signedCam);
+
+
+	*/
+	std::unique_ptr<geonet::DownPacket> payload { new geonet::DownPacket() };
+	SecuredMessage secured_message;
+
+	secured_message.payload.type = PayloadType::Signed;
+	secured_message.payload.data = CohesivePacket(camByteBuffer, OsiLayer::Application);
+
+	secured_message.header_fields.push_front((uint64_t)simTime().raw());
+	ByteBuffer buf;
+	byte_buffer_sink sink(buf);
+    boost::iostreams::stream_buffer<byte_buffer_sink> stream(sink);
+    OutputArchive ar(stream);
+
+	serialize(ar, secured_message);
+
+	stream.close();
+
+	byte_buffer_source source(buf);
+    boost::iostreams::stream_buffer<byte_buffer_source> outstream(source);
+    InputArchive iar(outstream);
+
+	SecuredMessage test_des;
+
+	deserialize(iar, test_des);
+
+
+	asn1::SignedCam wrapper;
+	wrapper->protocolVersion = 3;
+
+	wrapper->content = vanetza::asn1::allocate<Ieee1609Dot2Content_t>();
+	wrapper->content->present = Ieee1609Dot2Content_PR::Ieee1609Dot2Content_PR_unsecuredData;
+	wrapper->content->choice.unsecuredData = *OCTET_STRING_new_fromBuf(&asn_DEF_Ieee1609Dot2Content, (const char *)buf.data(), buf.size());
+
+	auto wrapperSharedPtr = std::make_shared<asn1::SignedCam>(wrapper);
 
 	using SignedCamByteBuffer = convertible::byte_buffer_impl<asn1::SignedCam>;
-	std::unique_ptr<convertible::byte_buffer> signedBuffer { new SignedCamByteBuffer(signedCamSharedPtr) };
+	std::unique_ptr<convertible::byte_buffer> wrapperBuffer { new SignedCamByteBuffer(wrapperSharedPtr) };
 
-
-	payload->layer(OsiLayer::Application) = std::move(signedBuffer);
+	payload->layer(OsiLayer::Application) = std::move(wrapperBuffer);
 	this->request(request, std::move(payload));
 }
 }  // namespace artery
