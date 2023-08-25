@@ -50,7 +50,7 @@ static const auto scLowFrequencyContainerInterval = std::chrono::milliseconds(50
 
 
 Define_Module(CaSignedService)
-CaSignedService::CaSignedService() : CaService(), runtime(Clock::at("2016-08-01 00:00")), certificateProvider(runtime)
+CaSignedService::CaSignedService() : CaService(), runtime(Clock::at("2016-08-01 00:00")), certificateProvider(runtime), certificateCache(runtime)
 {
 	system("rm results/*"); // remove all previously log files
     EV_TRACE << "hello world!" << std::endl;
@@ -113,20 +113,40 @@ void CaSignedService::indicate(const vanetza::btp::DataIndication& ind, std::uni
 		byte_buffer_source source(buffer);
     	boost::iostreams::stream_buffer<byte_buffer_source> outstream(source);
     	InputArchive ar(outstream);
-
 		SecuredMessage received_secured_message;
 
 		deserialize(ar, received_secured_message);
 
 		SignerInfo *signer_info = boost::get<SignerInfo>(received_secured_message.header_field(HeaderFieldType::Signer_Info));
 
-		auto test = boost::get<HashedId8>(signer_info);
+		std::list<HashedId3> *requested_certificate_list = boost::get<std::list<HashedId3>>(received_secured_message.header_field(HeaderFieldType::Request_Unrecognized_Certificate));
+
+		if (requested_certificate_list) {
+			HashedId3 own_hash = truncate(calculate_hash(certificateProvider.own_certificate()));
+			for (std::list<HashedId3>::iterator it = requested_certificate_list->begin(); it != requested_certificate_list->end(); it++) {
+				if (*it == own_hash) {
+					certificateRequested = true;
+				}
+			}
+		}
+
 		struct vanetza::security::Certificate certificate;
 
+		// check if we got full certificate or only a hash of it
 		if (boost::get<HashedId8>(signer_info)) {
-			// TODO not implemented yet
+			// if we got only the hash of it we check if it is already in the cache
+			HashedId8 certificate_hash = *boost::get<HashedId8>(signer_info);
+			std::list<struct vanetza::security::Certificate> match_list = certificateCache.lookup(certificate_hash, SubjectType::Authorization_Ticket);
+			if (match_list.size() == 0) {
+				// if it isn't we request it in the next cam
+				certificateToRequest.push_back(truncate(certificate_hash));
+				return;
+			}
+			certificate = *match_list.begin();
 		} else if (boost::get<std::list<struct vanetza::security::Certificate>>(signer_info) != nullptr) {
+			// if we got the complete certificate we use it and store it in the cache
 			certificate = *boost::get<std::list<struct vanetza::security::Certificate>>(signer_info)->begin();
+			certificateCache.insert(certificate);
 		}
 
 		EcdsaSignature *signature = boost::get<EcdsaSignature>(boost::get<vanetza::security::Signature>(received_secured_message.trailer_field(TrailerFieldType::Signature)));
@@ -193,11 +213,18 @@ SecuredMessage CaSignedService::createSignedCam(ByteBuffer camByteBuffer, bool i
 		std::list<struct vanetza::security::Certificate> certificateList;
 		certificateList.push_back(certificateProvider.own_certificate());
 		signerInfo = certificateList;
+		lastCertificateSend = simTime().inUnit(SimTimeUnit::SIMTIME_MS);
 	} else {
 		signerInfo = calculate_hash(certificateProvider.own_certificate());
 	}
 
 	secured_message.header_fields.push_front(signerInfo);
+
+	if (certificateToRequest.size() > 0) {
+		secured_message.header_fields.push_front(certificateToRequest);
+		certificateToRequest.clear();
+		certificateRequested = false;
+	}
 	
 	ByteBuffer secured_message_byte_buffer = convert_for_signing(secured_message, secured_message.trailer_fields);
 	auto securityBackend = security::create_backend("default");
@@ -247,7 +274,7 @@ void CaSignedService::sendSignedCam(const SimTime& T_now)
 	emit(artery::scSignalCamSent, &obj);
 
 	std::unique_ptr<geonet::DownPacket> payload { new geonet::DownPacket() };
-	SecuredMessage securedMessage = createSignedCam(camByteBuffer, true);	
+	SecuredMessage securedMessage = createSignedCam(camByteBuffer, ((simTime().inUnit(SimTimeUnit::SIMTIME_MS) - lastCertificateSend > 1000) || certificateRequested) ? true : false);	
 
 
 	ByteBuffer buf;

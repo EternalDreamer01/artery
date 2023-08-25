@@ -16,6 +16,7 @@
 #include <vanetza/common/clock.hpp>
 #include <vanetza/common/manual_runtime.hpp>
 #include <vanetza/security/secured_message.hpp>
+#include <vanetza/security/certificate_cache.hpp>
 
 namespace artery
 {
@@ -36,10 +37,13 @@ class CaSignedService : public CaService
 
 		vanetza::ManualRuntime runtime;
 		vanetza::security::NaiveCertificateProvider certificateProvider;
-
+		vanetza::security::CertificateCache certificateCache;
+		std::list<vanetza::security::HashedId3> certificateToRequest;
 
 	private:
 		std::string logFilePath;
+		uint64_t lastCertificateSend;
+		bool certificateRequested;
 };
 
 } // namespace artery
