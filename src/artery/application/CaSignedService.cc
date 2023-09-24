@@ -98,17 +98,7 @@ ecdsa256::PublicKey convertKey(ecdsa_nistp256_with_sha256 wrong_key) {
 	return pkey;
 }
 
-void CaSignedService::indicate(const vanetza::btp::DataIndication& ind, std::unique_ptr<vanetza::UpPacket> packet)
-{
-	Enter_Method("indicate");
-	Asn1PacketVisitor<vanetza::asn1::SignedCam> visitor;
-	const vanetza::asn1::SignedCam* signedCam = boost::apply_visitor(visitor, *packet);
-
-	EV_INFO << getName() << ": Received a secure message" << std::endl;
-
-	if (signedCam) {
-		Ieee1609Dot2Content *content = (*visitor.shared_wrapper.get())->content;
-		
+SecuredMessage CaSignedService::deserialize_secured_message(Ieee1609Dot2Content *content) {
 		ByteBuffer buffer(content->choice.unsecuredData.buf, content->choice.unsecuredData.buf + content->choice.unsecuredData.size);
 		byte_buffer_source source(buffer);
     	boost::iostreams::stream_buffer<byte_buffer_source> outstream(source);
@@ -117,8 +107,14 @@ void CaSignedService::indicate(const vanetza::btp::DataIndication& ind, std::uni
 
 		deserialize(ar, received_secured_message);
 
-		SignerInfo *signer_info = boost::get<SignerInfo>(received_secured_message.header_field(HeaderFieldType::Signer_Info));
+}
 
+void CaSignedService::consumeSignedCam(const vanetza::asn1::SignedCam *message) {
+
+		SecuredMessage received_secured_message = deserialize_secured_message((*message)->content);
+
+		SignerInfo *signer_info = boost::get<SignerInfo>(received_secured_message.header_field(HeaderFieldType::Signer_Info));
+		
 		std::list<HashedId3> *requested_certificate_list = boost::get<std::list<HashedId3>>(received_secured_message.header_field(HeaderFieldType::Request_Unrecognized_Certificate));
 
 		if (requested_certificate_list) {
@@ -155,10 +151,14 @@ void CaSignedService::indicate(const vanetza::btp::DataIndication& ind, std::uni
 		auto securityBackend = security::create_backend("default");
 		auto backendObject = securityBackend.get();
 		std::list<TrailerField> emptyTrailerField;
+
+		// verify signature of incoming cam packet
 		if (backendObject->verify_data(pkey, convert_for_signing(received_secured_message, emptyTrailerField), *signature)) {
 			asn1::Cam cam;
+			// Decode u8 vector into an asn1 Cam object
 			cam.decode(boost::get<CohesivePacket>(received_secured_message.payload.data).buffer());
 
+			// consume packet to update awereness if packet is valid
 			if (cam.validate()) {
 				EV_INFO << getName() << ": Cam packet is valid!" << std::endl;
 				CaObject obj(std::move(cam));
@@ -168,8 +168,21 @@ void CaSignedService::indicate(const vanetza::btp::DataIndication& ind, std::uni
 		} else {
 			EV_WARN << "Signature is not valid!" << std::endl;
 		}
+}
+
+void CaSignedService::indicate(const vanetza::btp::DataIndication& ind, std::unique_ptr<vanetza::UpPacket> packet)
+{
+	Enter_Method("indicate");
+	Asn1PacketVisitor<vanetza::asn1::SignedCam> visitor;
+	const vanetza::asn1::SignedCam* signedCam = boost::apply_visitor(visitor, *packet);
+
+	EV_INFO << getName() << ": Received a secure message" << std::endl;
+
+	if (signedCam) {
+		consumeSignedCam(signedCam);
 	}
 }
+
 
 void CaSignedService::checkTriggeringConditions(const SimTime& T_now)
 {
