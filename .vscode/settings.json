@@ -78,7 +78,8 @@
         "typeinfo": "cpp",
         "valarray": "cpp",
         "variant": "cpp",
-        "*.ipp": "cpp"
+        "*.ipp": "cpp",
+        "timer": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

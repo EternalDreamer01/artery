@@ -77,6 +77,11 @@ module Car like INetworkNode
                 mobilityModule = ".mobility";
         }
 
+        pcapRecorder: inet.common.packet.PcapRecorder {
+            parameters:
+                pcapFile = "results/test.pcap";
+        }
+
     connections:
         for i=0..sizeof(radioIn)-1 {
             radioIn[i] --> { @display("m=s"); } --> wlan[i].radioIn;

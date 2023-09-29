@@ -52,7 +52,7 @@ static const auto scLowFrequencyContainerInterval = std::chrono::milliseconds(50
 Define_Module(CaSignedService)
 CaSignedService::CaSignedService() : CaService(), runtime(Clock::at("2016-08-01 00:00")), certificateProvider(runtime), certificateCache(runtime)
 {
-	system("rm results/*"); // remove all previously log files
+	system("rm results/logs/*"); // remove all previously log files
     EV_TRACE << "hello world!" << std::endl;
 }
 
@@ -77,7 +77,7 @@ std::string get_hex_string(unsigned char *buf, int size) {
 void CaSignedService::logMessage(SecuredMessage message) {
 	std::fstream logFile;
 	std::ostringstream logFilePathStr;
-	logFilePathStr << "results/" << getParentModule()->getParentModule()->getFullName() << ".log";
+	logFilePathStr << "results/logs/" << getParentModule()->getParentModule()->getFullName() << ".log";
 	logFilePath = logFilePathStr.str();
 	logFile.open(logFilePath, std::ios::app);
 	logFile << "[" << simTime() << "]" << " Cam Message sent : ";
@@ -107,6 +107,7 @@ SecuredMessage CaSignedService::deserialize_secured_message(Ieee1609Dot2Content 
 
 		deserialize(ar, received_secured_message);
 
+		return received_secured_message;
 }
 
 void CaSignedService::consumeSignedCam(const vanetza::asn1::SignedCam *message) {
