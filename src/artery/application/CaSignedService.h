@@ -36,8 +36,8 @@ class CaSignedService : public CaService
     	vanetza::asn1::Cam *createCooperativeAwarenessMessagePointer(const VehicleDataProvider& vdp, uint16_t genDeltaTime);
 		vanetza::security::SecuredMessage createSignedCam(vanetza::ByteBuffer camByteBuffer, bool includeCertificate);
 		void logMessage(vanetza::security::SecuredMessage message);
-		void consumeSignedCam(const vanetza::asn1::SignedCam *message);
-		vanetza::security::SecuredMessage deserialize_secured_message(Ieee1609Dot2Content *content);
+		void consumeSignedCam(vanetza::UpPacket *packet);
+		vanetza::security::SecuredMessage deserialize_secured_message(vanetza::ChunkPacket *packet);
 
 		vanetza::ManualRuntime runtime;
 		vanetza::security::NaiveCertificateProvider certificateProvider;
