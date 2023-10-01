@@ -98,8 +98,12 @@ ecdsa256::PublicKey convertKey(ecdsa_nistp256_with_sha256 wrong_key) {
 	return pkey;
 }
 
-SecuredMessage CaSignedService::deserialize_secured_message(Ieee1609Dot2Content *content) {
-		ByteBuffer buffer(content->choice.unsecuredData.buf, content->choice.unsecuredData.buf + content->choice.unsecuredData.size);
+SecuredMessage CaSignedService::deserialize_secured_message(vanetza::ChunkPacket *packet ) {
+
+		vanetza::convertible::byte_buffer *ptr = packet->layer(OsiLayer::Application).ptr();
+		auto impl = dynamic_cast<vanetza::convertible::byte_buffer_impl<ByteBuffer>*>(ptr);
+
+		ByteBuffer buffer(impl->m_buffer);
 		byte_buffer_source source(buffer);
     	boost::iostreams::stream_buffer<byte_buffer_source> outstream(source);
     	InputArchive ar(outstream);
@@ -107,15 +111,16 @@ SecuredMessage CaSignedService::deserialize_secured_message(Ieee1609Dot2Content 
 
 		deserialize(ar, received_secured_message);
 
+		return received_secured_message;
 }
 
-void CaSignedService::consumeSignedCam(const vanetza::asn1::SignedCam *message) {
+void CaSignedService::consumeSignedCam(vanetza::UpPacket *packet) {
 
-		SecuredMessage received_secured_message = deserialize_secured_message((*message)->content);
+		SecuredMessage secured_message = deserialize_secured_message(boost::get<ChunkPacket>(packet));
 
-		SignerInfo *signer_info = boost::get<SignerInfo>(received_secured_message.header_field(HeaderFieldType::Signer_Info));
+		SignerInfo *signer_info = boost::get<SignerInfo>(secured_message.header_field(HeaderFieldType::Signer_Info));
 		
-		std::list<HashedId3> *requested_certificate_list = boost::get<std::list<HashedId3>>(received_secured_message.header_field(HeaderFieldType::Request_Unrecognized_Certificate));
+		std::list<HashedId3> *requested_certificate_list = boost::get<std::list<HashedId3>>(secured_message.header_field(HeaderFieldType::Request_Unrecognized_Certificate));
 
 		if (requested_certificate_list) {
 			HashedId3 own_hash = truncate(calculate_hash(certificateProvider.own_certificate()));
@@ -145,7 +150,7 @@ void CaSignedService::consumeSignedCam(const vanetza::asn1::SignedCam *message) 
 			certificateCache.insert(certificate);
 		}
 
-		EcdsaSignature *signature = boost::get<EcdsaSignature>(boost::get<vanetza::security::Signature>(received_secured_message.trailer_field(TrailerFieldType::Signature)));
+		EcdsaSignature *signature = boost::get<EcdsaSignature>(boost::get<vanetza::security::Signature>(secured_message.trailer_field(TrailerFieldType::Signature)));
 		ecdsa256::PublicKey pkey = convertKey(boost::get<ecdsa_nistp256_with_sha256>(boost::get<VerificationKey>(certificate.get_attribute(SubjectAttributeType::Verification_Key))->key));
 
 		auto securityBackend = security::create_backend("default");
@@ -153,10 +158,10 @@ void CaSignedService::consumeSignedCam(const vanetza::asn1::SignedCam *message) 
 		std::list<TrailerField> emptyTrailerField;
 
 		// verify signature of incoming cam packet
-		if (backendObject->verify_data(pkey, convert_for_signing(received_secured_message, emptyTrailerField), *signature)) {
+		if (backendObject->verify_data(pkey, convert_for_signing(secured_message, emptyTrailerField), *signature)) {
 			asn1::Cam cam;
 			// Decode u8 vector into an asn1 Cam object
-			cam.decode(boost::get<CohesivePacket>(received_secured_message.payload.data).buffer());
+			cam.decode(boost::get<CohesivePacket>(secured_message.payload.data).buffer());
 
 			// consume packet to update awereness if packet is valid
 			if (cam.validate()) {
@@ -173,14 +178,10 @@ void CaSignedService::consumeSignedCam(const vanetza::asn1::SignedCam *message) 
 void CaSignedService::indicate(const vanetza::btp::DataIndication& ind, std::unique_ptr<vanetza::UpPacket> packet)
 {
 	Enter_Method("indicate");
-	Asn1PacketVisitor<vanetza::asn1::SignedCam> visitor;
-	const vanetza::asn1::SignedCam* signedCam = boost::apply_visitor(visitor, *packet);
 
 	EV_INFO << getName() << ": Received a secure message" << std::endl;
 
-	if (signedCam) {
-		consumeSignedCam(signedCam);
-	}
+	consumeSignedCam(packet.get());
 }
 
 
@@ -312,7 +313,7 @@ void CaSignedService::sendSignedCam(const SimTime& T_now)
 	using SignedCamByteBuffer = convertible::byte_buffer_impl<asn1::SignedCam>;
 	std::unique_ptr<convertible::byte_buffer> wrapperBuffer { new SignedCamByteBuffer(wrapperSharedPtr) };
 
-	payload->layer(OsiLayer::Application) = std::move(wrapperBuffer);
+	payload->layer(OsiLayer::Application) = std::move(buf);
 	this->request(request, std::move(payload));
 }
 }  // namespace artery
