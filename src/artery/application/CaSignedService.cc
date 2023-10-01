@@ -301,18 +301,6 @@ void CaSignedService::sendSignedCam(const SimTime& T_now)
 
 	logMessage(securedMessage);
 
-	asn1::SignedCam wrapper;
-	wrapper->protocolVersion = 3;
-
-	wrapper->content = vanetza::asn1::allocate<Ieee1609Dot2Content_t>();
-	wrapper->content->present = Ieee1609Dot2Content_PR::Ieee1609Dot2Content_PR_unsecuredData;
-	wrapper->content->choice.unsecuredData = *OCTET_STRING_new_fromBuf(&asn_DEF_Ieee1609Dot2Content, (const char *)buf.data(), buf.size());
-
-	auto wrapperSharedPtr = std::make_shared<asn1::SignedCam>(wrapper);
-
-	using SignedCamByteBuffer = convertible::byte_buffer_impl<asn1::SignedCam>;
-	std::unique_ptr<convertible::byte_buffer> wrapperBuffer { new SignedCamByteBuffer(wrapperSharedPtr) };
-
 	payload->layer(OsiLayer::Application) = std::move(buf);
 	this->request(request, std::move(payload));
 }
