@@ -9,7 +9,6 @@
 
 #include <fstream>
 #include "artery/application/CaService.h"
-#include "artery/application/SignedCam.hpp"
 #include <vanetza/security/certificate.hpp>
 #include <vanetza/common/byte_buffer.hpp>
 #include <vanetza/security/naive_certificate_provider.hpp>
