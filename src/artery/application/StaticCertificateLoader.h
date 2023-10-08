@@ -3,7 +3,6 @@
 
 #include <vanetza/security/certificate.hpp>
 #include <vanetza/security/certificate_cache.hpp>
-#include <vanetza/security/trust_store.hpp>
 
 
 
@@ -12,13 +11,12 @@ namespace artery {
 class StaticCertificateLoader {
 
 public:
-    StaticCertificateLoader(vanetza::security::TrustStore&, vanetza::security::CertificateCache&);
-    vanetza::security::Certificate GetNewCertificate();
+    StaticCertificateLoader();
+    vanetza::security::Certificate GetNewTicket();
+    void LoadAuthorizationAuthority(std::string, vanetza::security::CertificateCache&);
 
 private:
-    vanetza::security::CertificateCache& certCache;
-    vanetza::security::TrustStore& trustStore;
-    void LoadCertificates();
+    void LoadTickets();
 };
 
 }

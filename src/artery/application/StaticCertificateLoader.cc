@@ -15,11 +15,11 @@ static std::stack<std::string> used_certificates;
 static bool certificateLoaded = false;
 
 
-StaticCertificateLoader::StaticCertificateLoader(vanetza::security::TrustStore& trustStore, vanetza::security::CertificateCache& certCache) : trustStore(trustStore), certCache(certCache)
+StaticCertificateLoader::StaticCertificateLoader()
 {
 }
 
-void StaticCertificateLoader::LoadCertificates() {
+void StaticCertificateLoader::LoadTickets() {
 
     path certificate_path("./certificates/");
 
@@ -29,15 +29,19 @@ void StaticCertificateLoader::LoadCertificates() {
             unused_certificates.push(itr->path().string());
         }    
     }
-    certCache.insert(vanetza::security::load_certificate_from_file("./certificates/cert_bin/aa.cert"));
-    trustStore.insert(vanetza::security::load_certificate_from_file("./certificates/cert_bin/root.cert"));
+
     certificateLoaded = true;
 }
 
-vanetza::security::Certificate artery::StaticCertificateLoader::GetNewCertificate()
+void artery::StaticCertificateLoader::LoadAuthorizationAuthority(std::string aa_path, vanetza::security::CertificateCache& cert_cache)
+{
+    cert_cache.insert(vanetza::security::load_certificate_from_file(aa_path));
+}
+
+vanetza::security::Certificate artery::StaticCertificateLoader::GetNewTicket()
 {
     if (certificateLoaded == false) {
-        StaticCertificateLoader::LoadCertificates();
+        this->LoadTickets();
         if (unused_certificates.size() == 0) {
             throw omnetpp::cRuntimeError("certificates folder must be populated");
         }
