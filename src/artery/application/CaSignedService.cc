@@ -50,7 +50,14 @@ static const auto scLowFrequencyContainerInterval = std::chrono::milliseconds(50
 
 
 Define_Module(CaSignedService)
-CaSignedService::CaSignedService() : CaService(), runtime(Clock::at("2016-08-01 00:00")), certificateProvider(runtime), certificateCache(runtime)
+CaSignedService::CaSignedService() : CaService(),
+runtime(Clock::at("2016-08-01 00:00")),
+certificateProvider(runtime),
+certificateCache(runtime),
+securityBackend(security::create_backend("default")),
+trustStore(),
+certificateValidator(*securityBackend.get(), certificateCache, trustStore),
+staticCertificateLoader(trustStore, certificateCache)
 {
 	system("rm results/*"); // remove all previously log files
     EV_TRACE << "hello world!" << std::endl;
@@ -153,7 +160,6 @@ void CaSignedService::consumeSignedCam(vanetza::UpPacket *packet) {
 		EcdsaSignature *signature = boost::get<EcdsaSignature>(boost::get<vanetza::security::Signature>(secured_message.trailer_field(TrailerFieldType::Signature)));
 		ecdsa256::PublicKey pkey = convertKey(boost::get<ecdsa_nistp256_with_sha256>(boost::get<VerificationKey>(certificate.get_attribute(SubjectAttributeType::Verification_Key))->key));
 
-		auto securityBackend = security::create_backend("default");
 		auto backendObject = securityBackend.get();
 		std::list<TrailerField> emptyTrailerField;
 
@@ -214,6 +220,12 @@ void CaSignedService::checkTriggeringConditions(const SimTime& T_now)
 
 SecuredMessage CaSignedService::createSignedCam(ByteBuffer camByteBuffer, bool includeCertificate) {
 
+	auto certificate_validity = certificateValidator.check_certificate(current_certificate);
+
+	if (!certificate_validity) {
+		current_certificate = staticCertificateLoader.GetNewCertificate();
+	}
+
 	SecuredMessage secured_message;
 	secured_message.header_fields.push_front(vanetza::aid::CA);
 	secured_message.header_fields.push_front((uint64_t)simTime().raw());
@@ -241,7 +253,6 @@ SecuredMessage CaSignedService::createSignedCam(ByteBuffer camByteBuffer, bool i
 	}
 	
 	ByteBuffer secured_message_byte_buffer = convert_for_signing(secured_message, secured_message.trailer_fields);
-	auto securityBackend = security::create_backend("default");
 	auto backendObject = securityBackend.get();
 	auto signature = backendObject->sign_data(certificateProvider.own_private_key(), secured_message_byte_buffer);
 
