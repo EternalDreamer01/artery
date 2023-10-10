@@ -4,21 +4,26 @@
 #include <vanetza/security/certificate.hpp>
 #include <vanetza/security/certificate_cache.hpp>
 #include <vanetza/security/trust_store.hpp>
-
+#include <vanetza/security/ecdsa256.hpp>
 
 
 namespace artery {
+using namespace vanetza::security;
+struct SecurityEntity {
+   Certificate certificate;
+   ecdsa256::KeyPair keyPair;
+};
 
 class StaticCertificateLoader {
 
 public:
-    StaticCertificateLoader(vanetza::security::TrustStore&, vanetza::security::CertificateCache&);
-    vanetza::security::Certificate GetNewCertificate();
+    StaticCertificateLoader(TrustStore&, CertificateCache&);
+    SecurityEntity RenewTickets();
 
 private:
-    vanetza::security::CertificateCache& certCache;
-    vanetza::security::TrustStore& trustStore;
-    void LoadCertificates();
+    CertificateCache& certCache;
+    TrustStore& trustStore;
+    void LoadTickets();
 };
 
 }

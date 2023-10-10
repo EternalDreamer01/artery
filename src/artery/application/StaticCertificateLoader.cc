@@ -9,17 +9,18 @@
 namespace artery {
 
 using namespace boost::filesystem;
+using namespace vanetza::security;
 
 static std::stack<std::string> unused_certificates;
 static std::stack<std::string> used_certificates;
 static bool certificateLoaded = false;
 
 
-StaticCertificateLoader::StaticCertificateLoader(vanetza::security::TrustStore& trustStore, vanetza::security::CertificateCache& certCache) : trustStore(trustStore), certCache(certCache)
+StaticCertificateLoader::StaticCertificateLoader(TrustStore& trustStore, CertificateCache& certCache) : trustStore(trustStore), certCache(certCache)
 {
 }
 
-void StaticCertificateLoader::LoadCertificates() {
+void StaticCertificateLoader::LoadTickets() {
 
     path certificate_path("./certificates/");
 
@@ -29,15 +30,15 @@ void StaticCertificateLoader::LoadCertificates() {
             unused_certificates.push(itr->path().string());
         }    
     }
-    certCache.insert(vanetza::security::load_certificate_from_file("./certificates/cert_bin/aa.cert"));
-    trustStore.insert(vanetza::security::load_certificate_from_file("./certificates/cert_bin/root.cert"));
+    certCache.insert(load_certificate_from_file("./certificates/cert_bin/aa.cert"));
+    trustStore.insert(load_certificate_from_file("./certificates/cert_bin/root.cert"));
     certificateLoaded = true;
 }
 
-vanetza::security::Certificate artery::StaticCertificateLoader::GetNewCertificate()
+SecurityEntity artery::StaticCertificateLoader::RenewTickets()
 {
     if (certificateLoaded == false) {
-        StaticCertificateLoader::LoadCertificates();
+        StaticCertificateLoader::LoadTickets();
         if (unused_certificates.size() == 0) {
             throw omnetpp::cRuntimeError("certificates folder must be populated");
         }
@@ -47,7 +48,13 @@ vanetza::security::Certificate artery::StaticCertificateLoader::GetNewCertificat
     used_certificates.push(certificate_path);
     unused_certificates.pop();
 
-    return vanetza::security::load_certificate_from_file(certificate_path);
+    std::string key_path = certificate_path.substr(0, certificate_path.find_first_of(".")) + ".key";
+
+
+    Certificate certificate = load_certificate_from_file(certificate_path);
+    ecdsa256::KeyPair keyPair = load_private_key_from_file(key_path);
+
+    return SecurityEntity { certificate, keyPair };
 }
 
 }

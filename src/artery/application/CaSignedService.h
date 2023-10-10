@@ -45,7 +45,7 @@ class CaSignedService : public CaService
 		vanetza::ManualRuntime runtime;
 		vanetza::security::NaiveCertificateProvider certificateProvider;
 		std::unique_ptr<vanetza::security::Backend> securityBackend;
-		vanetza::security::Certificate current_certificate;
+		artery::SecurityEntity currentSecurityEntity;
 		vanetza::security::DefaultCertificateValidator certificateValidator;
 		vanetza::security::TrustStore trustStore;
 		vanetza::security::CertificateCache certificateCache;

@@ -220,10 +220,10 @@ void CaSignedService::checkTriggeringConditions(const SimTime& T_now)
 
 SecuredMessage CaSignedService::createSignedCam(ByteBuffer camByteBuffer, bool includeCertificate) {
 
-	auto certificate_validity = certificateValidator.check_certificate(current_certificate);
+	auto certificate_validity = certificateValidator.check_certificate(currentSecurityEntity.certificate);
 
 	if (!certificate_validity) {
-		current_certificate = staticCertificateLoader.GetNewCertificate();
+		currentSecurityEntity = staticCertificateLoader.RenewTickets();
 	}
 
 	SecuredMessage secured_message;
