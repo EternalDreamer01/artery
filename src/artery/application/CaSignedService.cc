@@ -131,7 +131,7 @@ void CaSignedService::consumeSignedCam(vanetza::UpPacket *packet) {
 		std::list<HashedId3> *requested_certificate_list = boost::get<std::list<HashedId3>>(secured_message.header_field(HeaderFieldType::Request_Unrecognized_Certificate));
 
 		if (requested_certificate_list) {
-			HashedId3 own_hash = truncate(calculate_hash(certificateProvider.own_certificate()));
+			HashedId3 own_hash = truncate(calculate_hash(currentSecurityEntity.certificate));
 			for (std::list<HashedId3>::iterator it = requested_certificate_list->begin(); it != requested_certificate_list->end(); it++) {
 				if (*it == own_hash) {
 					certificateRequested = true;
@@ -139,29 +139,30 @@ void CaSignedService::consumeSignedCam(vanetza::UpPacket *packet) {
 			}
 		}
 
-		struct vanetza::security::Certificate certificate;
+		vanetza::security::Certificate certificate;
 
 		// check if we got full certificate or only a hash of it
 		if (boost::get<HashedId8>(signer_info)) {
 			// if we got only the hash of it we check if it is already in the cache
 			HashedId8 certificate_hash = *boost::get<HashedId8>(signer_info);
-			std::list<struct vanetza::security::Certificate> match_list = certificateCache.lookup(certificate_hash, SubjectType::Authorization_Ticket);
+			std::list<vanetza::security::Certificate> match_list = certificateCache.lookup(certificate_hash, SubjectType::Authorization_Ticket);
 			if (match_list.size() == 0) {
 				// if it isn't we request it in the next cam and discard the packet
 				certificateToRequest.push_back(truncate(certificate_hash));
-				EV_WARN << "Invalid certificate, discard packet" << std::endl;
+				EV_WARN << "Service only received hash while not having certificate in the cache. Can't validate packet" << std::endl;
 				return;
 			}
 			certificate = *match_list.begin();
-		} else if (boost::get<std::list<struct vanetza::security::Certificate>>(signer_info) != nullptr) {
+		} else if (boost::get<std::list<vanetza::security::Certificate>>(signer_info) != nullptr) {
 			// if we got the complete certificate we use check its validity
-			certificate = *boost::get<std::list<struct vanetza::security::Certificate>>(signer_info)->begin();
-			// if certificate is invalid discard packet
-			if (certificateValidator.check_certificate(certificate)) {
+			certificate = *boost::get<std::list<vanetza::security::Certificate>>(signer_info)->begin();
+			
+						// if certificate is invalid discard packet
+			CertificateValidity certificate_validity = certificateValidator.check_certificate(certificate);
+			if (!certificate_validity) {
 				EV_WARN << "Invalid certificate, discard packet" << std::endl;
 				return;
 			}
-
 			certificateCache.insert(certificate);
 		}
 
