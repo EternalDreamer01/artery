@@ -57,8 +57,9 @@ certificateCache(runtime),
 securityBackend(security::create_backend("default")),
 trustStore(),
 certificateValidator(*securityBackend.get(), certificateCache, trustStore),
-staticCertificateLoader(trustStore, certificateCache)
+staticCertificateLoader()
 {
+	staticCertificateLoader.LoadAuthorizationAuthority("certificates/cert_bin/aa.cert", certificateCache);
 	system("rm results/*"); // remove all previously log files
     EV_TRACE << "hello world!" << std::endl;
 }
@@ -146,14 +147,21 @@ void CaSignedService::consumeSignedCam(vanetza::UpPacket *packet) {
 			HashedId8 certificate_hash = *boost::get<HashedId8>(signer_info);
 			std::list<struct vanetza::security::Certificate> match_list = certificateCache.lookup(certificate_hash, SubjectType::Authorization_Ticket);
 			if (match_list.size() == 0) {
-				// if it isn't we request it in the next cam
+				// if it isn't we request it in the next cam and discard the packet
 				certificateToRequest.push_back(truncate(certificate_hash));
+				EV_WARN << "Invalid certificate, discard packet" << std::endl;
 				return;
 			}
 			certificate = *match_list.begin();
 		} else if (boost::get<std::list<struct vanetza::security::Certificate>>(signer_info) != nullptr) {
-			// if we got the complete certificate we use it and store it in the cache
+			// if we got the complete certificate we use check its validity
 			certificate = *boost::get<std::list<struct vanetza::security::Certificate>>(signer_info)->begin();
+			// if certificate is invalid discard packet
+			if (certificateValidator.check_certificate(certificate)) {
+				EV_WARN << "Invalid certificate, discard packet" << std::endl;
+				return;
+			}
+
 			certificateCache.insert(certificate);
 		}
 
@@ -237,11 +245,11 @@ SecuredMessage CaSignedService::createSignedCam(ByteBuffer camByteBuffer, bool i
 
 	if (includeCertificate) {
 		std::list<struct vanetza::security::Certificate> certificateList;
-		certificateList.push_back(certificateProvider.own_certificate());
+		certificateList.push_back(current_certificate);
 		signerInfo = certificateList;
 		lastCertificateSend = simTime().inUnit(SimTimeUnit::SIMTIME_MS);
 	} else {
-		signerInfo = calculate_hash(certificateProvider.own_certificate());
+		signerInfo = calculate_hash(current_certificate);
 	}
 
 	secured_message.header_fields.push_front(signerInfo);
@@ -254,16 +262,7 @@ SecuredMessage CaSignedService::createSignedCam(ByteBuffer camByteBuffer, bool i
 	
 	ByteBuffer secured_message_byte_buffer = convert_for_signing(secured_message, secured_message.trailer_fields);
 	auto backendObject = securityBackend.get();
-	auto signature = backendObject->sign_data(certificateProvider.own_private_key(), secured_message_byte_buffer);
-
-	ecdsa_nistp256_with_sha256 wrong_type_pkey = boost::get<ecdsa_nistp256_with_sha256>(boost::get<VerificationKey>(certificateProvider.own_certificate().get_attribute(SubjectAttributeType::Verification_Key))->key);
-	ecdsa256::PublicKey pkey;
-	Uncompressed point = boost::get<Uncompressed>(wrong_type_pkey.public_key);
-
-	std::copy_n(point.x.begin(), pkey.x.size(), pkey.x.begin());
-	std::copy_n(point.y.begin(), pkey.y.size(), pkey.y.begin());
-
-	auto valid = backendObject->verify_data(pkey, secured_message_byte_buffer, signature);
+	auto signature = backendObject->sign_data(, secured_message_byte_buffer);
 
 	secured_message.trailer_fields.push_front(signature);
 

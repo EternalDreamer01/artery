@@ -16,7 +16,7 @@ static std::stack<std::string> used_certificates;
 static bool certificateLoaded = false;
 
 
-StaticCertificateLoader::StaticCertificateLoader(TrustStore& trustStore, CertificateCache& certCache) : trustStore(trustStore), certCache(certCache)
+StaticCertificateLoader::StaticCertificateLoader()
 {
 }
 
@@ -30,10 +30,14 @@ void StaticCertificateLoader::LoadTickets() {
             unused_certificates.push(itr->path().string());
         }    
     }
-    certCache.insert(load_certificate_from_file("./certificates/cert_bin/aa.cert"));
-    trustStore.insert(load_certificate_from_file("./certificates/cert_bin/root.cert"));
     certificateLoaded = true;
 }
+
+void artery::StaticCertificateLoader::LoadAuthorizationAuthority(std::string aa_path, vanetza::security::CertificateCache& cert_cache)
+{
+    cert_cache.insert(vanetza::security::load_certificate_from_file(aa_path));
+}
+
 
 SecurityEntity artery::StaticCertificateLoader::RenewTickets()
 {

@@ -21,8 +21,6 @@ public:
     SecurityEntity RenewTickets();
 
 private:
-    CertificateCache& certCache;
-    TrustStore& trustStore;
     void LoadTickets();
 };
 
