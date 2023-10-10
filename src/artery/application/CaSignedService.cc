@@ -245,11 +245,11 @@ SecuredMessage CaSignedService::createSignedCam(ByteBuffer camByteBuffer, bool i
 
 	if (includeCertificate) {
 		std::list<struct vanetza::security::Certificate> certificateList;
-		certificateList.push_back(current_certificate);
+		certificateList.push_back(currentSecurityEntity.certificate);
 		signerInfo = certificateList;
 		lastCertificateSend = simTime().inUnit(SimTimeUnit::SIMTIME_MS);
 	} else {
-		signerInfo = calculate_hash(current_certificate);
+		signerInfo = calculate_hash(currentSecurityEntity.certificate);
 	}
 
 	secured_message.header_fields.push_front(signerInfo);
@@ -262,7 +262,7 @@ SecuredMessage CaSignedService::createSignedCam(ByteBuffer camByteBuffer, bool i
 	
 	ByteBuffer secured_message_byte_buffer = convert_for_signing(secured_message, secured_message.trailer_fields);
 	auto backendObject = securityBackend.get();
-	auto signature = backendObject->sign_data(, secured_message_byte_buffer);
+	auto signature = backendObject->sign_data(currentSecurityEntity.keyPair.private_key, secured_message_byte_buffer);
 
 	secured_message.trailer_fields.push_front(signature);
 

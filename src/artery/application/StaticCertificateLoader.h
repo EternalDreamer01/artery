@@ -17,8 +17,9 @@ struct SecurityEntity {
 class StaticCertificateLoader {
 
 public:
-    StaticCertificateLoader(TrustStore&, CertificateCache&);
+    StaticCertificateLoader();
     SecurityEntity RenewTickets();
+    void LoadAuthorizationAuthority(std::string, vanetza::security::CertificateCache&);
 
 private:
     void LoadTickets();

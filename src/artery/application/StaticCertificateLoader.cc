@@ -27,7 +27,10 @@ void StaticCertificateLoader::LoadTickets() {
     directory_iterator end_itr;
     for (directory_iterator itr(certificate_path); itr != end_itr; itr++) {
         if (is_regular_file(itr->path())) {
-            unused_certificates.push(itr->path().string());
+            std::string file_path = itr->path().string();
+            if (file_path.substr(file_path.find_last_of("."), file_path.size()).compare(".cert") == 0) {
+                unused_certificates.push(itr->path().string());
+            }
         }    
     }
     certificateLoaded = true;
@@ -52,7 +55,7 @@ SecurityEntity artery::StaticCertificateLoader::RenewTickets()
     used_certificates.push(certificate_path);
     unused_certificates.pop();
 
-    std::string key_path = certificate_path.substr(0, certificate_path.find_first_of(".")) + ".key";
+    std::string key_path = certificate_path.substr(0, certificate_path.find_last_of(".")) + ".key";
 
 
     Certificate certificate = load_certificate_from_file(certificate_path);
