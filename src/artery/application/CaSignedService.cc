@@ -157,7 +157,7 @@ void CaSignedService::consumeSignedCam(vanetza::UpPacket *packet) {
 			// if we got the complete certificate we use check its validity
 			certificate = *boost::get<std::list<vanetza::security::Certificate>>(signer_info)->begin();
 			
-						// if certificate is invalid discard packet
+			// if certificate is invalid discard packet
 			CertificateValidity certificate_validity = certificateValidator.check_certificate(certificate);
 			if (!certificate_validity) {
 				EV_WARN << "Invalid certificate, discard packet" << std::endl;
