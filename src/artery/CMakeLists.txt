@@ -28,6 +28,7 @@ add_library(core SHARED
     application/RtcmMockReceiver.cc
     application/RtcmMockService.cc
     application/StationType.cc
+    application/StaticCertificateLoader.cc
     application/StationaryMiddleware.cc
     application/StoryboardSignal.cc
     application/Timer.cc

@@ -9,8 +9,10 @@
 
 #include <fstream>
 #include "artery/application/CaService.h"
-#include "artery/application/SignedCam.hpp"
+#include "artery/application/StaticCertificateLoader.h"
 #include <vanetza/security/certificate.hpp>
+#include <vanetza/security/default_certificate_validator.hpp>
+#include <vanetza/security/trust_store.hpp>
 #include <vanetza/common/byte_buffer.hpp>
 #include <vanetza/security/naive_certificate_provider.hpp>
 #include <vanetza/common/clock.hpp>
@@ -38,9 +40,14 @@ class CaSignedService : public CaService
 		void logMessage(vanetza::security::SecuredMessage message);
 		void consumeSignedCam(vanetza::UpPacket *packet);
 		vanetza::security::SecuredMessage deserialize_secured_message(vanetza::ChunkPacket *packet);
+		StaticCertificateLoader staticCertificateLoader;
 
 		vanetza::ManualRuntime runtime;
 		vanetza::security::NaiveCertificateProvider certificateProvider;
+		std::unique_ptr<vanetza::security::Backend> securityBackend;
+		artery::SecurityEntity currentSecurityEntity;
+		vanetza::security::DefaultCertificateValidator certificateValidator;
+		vanetza::security::TrustStore trustStore;
 		vanetza::security::CertificateCache certificateCache;
 		std::list<vanetza::security::HashedId3> certificateToRequest;
 
