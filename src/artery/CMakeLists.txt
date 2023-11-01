@@ -50,6 +50,7 @@ add_library(core SHARED
     networking/GeoNetPacket.cc
     networking/LimericDccEntity.cc
     networking/NoRateControlDccEntity.cc
+    networking/PcapItsRecorder.cc
     networking/PersonPositionProvider.cc
     networking/Router.cc
     networking/Runtime.cc
