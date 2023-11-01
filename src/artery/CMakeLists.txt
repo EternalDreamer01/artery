@@ -87,6 +87,7 @@ target_link_libraries(core PUBLIC ${Boost_LIBRARIES})
 target_link_libraries(core PUBLIC OmnetPP::envir)
 target_link_libraries(core PUBLIC traci)
 target_link_libraries(core PUBLIC Vanetza::vanetza)
+target_link_libraries(core PUBLIC light_pcapng)
 
 if(TARGET veins)
     message(STATUS "Enable Veins integration")
