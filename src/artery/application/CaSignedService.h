@@ -30,6 +30,7 @@ class CaSignedService : public CaService
 {
 	public:
 		CaSignedService();
+		void initialize() override;
 		void trigger() override;
 		void indicate(const vanetza::btp::DataIndication& ind, std::unique_ptr<vanetza::UpPacket> packet) override;
 	protected:
@@ -37,7 +38,6 @@ class CaSignedService : public CaService
 		void sendSignedCam(const omnetpp::SimTime&);
     	vanetza::asn1::Cam *createCooperativeAwarenessMessagePointer(const VehicleDataProvider& vdp, uint16_t genDeltaTime);
 		vanetza::security::SecuredMessage createSignedCam(vanetza::ByteBuffer camByteBuffer, bool includeCertificate);
-		void logMessage(vanetza::security::SecuredMessage message);
 		void consumeSignedCam(vanetza::UpPacket *packet);
 		vanetza::security::SecuredMessage deserialize_secured_message(vanetza::ChunkPacket *packet);
 		StaticCertificateLoader staticCertificateLoader;
@@ -50,6 +50,8 @@ class CaSignedService : public CaService
 		vanetza::security::TrustStore trustStore;
 		vanetza::security::CertificateCache certificateCache;
 		std::list<vanetza::security::HashedId3> certificateToRequest;
+		omnetpp::SimTime certificateValidityInterval;
+		omnetpp::SimTime lastCertificateChange;
 
 	private:
 		std::string logFilePath;

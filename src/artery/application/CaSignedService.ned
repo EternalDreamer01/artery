@@ -45,4 +45,7 @@ simple CaSignedService like ItsG5Service
 
         // length of path history
         volatile int pathHistoryLength = default(23);
+
+        // pseudonym certificate valid interval
+        double certificateValidityInterval @unit(s) = default(300s);
 }

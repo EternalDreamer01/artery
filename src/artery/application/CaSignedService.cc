@@ -64,6 +64,12 @@ staticCertificateLoader()
     EV_TRACE << "hello world!" << std::endl;
 }
 
+void artery::CaSignedService::initialize()
+{
+	CaService::initialize();
+	certificateValidityInterval = par("certificateValidityInterval");
+}
+
 void CaSignedService::trigger()
 {
     Enter_Method("trigger");
@@ -79,20 +85,6 @@ std::string get_hex_string(unsigned char *buf, int size) {
 		str.append(hexString);
 	}
 	return str;
-}
-
-
-void CaSignedService::logMessage(SecuredMessage message) {
-	std::fstream logFile;
-	std::ostringstream logFilePathStr;
-	logFilePathStr << "results/logs/" << getParentModule()->getParentModule()->getFullName() << ".log";
-	logFilePath = logFilePathStr.str();
-	logFile.open(logFilePath, std::ios::app);
-	logFile << "[" << simTime() << "]" << " Cam Message sent : ";
-	logFile << "{ contains certificate : " << (boost::get<HashedId8>(boost::get<SignerInfo>(message.header_field(HeaderFieldType::Signer_Info))) == nullptr ? "true" : "false");
-	EcdsaSignature *signature = boost::get<EcdsaSignature>(boost::get<vanetza::security::Signature>(message.trailer_field(TrailerFieldType::Signature)));
-	logFile << ", signature : " << get_hex_string(&signature->s[0], signature->s.size()).c_str() << " }" << std::endl;
-	logFile.close();
 }
 
 ecdsa256::PublicKey convertKey(ecdsa_nistp256_with_sha256 wrong_key) {
@@ -208,8 +200,14 @@ void CaSignedService::checkTriggeringConditions(const SimTime& T_now)
 	const SimTime& T_GenCamMax = mGenCamMax;
 	const SimTime T_GenCamDcc = mDccRestriction ? genCamDcc() : T_GenCamMin;
 	const SimTime T_elapsed = T_now - mLastCamTimestamp;
+	const SimTime certificateElapsed = T_now - lastCertificateChange;
 
+	auto certificate_validity = certificateValidator.check_certificate(currentSecurityEntity.certificate);
 
+	if (!certificate_validity || certificateElapsed >= certificateValidityInterval) {
+		currentSecurityEntity = staticCertificateLoader.RenewTickets();
+		lastCertificateChange = T_now;
+	}
 
 	if (T_elapsed >= T_GenCamDcc) {
 		if (mFixedRate) {
@@ -229,11 +227,7 @@ void CaSignedService::checkTriggeringConditions(const SimTime& T_now)
 
 SecuredMessage CaSignedService::createSignedCam(ByteBuffer camByteBuffer, bool includeCertificate) {
 
-	auto certificate_validity = certificateValidator.check_certificate(currentSecurityEntity.certificate);
 
-	if (!certificate_validity) {
-		currentSecurityEntity = staticCertificateLoader.RenewTickets();
-	}
 
 	SecuredMessage secured_message;
 	secured_message.header_fields.push_front(vanetza::aid::CA);
@@ -310,7 +304,6 @@ void CaSignedService::sendSignedCam(const SimTime& T_now)
 	serialize(ar, securedMessage);
 	stream.close();
 
-	logMessage(securedMessage);
 
 	payload->layer(OsiLayer::Application) = std::move(buf);
 	this->request(request, std::move(payload));

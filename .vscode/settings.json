@@ -107,7 +107,10 @@
         "vec4s": "cpp",
         "vec4ub": "cpp",
         "vec4ui": "cpp",
-        "vec4us": "cpp"
+        "vec4us": "cpp",
+        "state": "cpp",
+        "texture": "cpp",
+        "textbase": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
