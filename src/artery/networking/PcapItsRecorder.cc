@@ -3,6 +3,10 @@
 #include<omnetpp.h>
 #include "inet/linklayer/ieee80211/mac/Ieee80211Frame_m.h"
 #include <light_pcapng_ext.h>
+#include <vanetza/common/byte_buffer_sink.hpp>
+#include <vanetza/common/byte_buffer.hpp>
+#include <boost/iostreams/stream.hpp>
+
 
 
 namespace artery {
@@ -85,12 +89,20 @@ void PcapItsRecorder::receiveSignal(cComponent * source, simsignal_t signalID, c
     EV_INFO << "Received Message" << std::endl;
     const char *className = obj->getClassName();
     inet::ieee80211::Ieee80211DataFrameWithSNAP packet = *dynamic_cast<inet::ieee80211::Ieee80211DataFrameWithSNAP *>(obj);
-    GeoNetPacket test = *dynamic_cast<GeoNetPacket *>(packet.getEncapsulatedPacket());
-    auto size = packet.getByteLength();
+    GeoNetPacket *test = dynamic_cast<GeoNetPacket *>(packet.getEncapsulatedPacket());
+    std::unique_ptr<vanetza::PacketVariant> packet_variant = std::move(*test).extractPayload();
+    vanetza::ChunkPacket chunk_packet = boost::get<vanetza::ChunkPacket>(*packet_variant);
+    vanetza::ByteBuffer buf;
+	vanetza::byte_buffer_sink sink(buf);
+    boost::iostreams::stream_buffer<vanetza::byte_buffer_sink> stream(sink);
+    vanetza::OutputArchive ar(stream);
+
+	serialize(ar, *packet_variant);
+	stream.close();
+
+    auto size = buf.size();
     light_pcapng_t *writer = light_pcapng_open("output.pcapng", "ab");
 
-    uint8_t *buffer = (uint8_t *)malloc(size);
-    memcpy(buffer, &packet, size);
 
 	light_packet_interface pkt_interface_eth = { 0 };
     pkt_interface_eth.link_type = 1; // link_type: ETHERNET
@@ -107,7 +119,7 @@ void PcapItsRecorder::receiveSignal(cComponent * source, simsignal_t signalID, c
 	pkt_header1.dropcount = 0;
 	pkt_header1.queue = 1;
 	pkt_header1.comment = "Packet comment";
-	light_write_packet(writer, &pkt_interface_eth, &pkt_header1, buffer);
+	light_write_packet(writer, &pkt_interface_eth, &pkt_header1, (uint8_t*)&buf);
     light_pcapng_close(writer);
 
 }
