@@ -1,13 +1,21 @@
 #include "PcapItsRecorder.h"
 
 #include<omnetpp.h>
+#include <vanetza/geonet/serialization.hpp>
 #include "inet/linklayer/ieee80211/mac/Ieee80211Frame_m.h"
 #include <light_pcapng_ext.h>
-#include <vanetza/common/byte_buffer_sink.hpp>
+#include <vanetza/common/byte_buffer_source.hpp>
+#include <vanetza/geonet/pdu.hpp>
+#include <vanetza/geonet/pdu_conversion.hpp>
+#include <vanetza/geonet/pdu_variant.hpp>
+#include <vanetza/geonet/common_header.hpp>
+#include <vanetza/geonet/basic_header.hpp>
 #include <vanetza/common/byte_buffer.hpp>
 #include <boost/iostreams/stream.hpp>
+#include <vanetza/btp/header_conversion.hpp>
 
 
+using namespace vanetza;
 
 namespace artery {
 PcapItsRecorder::PcapItsRecorder(): cSimpleModule() {
@@ -92,15 +100,30 @@ void PcapItsRecorder::receiveSignal(cComponent * source, simsignal_t signalID, c
     GeoNetPacket *test = dynamic_cast<GeoNetPacket *>(packet.getEncapsulatedPacket());
     std::unique_ptr<vanetza::PacketVariant> packet_variant = std::move(*test).extractPayload();
     vanetza::ChunkPacket chunk_packet = boost::get<vanetza::ChunkPacket>(*packet_variant);
+    geonet::ExtendedPdu<geonet::ShbHeader> pdu = *dynamic_cast<geonet::ExtendedPdu<geonet::ShbHeader>*>(vanetza::geonet::pdu_cast(chunk_packet.layer(OsiLayer::Network)));
+    btp::HeaderB btp = dynamic_cast<byte_buffer_impl<btp::HeaderB>(chunk_packet.layer(OsiLayer::Transport).ptr())->m_header();
     vanetza::ByteBuffer buf;
 	vanetza::byte_buffer_sink sink(buf);
     boost::iostreams::stream_buffer<vanetza::byte_buffer_sink> stream(sink);
     vanetza::OutputArchive ar(stream);
 
-	serialize(ar, *packet_variant);
+	vanetza::geonet::serialize(pdu.basic(), ar);
+    vanetza::geonet::serialize(pdu.common(), ar);
 	stream.close();
 
     auto size = buf.size();
+
+    uint8_t *packet_buffer = (uint8_t *)malloc(size + 14);
+
+    uint8_t from[6] = { 0xff, 0xff, 0xff, 0xff, 0xff, 0xff};
+    uint8_t to[6] = { 0, 0, 0, 0, 0, 0};
+    uint8_t protocol[2] = { 0x89, 0x47};
+
+    memcpy(packet_buffer, from, 6);
+    memcpy(packet_buffer + 6, to, 6);
+    memcpy(packet_buffer + 12, protocol, 2);
+    memcpy(packet_buffer + 14, &buf[0], size);
+
     light_pcapng_t *writer = light_pcapng_open("output.pcapng", "ab");
 
 
@@ -113,13 +136,13 @@ void PcapItsRecorder::receiveSignal(cComponent * source, simsignal_t signalID, c
 	light_packet_header pkt_header1 = { 0 };
 	struct timespec ts1 = { 1627228100 , 5000 };
 	pkt_header1.timestamp = ts1;
-	pkt_header1.captured_length = size;
-	pkt_header1.original_length = size;
+	pkt_header1.captured_length = size + 14;
+	pkt_header1.original_length = size + 14;
 	pkt_header1.flags = 0x1; // direction indicator
 	pkt_header1.dropcount = 0;
 	pkt_header1.queue = 1;
 	pkt_header1.comment = "Packet comment";
-	light_write_packet(writer, &pkt_interface_eth, &pkt_header1, (uint8_t*)&buf);
+	light_write_packet(writer, &pkt_interface_eth, &pkt_header1, packet_buffer);
     light_pcapng_close(writer);
 
 }
