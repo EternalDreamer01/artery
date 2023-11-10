@@ -13,6 +13,8 @@
 #include <vanetza/common/byte_buffer.hpp>
 #include <boost/iostreams/stream.hpp>
 #include <vanetza/btp/header_conversion.hpp>
+#include <vanetza/asn1/cam.hpp>
+
 
 
 using namespace vanetza;
@@ -92,6 +94,12 @@ void PcapItsRecorder::finish()
 {
 }
 
+void serialize_bit_vector(OutputArchive& ar, std::vector<unsigned char, std::allocator<unsigned char>> bit_vector) {
+    for (auto iter = bit_vector.begin(); iter < bit_vector.end(); iter++) {
+        ar << *iter;
+    }
+}
+
 void PcapItsRecorder::receiveSignal(cComponent * source, simsignal_t signalID, cObject * obj, cObject * details)
 {
     EV_INFO << "Received Message" << std::endl;
@@ -101,7 +109,10 @@ void PcapItsRecorder::receiveSignal(cComponent * source, simsignal_t signalID, c
     std::unique_ptr<vanetza::PacketVariant> packet_variant = std::move(*test).extractPayload();
     vanetza::ChunkPacket chunk_packet = boost::get<vanetza::ChunkPacket>(*packet_variant);
     geonet::ExtendedPdu<geonet::ShbHeader> pdu = *dynamic_cast<geonet::ExtendedPdu<geonet::ShbHeader>*>(vanetza::geonet::pdu_cast(chunk_packet.layer(OsiLayer::Network)));
-    btp::HeaderB btp = dynamic_cast<byte_buffer_impl<btp::HeaderB>(chunk_packet.layer(OsiLayer::Transport).ptr())->m_header();
+    convertible::byte_buffer * ptr = chunk_packet.layer(OsiLayer::Transport).ptr();
+    convertible::byte_buffer_impl<std::vector<unsigned char, std::allocator<unsigned char>>> *ptr_cast = dynamic_cast<convertible::byte_buffer_impl<std::vector<unsigned char, std::allocator<unsigned char>>> *>(ptr);
+    convertible::byte_buffer * ptr2 = chunk_packet.layer(OsiLayer::Application).ptr();
+    convertible::byte_buffer_impl<asn1::Cam> *ptr_cast2 = dynamic_cast<convertible::byte_buffer_impl<asn1::Cam > *>(ptr2);
     vanetza::ByteBuffer buf;
 	vanetza::byte_buffer_sink sink(buf);
     boost::iostreams::stream_buffer<vanetza::byte_buffer_sink> stream(sink);
@@ -109,6 +120,11 @@ void PcapItsRecorder::receiveSignal(cComponent * source, simsignal_t signalID, c
 
 	vanetza::geonet::serialize(pdu.basic(), ar);
     vanetza::geonet::serialize(pdu.common(), ar);
+    vanetza::geonet::serialize(pdu.extended(), ar);
+    serialize_bit_vector(ar, ptr_cast->m_buffer);
+    ByteBuffer camBuffer;
+    ptr_cast2->convert(camBuffer);
+    serialize_bit_vector(ar, camBuffer);
 	stream.close();
 
     auto size = buf.size();
