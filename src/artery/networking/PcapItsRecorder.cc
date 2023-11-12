@@ -73,7 +73,7 @@ void PcapItsRecorder::initialize()
             }
         }
     }
-    light_pcapng_t *pcapng_write = light_pcapng_open("output.pcapng", "wb");
+    light_pcapng_t *pcapng_write = light_pcapng_open(par("outputFile"), "wb");
 	light_packet_interface pkt_interface_eth = { 0 };
     pkt_interface_eth.link_type = 1; // link_type: ETHERNET
 	pkt_interface_eth.name = "interface1";
@@ -140,7 +140,7 @@ void PcapItsRecorder::receiveSignal(cComponent * source, simsignal_t signalID, c
     memcpy(packet_buffer + 12, protocol, 2);
     memcpy(packet_buffer + 14, &buf[0], size);
 
-    light_pcapng_t *writer = light_pcapng_open("output.pcapng", "ab");
+    light_pcapng_t *writer = light_pcapng_open(par("outputFile"), "ab");
 
 
 	light_packet_interface pkt_interface_eth = { 0 };
