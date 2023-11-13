@@ -14,7 +14,7 @@
 #include <boost/iostreams/stream.hpp>
 #include <vanetza/btp/header_conversion.hpp>
 #include <vanetza/asn1/cam.hpp>
-
+#include <vanetza/security/secured_message.hpp>
 
 
 using namespace vanetza;
@@ -119,11 +119,14 @@ void PcapItsRecorder::receiveSignal(cComponent * source, simsignal_t signalID, c
     vanetza::OutputArchive ar(stream);
 
 	vanetza::geonet::serialize(pdu.basic(), ar);
+    if (pdu.secured()) vanetza::security::serialize(ar, *pdu.secured());
     vanetza::geonet::serialize(pdu.common(), ar);
     vanetza::geonet::serialize(pdu.extended(), ar);
-    serialize_bit_vector(ar, ptr_cast->m_buffer);
+    ByteBuffer transportBuffer;
+    ptr->convert(transportBuffer);
+    serialize_bit_vector(ar, transportBuffer);
     ByteBuffer camBuffer;
-    ptr_cast2->convert(camBuffer);
+    ptr2->convert(camBuffer);
     serialize_bit_vector(ar, camBuffer);
 	stream.close();
 

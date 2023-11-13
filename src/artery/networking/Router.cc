@@ -5,7 +5,7 @@
 #include "artery/networking/PositionFixObject.h"
 #include "artery/networking/Router.h"
 #include "artery/networking/Runtime.h"
-#include "artery/networking/SecurityEntity.h"
+#include "artery/networking/CustomSecurityEntity.h"
 #include "artery/nic/RadioDriverBase.h"
 #include "artery/nic/RadioDriverProperties.h"
 #include "artery/utility/InitStages.h"
@@ -55,7 +55,7 @@ void Router::initialize(int stage)
         mRadioDriver = inet::getModuleFromPar<RadioDriverBase>(par("radioDriverModule"), this);
         mRadioDriverDataIn = gate("radioDriverData");
         mRadioDriverPropertiesIn = gate("radioDriverProperties");
-        mSecurityEntity = inet::findModuleFromPar<SecurityEntity>(par("securityModule"), this, false);
+        mSecurityEntity = inet::findModuleFromPar<vanetza::security::SecurityEntity>(par("securityModule"), this, false);
     } else if (stage == InitStages::Self) {
         // initialize MIB (will check for existence of security entity)
         initializeManagementInformationBase(mMIB);

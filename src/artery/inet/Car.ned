@@ -66,7 +66,6 @@ module Car like INetworkNode
                 *.middlewareModule = absPath("^.middleware");
                 *.mobilityModule = absPath("^.mobility");
                 *.radioDriverModule = absPath("^.radioDriver[" + string(index) + "]");
-                *.securityEntity = absPath("^.securityEntity");
                 runtime.datetime = middleware.datetime;
         }
 
@@ -96,7 +95,7 @@ module Car like INetworkNode
                 runtimeModule = absPath("^.runtime");
         }
 
-        securityEntity: artery.networking.CustomSecurityEntity {
+        customSecurityEntity: artery.networking.CustomSecurityEntity {
             parameters:
                 @display("p=250,100");
                 runtimeModule = absPath("^.runtime");

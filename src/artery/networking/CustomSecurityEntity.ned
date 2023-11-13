@@ -1,6 +1,6 @@
 package artery.networking;
 
-simple CustomSecurityEntity
+simple CustomSecurityEntity like ISecurityEntity
 {
     @class(CustomSecurityEntity);
         string runtimeModule;
