@@ -45,6 +45,7 @@ add_library(core SHARED
     application/den/TrafficJamUseCase.cc
     application/den/UseCase.cc
     networking/AccessInterface.cc
+    networking/CustomSecurityEntity.cc
     networking/DccEntityBase.cc
     networking/FsmDccEntity.cc
     networking/GeoNetPacket.cc
