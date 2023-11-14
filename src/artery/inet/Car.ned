@@ -100,6 +100,8 @@ module Car like INetworkNode
                 @display("p=250,100");
                 runtimeModule = absPath("^.runtime");
                 positionModule = absPath("^.vehiclePositionProvider");
+                CryptoBackend = "default";
+                
         }
 
     connections:

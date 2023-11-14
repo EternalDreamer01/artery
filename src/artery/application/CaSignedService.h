@@ -40,7 +40,7 @@ class CaSignedService : public CaService
 		vanetza::security::SecuredMessage createSignedCam(vanetza::ByteBuffer camByteBuffer, bool includeCertificate);
 		void consumeSignedCam(vanetza::UpPacket *packet);
 		vanetza::security::SecuredMessage deserialize_secured_message(vanetza::ChunkPacket *packet);
-		StaticCertificateLoader staticCertificateLoader;
+		StaticCertificateProvider staticCertificateLoader;
 
 		vanetza::ManualRuntime runtime;
 		vanetza::security::NaiveCertificateProvider certificateProvider;

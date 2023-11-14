@@ -16,11 +16,11 @@ static std::stack<std::string> used_certificates;
 static bool certificateLoaded = false;
 
 
-StaticCertificateLoader::StaticCertificateLoader()
+StaticCertificateProvider::StaticCertificateProvider()
 {
 }
 
-void StaticCertificateLoader::LoadTickets() {
+void StaticCertificateProvider::LoadTickets() {
 
     path certificate_path("./certificates/");
 
@@ -36,16 +36,16 @@ void StaticCertificateLoader::LoadTickets() {
     certificateLoaded = true;
 }
 
-void artery::StaticCertificateLoader::LoadAuthorizationAuthority(std::string aa_path, vanetza::security::CertificateCache& cert_cache)
+void artery::StaticCertificateProvider::LoadAuthorizationAuthority(std::string aa_path, vanetza::security::CertificateCache& cert_cache)
 {
     cert_cache.insert(vanetza::security::load_certificate_from_file(aa_path));
 }
 
 
-SecurityEntity artery::StaticCertificateLoader::RenewTickets()
+void artery::StaticCertificateProvider::RenewTickets()
 {
     if (certificateLoaded == false) {
-        StaticCertificateLoader::LoadTickets();
+        StaticCertificateProvider::LoadTickets();
         if (unused_certificates.size() == 0) {
             throw omnetpp::cRuntimeError("certificates folder must be populated");
         }
@@ -58,10 +58,12 @@ SecurityEntity artery::StaticCertificateLoader::RenewTickets()
     std::string key_path = certificate_path.substr(0, certificate_path.find_last_of(".")) + ".key";
 
 
-    Certificate certificate = load_certificate_from_file(certificate_path);
-    ecdsa256::KeyPair keyPair = load_private_key_from_file(key_path);
+    current_certificate = load_certificate_from_file(certificate_path);
+    current_keypair = load_private_key_from_file(key_path);
+}
 
-    return SecurityEntity { certificate, keyPair };
+const ecdsa256::PrivateKey& artery::StaticCertificateProvider::own_private_key() {
+    return current_keypair.private_key;
 }
 
 }
