@@ -6,6 +6,12 @@
 
 using namespace omnetpp;
 namespace artery {
+
+struct pcap_packet_header {
+  uint8_t from_addr[6];
+  uint8_t to_addr[6];
+  uint8_t  protocol[2] = { 0x89, 0x47 };
+};
 class PcapItsRecorder : public cSimpleModule, protected cListener {
   public:
     PcapItsRecorder();

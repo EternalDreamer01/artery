@@ -12,7 +12,7 @@
 namespace artery {
 using namespace vanetza::security;
 
-class StaticCertificateProvider : CertificateProvider {
+class StaticCertificateProvider : public CertificateProvider {
 
 public:
     StaticCertificateProvider();
@@ -42,6 +42,7 @@ private:
     ecdsa256::KeyPair current_keypair;
     std::list<Certificate> current_chain;
     Certificate current_certificate;
+    bool need_renew = true;
 };
 
 }

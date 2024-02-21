@@ -110,7 +110,14 @@
         "vec4us": "cpp",
         "state": "cpp",
         "texture": "cpp",
-        "textbase": "cpp"
+        "textbase": "cpp",
+        "bufferobject": "cpp",
+        "image": "cpp",
+        "mixinvector": "cpp",
+        "vertexarraystate": "cpp",
+        "buffered_value": "cpp",
+        "fast_back_stack": "cpp",
+        "serializer": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

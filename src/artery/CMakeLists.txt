@@ -3,7 +3,6 @@ add_library(core SHARED
     StaticNodeManager.cc
     application/CaObject.cc
     application/CaService.cc
-    application/CaSignedService.cc
     application/DenmObject.cc
     application/DenService.cc
     application/ExampleService.cc
@@ -28,7 +27,7 @@ add_library(core SHARED
     application/RtcmMockReceiver.cc
     application/RtcmMockService.cc
     application/StationType.cc
-    application/StaticCertificateLoader.cc
+    application/StaticCertificateProvider.cc
     application/StationaryMiddleware.cc
     application/StoryboardSignal.cc
     application/Timer.cc

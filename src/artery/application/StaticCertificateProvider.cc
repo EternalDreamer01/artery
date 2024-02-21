@@ -1,4 +1,4 @@
-#include "artery/application/StaticCertificateLoader.h"
+#include "artery/application/StaticCertificateProvider.h"
 
 #include<string>
 #include<stack>
@@ -19,7 +19,6 @@ static bool certificateLoaded = false;
 StaticCertificateProvider::StaticCertificateProvider()
 {
 }
-
 void StaticCertificateProvider::LoadTickets() {
 
     path certificate_path("./certificates/");
@@ -36,13 +35,13 @@ void StaticCertificateProvider::LoadTickets() {
     certificateLoaded = true;
 }
 
-void artery::StaticCertificateProvider::LoadAuthorizationAuthority(std::string aa_path, vanetza::security::CertificateCache& cert_cache)
+void StaticCertificateProvider::LoadAuthorizationAuthority(std::string aa_path, vanetza::security::CertificateCache& cert_cache)
 {
     cert_cache.insert(vanetza::security::load_certificate_from_file(aa_path));
 }
 
 
-void artery::StaticCertificateProvider::RenewTickets()
+void StaticCertificateProvider::RenewTickets()
 {
     if (certificateLoaded == false) {
         StaticCertificateProvider::LoadTickets();
@@ -62,8 +61,23 @@ void artery::StaticCertificateProvider::RenewTickets()
     current_keypair = load_private_key_from_file(key_path);
 }
 
-const ecdsa256::PrivateKey& artery::StaticCertificateProvider::own_private_key() {
+const ecdsa256::PrivateKey& StaticCertificateProvider::own_private_key() {
+        if (need_renew) {
+        RenewTickets();
+        need_renew = false;
+    }
     return current_keypair.private_key;
 }
-
+const Certificate& StaticCertificateProvider::own_certificate() {
+    if (need_renew) {
+        RenewTickets();
+        need_renew = false;
+    }
+    return current_certificate;
 }
+std::list<Certificate> StaticCertificateProvider::own_chain() {
+    std::list<Certificate> chain;
+    return chain;
+}
+}
+
