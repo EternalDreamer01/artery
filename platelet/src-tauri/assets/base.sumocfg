@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.sf.net/xsd/sumoConfiguration.xsd">
+
+    <input>
+        <net-file value="{netfile}"/>
+        <route-files value="{routefile}"/>
+    </input>
+    
+    <processing>
+    	<collision.check-junctions value="true"/>
+        <collision.action value="remove"/>
+        <time-to-teleport value="-1"/> 
+        <default.emergencydecel value="-1"/>
+    </processing>
+    <time>
+        <begin value="0"/>
+        <end value="1000"/>
+    </time>
+
+</configuration>

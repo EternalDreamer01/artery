@@ -27,7 +27,7 @@ PcapItsRecorder::PcapItsRecorder(): cSimpleModule() {
 Define_Module(PcapItsRecorder);
 
     light_packet_interface geonet_interface = {
-        .link_type = 105,
+        .link_type = 1,
         .name = (char*)"wireless lan",
         .description = (char*)"interface used for transmitting geonet packet",
         .timestamp_resolution = 1000000000
