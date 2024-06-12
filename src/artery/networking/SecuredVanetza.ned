@@ -2,7 +2,7 @@ package artery.networking;
 
 import artery.dcc.IDccEntity;
 
-module Vanetza
+module SecuredVanetza
 {
     parameters:
         *.dccModule = absPath(".dcc");
@@ -24,7 +24,7 @@ module Vanetza
             @display("p=50,150;i=block/buffer");
         }
 
-        security: <default("")> like ISecurityEntity if typename != "" {
+        security: <default("artery.networking.CustomSecurityEntity")> like ISecurityEntity if typename != "" {
             @display("p=250,150;i=device/firewall");
             CryptoBackend = "default";
             CertificateProvider = "Static";

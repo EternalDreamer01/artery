@@ -1,7 +1,7 @@
 package artery.inet;
 
 import artery.application.VehicleMiddleware;
-import artery.networking.Vanetza;
+import artery.networking.SecuredVanetza;
 import artery.networking.Runtime;
 import artery.networking.ISecurityEntity;
 import artery.nic.IRadioDriver;
@@ -14,7 +14,7 @@ import inet.networklayer.common.InterfaceTable;
 // Car does not inherit from PlainVehicle on purpose to avoid a "use-after-free" bug.
 // See https://github.com/riebl/artery/pull/27 for details.
 
-module Car like INetworkNode
+module SecuredCar like INetworkNode
 {
     parameters:
         @display("i=block/wrxtx;is=vs");
@@ -60,10 +60,9 @@ module Car like INetworkNode
         }
 
 
-        vanetza[numRadios]: Vanetza {
+        vanetza[numRadios]: SecuredVanetza {
             parameters:
                 @display("p=250,200,row,100");
-                *.securityModule = absPath("^.security");
                 *.middlewareModule = absPath("^.middleware");
                 *.mobilityModule = absPath("^.mobility");
                 *.radioDriverModule = absPath("^.radioDriver[" + string(index) + "]");
@@ -96,14 +95,6 @@ module Car like INetworkNode
                 runtimeModule = absPath("^.runtime");
         }
 
-        customSecurityEntity: artery.networking.CustomSecurityEntity {
-            parameters:
-                @display("p=250,100");
-                runtimeModule = absPath("^.runtime");
-                positionModule = absPath("^.vehiclePositionProvider");
-
-                
-        }
 
     connections:
         for i=0..sizeof(radioIn)-1 {
