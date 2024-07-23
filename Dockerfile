@@ -1,4 +1,4 @@
-FROM debian:bullseye-slim as base
+FROM debian:bookworm-slim as base
 
 FROM base as omnetpp-build
 ARG VERSION=5.6.2
@@ -25,21 +25,21 @@ FROM omnetpp-build as omnetpp-debug
 RUN make -j $(nproc) base MODE=debug
 
 FROM base as lightpcapng-build
-RUN apt-get update && apt-get install -y \
+ENV BUILD_SHARED_LIBS 1
+RUN apt-get update && apt-get -y upgrade && apt-get install -y \
     wget \
     cmake \
-    git \
-    g++
+    ninja-build \
+    g++ \
+    git
 RUN wget https://github.com/Technica-Engineering/LightPcapNg/archive/f595e4b2dbd4172a146199cb24c64ba908fde71a.tar.gz \
     --progress=bar:force:noscroll -O lightpcapng.tar.gz && \
     tar xfz lightpcapng.tar.gz && \
     rm lightpcapng.tar.gz && \
     mv LightPcapNg-f595e4b2dbd4172a146199cb24c64ba908fde71a/ /lightpcapng
 WORKDIR /lightpcapng
-RUN mkdir build && cd build && \
-    cmake .. && \
-    cmake --build . --parallel $(nproc) && \
-    make install
+RUN cmake --preset Release
+RUN cmake --build --preset Release
 
 
 
@@ -52,8 +52,8 @@ RUN apt-get update && apt-get install -y \
     libboost-system1.74-dev \
     libboost-filesystem1.74-dev \
     libcrypto++-dev \
-    libgeographic-dev \
-    libpython3.9-dev \
+    libgeographiclib-dev \
+    libpython3.11-dev \
     libssl-dev \
     libzmq3-dev \
     pkg-config \
@@ -63,8 +63,8 @@ COPY --from=omnetpp-build /omnetpp/bin /omnetpp/bin
 COPY --from=omnetpp-build /omnetpp/include /omnetpp/include
 COPY --from=omnetpp-build /omnetpp/lib /omnetpp/lib
 COPY --from=omnetpp-build /omnetpp/Makefile.inc /omnetpp/Version /omnetpp/
-COPY --from=lightpcapng-build /usr/local/lib /usr/local/lib
-COPY --from=lightpcapng-build /usr/local/include /usr/local/include
+COPY --from=lightpcapng-build /lightpcapng/build/liblight_pcapng.so /usr/lib/liblight_pcapng.so
+COPY --from=lightpcapng-build /lightpcapng/include /usr/include
 COPY . /artery/source
 ENV PATH /omnetpp/bin:$PATH
 RUN cmake -S /artery/source -B /artery/build -DCMAKE_BUILD_TYPE=Release -DWITH_OTS=ON -DWITH_SIMULTE=ON \
@@ -94,11 +94,12 @@ FROM base as run
 RUN apt-get update && apt-get install -y \
     libboost-date-time1.74 \
     libboost-system1.74 \
+    libboost-filesystem1.74 \
     libcrypto++ \
-    libgeographic19 \
-    libproj19 \
-    libpython3.9 \
-    libssl1.1 \
+    libgeographiclib-dev \
+    libproj-dev \
+    libpython3.11 \
+    libssl-dev \
     libxerces-c3.2 \
     libxml2 \
     libzmq5 \
@@ -112,8 +113,8 @@ COPY --from=sumo-build /sumo/share/sumo/data /sumo/share/sumo/data
 COPY --from=artery-build /artery/bin /artery/bin
 COPY --from=artery-build /artery/lib /artery/lib
 COPY --from=artery-build /artery/share/ned /artery/share/ned
-COPY --from=lightpcapng-build /usr/local/lib /usr/local/lib
-COPY --from=lightpcapng-build /usr/local/include /usr/local/include
+COPY --from=lightpcapng-build /lightpcapng/build/liblight_pcapng.so /usr/lib/liblight_pcapng.so
+COPY --from=lightpcapng-build /lightpcapng/include /usr/include
 ENV SUMO_HOME /sumo/share/sumo
 ENV PATH /sumo/bin:/omnetpp/bin:$PATH
 RUN ln -s /usr/bin/python3 /usr/bin/python
