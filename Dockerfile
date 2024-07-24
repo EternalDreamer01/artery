@@ -123,4 +123,4 @@ RUN mkdir -p /scenario /results && chown -R artery:users /scenario /results
 USER artery
 VOLUME /scenario /results
 WORKDIR /scenario
-ENTRYPOINT ["/artery/bin/run_artery.sh", "--result-dir=/results"]
+ENTRYPOINT ["/artery/bin/run_artery.sh", "--result-dir=/scenario/results/"]
