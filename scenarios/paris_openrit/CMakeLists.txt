@@ -1,0 +1,1 @@
+add_opp_run(paris_openrit CONFIG omnetpp.ini)

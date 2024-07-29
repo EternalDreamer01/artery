@@ -42,7 +42,7 @@ private:
     ecdsa256::KeyPair current_keypair;
     std::list<Certificate> current_chain;
     Certificate current_certificate;
-    bool need_renew = true;
+    int need_renew = true;
 };
 
 }

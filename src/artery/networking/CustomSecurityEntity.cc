@@ -10,6 +10,8 @@
 #include <vanetza/security/null_certificate_provider.hpp>
 #include <vanetza/security/null_certificate_validator.hpp>
 #include <artery/application/StaticCertificateProvider.h>
+#include "artery/application/SybilCertificateProvider.h"
+
 
 namespace vs = vanetza::security;
 
@@ -65,6 +67,8 @@ std::unique_ptr<vs::CertificateProvider> CustomSecurityEntity::createCertificate
         certificates.reset(new vs::NaiveCertificateProvider(*notNullPtr(mRuntime)));
     } else if (name == "Static") {
         certificates.reset(new artery::StaticCertificateProvider());
+    } else if (name == "Sybil") {
+        certificates.reset(new artery::SybilCertificateProvider());
     } else {
         error("No certificate provider available with name \"%s\"", name.c_str());
     }

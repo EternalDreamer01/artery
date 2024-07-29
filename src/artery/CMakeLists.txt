@@ -3,7 +3,6 @@ add_library(core SHARED
     StaticNodeManager.cc
     application/CaObject.cc
     application/CaService.cc
-    application/CaServiceZombie.cc
     application/DenmObject.cc
     application/DenService.cc
     application/ExampleService.cc
@@ -44,6 +43,8 @@ add_library(core SHARED
     application/den/TractionLoss.cc
     application/den/TrafficJamUseCase.cc
     application/den/UseCase.cc
+    application/CaServiceZombie.cc
+    application/SybilCertificateProvider.cc
     networking/AccessInterface.cc
     networking/CustomSecurityEntity.cc
     networking/DccEntityBase.cc

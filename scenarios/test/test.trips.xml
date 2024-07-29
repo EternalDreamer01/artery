@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 2024-03-28 11:07:29.618981 by randomTrips.py UNKNOWN
+<!-- generated on 2024-07-28 18:12:17.076371 by randomTrips.py UNKNOWN
 <configuration>
     <net-file value="/home/mathi/artery/scenarios/test/test.net.xml"/>
     <output-trip-file value="/home/mathi/artery/scenarios/test/test.trips.xml"/>

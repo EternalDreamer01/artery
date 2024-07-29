@@ -21,7 +21,7 @@ StaticCertificateProvider::StaticCertificateProvider()
 }
 void StaticCertificateProvider::LoadTickets() {
 
-    path certificate_path("./certificates/");
+    path certificate_path("/home/mathi/artery/scenarios/paris_openrit/certificate/");
 
     directory_iterator end_itr;
     for (directory_iterator itr(certificate_path); itr != end_itr; itr++) {
