@@ -1,7 +1,7 @@
 #include "PcapItsRecorder.h"
 
+#include <vanetza/geonet/basic_header.hpp>
 #include<omnetpp.h>
-#include <vanetza/geonet/serialization.hpp>
 #include "inet/linklayer/ieee80211/mac/Ieee80211Frame_m.h"
 #include <light_pcapng_ext.h>
 #include <vanetza/common/byte_buffer_source.hpp>
@@ -9,7 +9,6 @@
 #include <vanetza/geonet/pdu_conversion.hpp>
 #include <vanetza/geonet/pdu_variant.hpp>
 #include <vanetza/geonet/common_header.hpp>
-#include <vanetza/geonet/basic_header.hpp>
 #include <vanetza/common/byte_buffer.hpp>
 #include <boost/iostreams/stream.hpp>
 #include <vanetza/btp/header_conversion.hpp>
@@ -120,10 +119,16 @@ Define_Module(PcapItsRecorder);
 
         geonet::ExtendedPdu<geonet::ShbHeader> pdu = *dynamic_cast<geonet::ExtendedPdu<geonet::ShbHeader>*>(vanetza::geonet::pdu_cast(packet.layer(OsiLayer::Network)));
 
-        vanetza::geonet::serialize(pdu.basic(), ar);
-        if (pdu.secured()) vanetza::security::serialize(ar, *pdu.secured());
-        vanetza::geonet::serialize(pdu.common(), ar);
-        vanetza::geonet::serialize(pdu.extended(), ar);
+        // All headers need to be declared as const before serializing to allow template deduction.
+        const geonet::BasicHeader& basic_header = pdu.basic();
+        const security::SecuredMessage& secured_header = *pdu.secured();
+        const geonet::CommonHeader& common_header = pdu.common();
+        const geonet::ShbHeader& extended_header = pdu.extended();
+
+        vanetza::geonet::serialize(basic_header, ar);
+        if (pdu.secured()) vanetza::security::serialize(ar, secured_header);
+        vanetza::geonet::serialize(common_header, ar);
+        vanetza::geonet::serialize(extended_header, ar);
 
         serialize_layer<std::vector<unsigned char, std::allocator<unsigned char>>>(ar, packet, OsiLayer::Transport);
         serialize_layer<asn1::Cam>(ar, packet, OsiLayer::Application);
@@ -152,7 +157,6 @@ Define_Module(PcapItsRecorder);
 
     void PcapItsRecorder::receiveSignal(cComponent * source, simsignal_t signalID, cObject * obj, cObject * details)
     {
-        EV_INFO << "Received Message" << std::endl;
         const char *className = obj->getClassName();
         inet::ieee80211::Ieee80211DataFrameWithSNAP packet = *dynamic_cast<inet::ieee80211::Ieee80211DataFrameWithSNAP *>(obj);
         auto from_address = packet.getTransmitterAddress();

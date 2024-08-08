@@ -21,7 +21,7 @@ SybilCertificateProvider::SybilCertificateProvider()
 }
 void SybilCertificateProvider::LoadTickets() {
 
-    path certificate_path("./certificates/");
+    path certificate_path("./certificate/");
 
     directory_iterator end_itr;
     for (directory_iterator itr(certificate_path); itr != end_itr; itr++) {
@@ -45,9 +45,10 @@ void SybilCertificateProvider::RenewTickets()
 {
     if (certificateLoaded == false) {
         SybilCertificateProvider::LoadTickets();
-        if (unused_certificates.size() == 0) {
-            throw omnetpp::cRuntimeError("certificates folder must be populated");
-        }
+    }
+
+    if (unused_certificates.size() == 0) {
+        throw omnetpp::cRuntimeError("All certificates has been used. Try generating more certificate before running the simulation again");
     }
 
     std::string certificate_path = unused_certificates.top();
