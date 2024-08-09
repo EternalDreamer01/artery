@@ -26,6 +26,10 @@ module Vanetza
 
         security: <default("")> like ISecurityEntity if typename != "" {
             @display("p=250,150;i=device/firewall");
+            CryptoBackend = "default";
+            CertificateProvider = "Static";
+            SignService = "straight";
+            VerifyService = "straight";
         }
 
         router: Router {

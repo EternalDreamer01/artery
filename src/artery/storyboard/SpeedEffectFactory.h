@@ -12,7 +12,7 @@ namespace artery
 /**
  * SpeedEffectFactory creates SpeedEffects
  */
-class STORYBOARD_API SpeedEffectFactory : public EffectFactory
+class SpeedEffectFactory : public EffectFactory
 {
 public:
     SpeedEffectFactory(double speed) :

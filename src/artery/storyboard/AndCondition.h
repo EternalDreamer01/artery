@@ -11,7 +11,7 @@ namespace artery
 /**
  * Class to create a Tree of AndConditions
  */
-class STORYBOARD_API AndCondition : public Condition
+class AndCondition : public Condition
 {
 public:
     using ConditionPtr = std::shared_ptr<Condition>;

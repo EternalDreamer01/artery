@@ -3,7 +3,6 @@
 
 #include "artery/storyboard/Condition.h"
 #include "artery/storyboard/Effect.h"
-#include "artery/storyboard/Macros.h"
 #include <memory>
 
 namespace artery
@@ -12,7 +11,7 @@ namespace artery
 /**
  * EffectFactory Interface
  */
-class STORYBOARD_API EffectFactory
+class EffectFactory
 {
 public:
     virtual ~EffectFactory() = default;

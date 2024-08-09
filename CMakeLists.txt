@@ -13,7 +13,7 @@ if(POLICY CMP0079)
 endif()
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 enable_testing()
 
@@ -24,7 +24,7 @@ include(CheckGitSubmodule)
 include(GenerateOppMessage)
 include(GNUInstallDirs)
 
-find_package(Boost 1.59 COMPONENTS date_time system REQUIRED)
+find_package(Boost 1.59 COMPONENTS date_time system filesystem REQUIRED)
 if (Boost_VERSION_STRING VERSION_GREATER_EQUAL "1.75")
     # Boost.Geometry requires C++14 starting with Boost 1.75
     set(CMAKE_CXX_STANDARD 14)

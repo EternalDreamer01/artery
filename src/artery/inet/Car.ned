@@ -2,6 +2,8 @@ package artery.inet;
 
 import artery.application.VehicleMiddleware;
 import artery.networking.Vanetza;
+import artery.networking.Runtime;
+import artery.networking.ISecurityEntity;
 import artery.nic.IRadioDriver;
 import inet.node.inet.INetworkNode;
 import inet.linklayer.contract.IWirelessNic;
@@ -57,13 +59,21 @@ module Car like INetworkNode
                 radioModule = ".wlan[" + string(index) + "].radio";
         }
 
+
         vanetza[numRadios]: Vanetza {
             parameters:
                 @display("p=250,200,row,100");
+                *.securityModule = absPath("^.security");
                 *.middlewareModule = absPath("^.middleware");
                 *.mobilityModule = absPath("^.mobility");
                 *.radioDriverModule = absPath("^.radioDriver[" + string(index) + "]");
                 runtime.datetime = middleware.datetime;
+        }
+
+        runtime: Runtime {
+            parameters:
+                @display("p=50,50;i=block/timer");
+                datetime = "2016-08-01 00:00";
         }
 
         mobility: <default("artery.inet.VehicleMobility")> like IMobility {
@@ -74,7 +84,25 @@ module Car like INetworkNode
         middleware: VehicleMiddleware {
             parameters:
                 @display("p=250,100");
-                mobilityModule = ".mobility";
+                mobilityModule = absPath("^.mobility");
+        }
+
+        pcapRecorder: artery.networking.PcapItsRecorder {}
+
+        vehiclePositionProvider: artery.networking.VehiclePositionProvider {
+            parameters:
+                @display("p=250,100");
+                mobilityModule = absPath("^.mobility");
+                runtimeModule = absPath("^.runtime");
+        }
+
+        customSecurityEntity: artery.networking.CustomSecurityEntity {
+            parameters:
+                @display("p=250,100");
+                runtimeModule = absPath("^.runtime");
+                positionModule = absPath("^.vehiclePositionProvider");
+
+                
         }
 
     connections:

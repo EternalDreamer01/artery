@@ -15,5 +15,8 @@ www/
 .project
 .settings
 
+#
+.vscode
+
 # CMake default directories
 build/

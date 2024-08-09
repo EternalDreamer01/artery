@@ -10,7 +10,7 @@ namespace artery
 /**
  * Condition holds only true for the first N vehicles
  */
-class STORYBOARD_API LimitCondition : public Condition
+class LimitCondition : public Condition
 {
 public:
     LimitCondition(unsigned);

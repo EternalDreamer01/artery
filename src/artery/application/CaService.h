@@ -31,7 +31,7 @@ class CaService : public ItsG5BaseService
 		void indicate(const vanetza::btp::DataIndication&, std::unique_ptr<vanetza::UpPacket>) override;
 		void trigger() override;
 
-	private:
+	protected:
 		void checkTriggeringConditions(const omnetpp::SimTime&);
 		bool checkHeadingDelta() const;
 		bool checkPositionDelta() const;
