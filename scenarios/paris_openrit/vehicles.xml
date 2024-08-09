@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <vehicles>
-    <vehicle type="artery.inet.SecuredCar" rate="1.0" />
+    <vehicle type="artery.inet.platelet.SecuredCar" rate="1.0" />
 </vehicles>

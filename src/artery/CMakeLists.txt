@@ -27,7 +27,7 @@ add_library(core SHARED
     application/RtcmMockReceiver.cc
     application/RtcmMockService.cc
     application/StationType.cc
-    application/StaticCertificateProvider.cc
+    application/platelet/StaticCertificateProvider.cc
     application/StationaryMiddleware.cc
     application/StoryboardSignal.cc
     application/Timer.cc
@@ -43,16 +43,16 @@ add_library(core SHARED
     application/den/TractionLoss.cc
     application/den/TrafficJamUseCase.cc
     application/den/UseCase.cc
-    application/CaServiceZombie.cc
+    application/platelet/ddos/CaServiceZombie.cc
     application/SybilCertificateProvider.cc
     networking/AccessInterface.cc
-    networking/CustomSecurityEntity.cc
+    networking/platelet/PlateletSecurityEntity.cc
     networking/DccEntityBase.cc
     networking/FsmDccEntity.cc
     networking/GeoNetPacket.cc
     networking/LimericDccEntity.cc
     networking/NoRateControlDccEntity.cc
-    networking/PcapItsRecorder.cc
+    networking/platelet/PcapItsRecorder.cc
     networking/PersonPositionProvider.cc
     networking/Router.cc
     networking/Runtime.cc

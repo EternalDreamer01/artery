@@ -5,7 +5,6 @@
 #include "artery/networking/PositionFixObject.h"
 #include "artery/networking/Router.h"
 #include "artery/networking/Runtime.h"
-#include "artery/networking/CustomSecurityEntity.h"
 #include "artery/nic/RadioDriverBase.h"
 #include "artery/nic/RadioDriverProperties.h"
 #include "artery/utility/InitStages.h"
