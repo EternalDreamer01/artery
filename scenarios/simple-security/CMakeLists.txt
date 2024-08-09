@@ -1,1 +1,0 @@
-add_opp_run(simple-security CONFIG omnetpp.ini)

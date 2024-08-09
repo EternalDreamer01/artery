@@ -1,1 +1,0 @@
-add_opp_run(test CONFIG omnetpp.ini)
