@@ -1,6 +1,7 @@
 ansible/*.retry
 scenarios/**/*.pyc
 scenarios/*/results/*
+scenarios/*/certificate/
 scenarios/*/.cmdenv-log
 scenarios/*/.qtenvrc
 scenarios/*/.tkenvrc

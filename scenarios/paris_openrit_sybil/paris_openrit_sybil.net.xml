@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 2024-08-10 13:06:17 by Eclipse SUMO netconvert Version v1_20_0+1457-2a902f8d1bd
+<!-- generated on 2024-08-10 18:59:17 by Eclipse SUMO netconvert Version v1_20_0+1457-2a902f8d1bd
 <netconvertConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
 
     <input>
@@ -8,7 +8,7 @@
     </input>
 
     <output>
-        <output-file value="/home/mathi/artery/scenarios/paris_openrit/paris_openrit.net.xml"/>
+        <output-file value="/home/mathi/artery/scenarios/paris_openrit_sybil/paris_openrit_sybil.net.xml"/>
     </output>
 
     <projection>
