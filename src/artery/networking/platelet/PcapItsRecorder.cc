@@ -34,7 +34,13 @@ Define_Module(PcapItsRecorder);
 
     void PcapItsRecorder::initialize()
     {
-        EV << "Initializing pcapitsrecorder module" << std::endl;
+        EV << "Initializing PcapItsRecorder module" << std::endl;
+        const char *outputFile = par("outputFile");
+        
+        if (!strcmp(outputFile, "")) {
+            return;
+        }
+
         signalList.clear();
 
         {
@@ -157,6 +163,11 @@ Define_Module(PcapItsRecorder);
 
     void PcapItsRecorder::receiveSignal(cComponent * source, simsignal_t signalID, cObject * obj, cObject * details)
     {
+        const char *outputFile = par("outputFile");
+        
+        if (!strcmp(outputFile, "")) {
+            return;
+        }
         const char *className = obj->getClassName();
         inet::ieee80211::Ieee80211DataFrameWithSNAP packet = *dynamic_cast<inet::ieee80211::Ieee80211DataFrameWithSNAP *>(obj);
         auto from_address = packet.getTransmitterAddress();

@@ -87,7 +87,7 @@ module SecuredCar like INetworkNode
                 mobilityModule = absPath("^.mobility");
         }
 
-        pcapRecorder: artery.networking.PcapItsRecorder {}
+        pcapRecorder: artery.networking.platelet.PcapItsRecorder {}
 
         vehiclePositionProvider: artery.networking.VehiclePositionProvider {
             parameters:
