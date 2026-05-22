@@ -2,8 +2,8 @@
 #define CUSTOM_SECURITY_ENTITY_H
 
 #include <omnetpp/csimplemodule.h>
-#include <vanetza/runtime.hpp>
-#include <vanetza/position_provider.hpp>
+#include <vanetza/common/runtime.hpp>
+#include <vanetza/common/position_provider.hpp>
 #include <vanetza/security/v2/backend.hpp>
 #include <vanetza/security/v2/certificate_cache.hpp>
 #include <vanetza/security/v2/certificate_provider.hpp>
