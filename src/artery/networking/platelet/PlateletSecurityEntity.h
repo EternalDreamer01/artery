@@ -2,45 +2,69 @@
 #define CUSTOM_SECURITY_ENTITY_H
 
 #include <omnetpp/csimplemodule.h>
-#include <vanetza/security/backend.hpp>
-#include <vanetza/security/certificate_cache.hpp>
-#include <vanetza/security/certificate_provider.hpp>
-#include <vanetza/security/certificate_validator.hpp>
-#include <vanetza/security/security_entity.hpp>
-#include <vanetza/security/sign_header_policy.hpp>
-#include <vanetza/security/sign_service.hpp>
-#include <vanetza/security/verify_service.hpp>
+#include <vanetza/runtime.hpp>
+#include <vanetza/position_provider.hpp>
+#include <vanetza/security/v2/backend.hpp>
+#include <vanetza/security/v2/certificate_cache.hpp>
+#include <vanetza/security/v2/certificate_provider.hpp>
+#include <vanetza/security/v2/certificate_validator.hpp>
+#include <vanetza/security/v2/security_entity.hpp>
+#include <vanetza/security/v2/sign_header_policy.hpp>
+#include <vanetza/security/v2/sign_service.hpp>
+#include <vanetza/security/v2/verify_service.hpp>
 #include <memory>
 #include <string>
 
+namespace artery {
 
-namespace artery
+class PlateletSecurityEntity :
+    public omnetpp::cSimpleModule,
+    public vanetza::security::v2::SecurityEntity
 {
-class PlateletSecurityEntity : public omnetpp::cSimpleModule, public vanetza::security::SecurityEntity {
-    protected:
-        int numInitStages() const override;
-        void initialize(int stage) override;
-        void finish() override;
+  protected:
+    // OMNeT++ lifecycle
+    int numInitStages() const override { return 3; }
+    void initialize(int stage) override;
+    void finish() override;
 
-        vanetza::security::EncapConfirm encapsulate_packet(vanetza::security::EncapRequest&&) override;
-        vanetza::security::DecapConfirm decapsulate_packet(vanetza::security::DecapRequest&&) override;
+    // SecurityEntity overrides (v2)
+    vanetza::security::v2::EncapConfirm encapsulate_packet(vanetza::security::v2::EncapRequest&& req) override;
+    vanetza::security::v2::DecapConfirm  decapsulate_packet(vanetza::security::v2::DecapRequest&& req) override;
 
-            protected:
-        std::unique_ptr<vanetza::security::Backend> createBackend(const std::string&) const;
-        std::unique_ptr<vanetza::security::CertificateProvider> createCertificateProvider(const std::string&) const;
-        std::unique_ptr<vanetza::security::CertificateValidator> createCertificateValidator(const std::string&) const;
-        vanetza::security::SignService createSignService(const std::string&) const;
-        vanetza::security::VerifyService createVerifyService(const std::string&) const;
+  protected:
+    // Factory helpers adapted to v2 API
+    std::unique_ptr<vanetza::security::v2::Backend>
+      createBackend(const std::string &config) const;
 
-    private:
-        vanetza::Runtime* mRuntime;
-        vanetza::PositionProvider* mPositionProvider;
-        std::unique_ptr<vanetza::security::Backend> mBackend;
-        std::unique_ptr<vanetza::security::CertificateProvider> mCertificateProvider;
-        std::unique_ptr<vanetza::security::CertificateValidator> mCertificateValidator;
-        std::unique_ptr<vanetza::security::CertificateCache> mCertificateCache;
-        std::unique_ptr<vanetza::security::SignHeaderPolicy> mSignHeaderPolicy;
-        std::unique_ptr<vanetza::security::SecurityEntity> mEntity;
+    std::unique_ptr<vanetza::security::v2::CertificateProvider>
+      createCertificateProvider(const std::string &config) const;
+
+    std::unique_ptr<vanetza::security::v2::CertificateValidator>
+      createCertificateValidator(const std::string &config) const;
+
+    std::unique_ptr<vanetza::security::v2::SignService>
+      createSignService(const std::string &config) const;
+
+    std::unique_ptr<vanetza::security::v2::VerifyService>
+      createVerifyService(const std::string &config) const;
+
+  private:
+    // runtime / environment (v2)
+    vanetza::Runtime *mRuntime{nullptr};
+    vanetza::PositionProvider *mPositionProvider{nullptr};
+
+    // security components (v2)
+    std::unique_ptr<vanetza::security::v2::Backend>               mBackend;
+    std::unique_ptr<vanetza::security::v2::CertificateProvider>   mCertificateProvider;
+    std::unique_ptr<vanetza::security::v2::CertificateValidator>  mCertificateValidator;
+    std::unique_ptr<vanetza::security::v2::CertificateCache>      mCertificateCache;
+    std::unique_ptr<vanetza::security::v2::SignHeaderPolicy>      mSignHeaderPolicy;
+
+    // composite SecurityEntity (optional, if you embed/use another entity impl)
+    std::unique_ptr<vanetza::security::v2::SecurityEntity>        mEntity;
 };
-}
-#endif
+
+} // namespace artery
+
+#endif // CUSTOM_SECURITY_ENTITY_H
+
