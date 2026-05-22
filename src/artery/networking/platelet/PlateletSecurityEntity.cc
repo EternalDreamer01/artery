@@ -83,7 +83,7 @@ std::unique_ptr<vs2::CertificateValidator> PlateletSecurityEntity::createCertifi
     if (name == "Null") {
         // no-op
     } else if (name == "NullOk") {
-        static const vs2::CertificateValidator ok;
+        vs2::CertificateValidator ok;
         ASSERT(ok);
         // call concrete API via downcast
         if (auto concrete = dynamic_cast<vs2::NullCertificateValidator*>(validator.get())) {
@@ -129,12 +129,12 @@ vs2::VerifyService PlateletSecurityEntity::createVerifyService(const std::string
     return verify_service;
 }
 
-vs2::EncapConfirm PlateletSecurityEntity::encapsulate_packet(vs2::EncapRequest&& request)
+vs::EncapConfirm PlateletSecurityEntity::encapsulate_packet(vs2::EncapRequest&& request)
 {
     return notNullPtr(mEntity)->encapsulate_packet(std::move(request));
 }
 
-vs2::DecapConfirm PlateletSecurityEntity::decapsulate_packet(vs2::DecapRequest&& request)
+vs::DecapConfirm PlateletSecurityEntity::decapsulate_packet(vs2::DecapRequest&& request)
 {
     return notNullPtr(mEntity)->decapsulate_packet(std::move(request));
 }
