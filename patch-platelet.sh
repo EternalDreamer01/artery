@@ -11,4 +11,6 @@ rpl -RF "vanetza/security/naive_certificate_provider.hpp" "vanetza/security/v2/n
 rpl -RF "vanetza/security/null_certificate_provider.hpp" "vanetza/security/v2/null_certificate_provider.hpp" src/
 rpl -RF "vanetza/security/null_certificate_validator.hpp" "vanetza/security/v2/null_certificate_validator.hpp" src/
 
+rpl -RF "vanetza/security/trust_store.hpp" "vanetza/security/v2/trust_store.hpp" src/
+
 # rpl -RF "= vanetza::security;" "= vanetza::security::v2;" src/

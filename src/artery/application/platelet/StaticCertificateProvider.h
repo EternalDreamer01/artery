@@ -3,7 +3,7 @@
 
 #include <vanetza/security/v2/certificate.hpp>
 #include <vanetza/security/v2/certificate_cache.hpp>
-#include <vanetza/security/trust_store.hpp>
+#include <vanetza/security/v2/trust_store.hpp>
 #include <vanetza/security/ecdsa256.hpp>
 #include <vanetza/security/v2/certificate_provider.hpp>
 
