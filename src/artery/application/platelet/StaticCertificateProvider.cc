@@ -1,15 +1,18 @@
 #include "StaticCertificateProvider.h"
 
-#include<string>
-#include<stack>
 #include <boost/filesystem.hpp>
-#include <vanetza/security/persistence.hpp>
 #include <omnetpp.h>
+#include <vanetza/security/persistence.hpp>
 
-namespace artery {
+#include <stack>
+#include <string>
+
+
+namespace artery
+{
 
 using namespace boost::filesystem;
-using namespace vanetza::security;
+// using namespace vanetza::security;
 
 static std::stack<std::string> unused_certificates;
 static std::stack<std::string> used_certificates;
@@ -19,7 +22,8 @@ static bool certificateLoaded = false;
 StaticCertificateProvider::StaticCertificateProvider()
 {
 }
-void StaticCertificateProvider::LoadTickets() {
+void StaticCertificateProvider::LoadTickets()
+{
 
     path certificate_path(boost::filesystem::current_path());
 
@@ -30,14 +34,14 @@ void StaticCertificateProvider::LoadTickets() {
             if (file_path.substr(file_path.find_last_of("."), file_path.size()).compare(".cert") == 0) {
                 unused_certificates.push(itr->path().string());
             }
-        }    
+        }
     }
     certificateLoaded = true;
 }
 
-void StaticCertificateProvider::LoadAuthorizationAuthority(std::string aa_path, vanetza::security::CertificateCache& cert_cache)
+void StaticCertificateProvider::LoadAuthorizationAuthority(std::string aa_path, vs2::CertificateCache& cert_cache)
 {
-    cert_cache.insert(vanetza::security::load_certificate_from_file(aa_path));
+    cert_cache.insert(vs2::load_certificate_from_file(aa_path));
 }
 
 
@@ -57,27 +61,29 @@ void StaticCertificateProvider::RenewTickets()
     std::string key_path = certificate_path.substr(0, certificate_path.find_last_of(".")) + ".key";
 
 
-    current_certificate = load_certificate_from_file(certificate_path);
-    current_keypair = load_private_key_from_file(key_path);
+    current_certificate = vs2::load_certificate_from_file(certificate_path);
+    current_keypair = vs2::load_private_key_from_file(key_path);
 }
 
-const ecdsa256::PrivateKey& StaticCertificateProvider::own_private_key() {
-        if (need_renew) {
+const vs::ecdsa256::PrivateKey& StaticCertificateProvider::own_private_key()
+{
+    if (need_renew) {
         RenewTickets();
         need_renew = false;
     }
     return current_keypair.private_key;
 }
-const Certificate& StaticCertificateProvider::own_certificate() {
+const vs2::Certificate& StaticCertificateProvider::own_certificate()
+{
     if (need_renew) {
         RenewTickets();
         need_renew = false;
     }
     return current_certificate;
 }
-std::list<Certificate> StaticCertificateProvider::own_chain() {
-    std::list<Certificate> chain;
+std::list<vs2::Certificate> StaticCertificateProvider::own_chain()
+{
+    std::list<vs2::Certificate> chain;
     return chain;
 }
-}
-
+}  // namespace artery

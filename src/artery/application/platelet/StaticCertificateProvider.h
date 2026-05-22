@@ -8,40 +8,41 @@
 #include <vanetza/security/v2/certificate_provider.hpp>
 
 
-
 namespace artery {
-using namespace vanetza::security;
+namespace vs = vanetza::security;
+namespace vs2 = vanetza::security::v2;
+// using namespace vanetza::security;
 
-class StaticCertificateProvider : public CertificateProvider {
+class StaticCertificateProvider : public vs2::CertificateProvider {
 
 public:
     StaticCertificateProvider();
-    void LoadAuthorizationAuthority(std::string, vanetza::security::CertificateCache&);
+    void LoadAuthorizationAuthority(std::string, vs2::CertificateCache&);
     void RenewTickets();
 
     /**
      * Get own certificate to use for signing
      * \return own certificate
      */
-    const Certificate& own_certificate() override;
+    const vs2::Certificate& own_certificate() override;
 
     /**
      * Get own certificate chain in root CA → AA → AT order, excluding the AT and root certificate
      * \return own certificate chain
      */
-    std::list<Certificate> own_chain() override;
+    std::list<vs2::Certificate> own_chain() override;
 
     /**
      * Get private key associated with own certificate
      * \return private key
      */
-    const ecdsa256::PrivateKey& own_private_key() override;
+    const vs::ecdsa256::PrivateKey& own_private_key() override;
 
 private:
     void LoadTickets();
-    ecdsa256::KeyPair current_keypair;
-    std::list<Certificate> current_chain;
-    Certificate current_certificate;
+    vs::ecdsa256::KeyPair current_keypair;
+    std::list<vs2::Certificate> current_chain;
+    vs2::Certificate current_certificate;
     int need_renew = true;
 };
 

@@ -28,12 +28,12 @@ class PlateletSecurityEntity :
     void finish() override;
 
     // SecurityEntity overrides (v2)
-    vanetza::security::v2::EncapConfirm encapsulate_packet(vanetza::security::v2::EncapRequest&& req) override;
-    vanetza::security::v2::DecapConfirm  decapsulate_packet(vanetza::security::v2::DecapRequest&& req) override;
+    vanetza::security::EncapConfirm encapsulate_packet(vanetza::security::EncapRequest&& req) override;
+    vanetza::security::DecapConfirm decapsulate_packet(vanetza::security::DecapRequest&& req) override;
 
   protected:
     // Factory helpers adapted to v2 API
-    std::unique_ptr<vanetza::security::v2::Backend>
+    std::unique_ptr<vanetza::security::Backend>
       createBackend(const std::string &config) const;
 
     std::unique_ptr<vanetza::security::v2::CertificateProvider>
@@ -45,7 +45,7 @@ class PlateletSecurityEntity :
     std::unique_ptr<vanetza::security::v2::SignService>
       createSignService(const std::string &config) const;
 
-    std::unique_ptr<vanetza::security::v2::VerifyService>
+    std::unique_ptr<vanetza::security::VerifyService>
       createVerifyService(const std::string &config) const;
 
   private:
@@ -54,7 +54,7 @@ class PlateletSecurityEntity :
     vanetza::PositionProvider *mPositionProvider{nullptr};
 
     // security components (v2)
-    std::unique_ptr<vanetza::security::v2::Backend>               mBackend;
+    std::unique_ptr<vanetza::security::Backend>               mBackend;
     std::unique_ptr<vanetza::security::v2::CertificateProvider>   mCertificateProvider;
     std::unique_ptr<vanetza::security::v2::CertificateValidator>  mCertificateValidator;
     std::unique_ptr<vanetza::security::v2::CertificateCache>      mCertificateCache;

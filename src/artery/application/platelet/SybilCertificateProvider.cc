@@ -1,9 +1,9 @@
 #include "artery/application/platelet/SybilCertificateProvider.h"
 
 #include <vanetza/security/delegating_security_entity.hpp>
-#include <vanetza/security/naive_certificate_provider.hpp>
-#include <vanetza/security/null_certificate_provider.hpp>
-#include <vanetza/security/null_certificate_validator.hpp>
+#include <vanetza/security/v2/naive_certificate_provider.hpp>
+#include <vanetza/security/v2/null_certificate_provider.hpp>
+#include <vanetza/security/v2/null_certificate_validator.hpp>
 
 #include <string>
 #include <stack>
@@ -11,10 +11,11 @@
 #include <vanetza/security/persistence.hpp>
 #include <omnetpp.h>
 
+
 namespace artery {
 
-using namespace boost::filesystem;
-using namespace vanetza::security;
+// namespace vs = vanetza::security;
+// namespace vs2 = vanetza::security::v2;
 
 static std::stack<std::string> unused_certificates;
 static std::stack<std::string> used_certificates;
@@ -26,11 +27,11 @@ SybilCertificateProvider::SybilCertificateProvider()
 }
 void SybilCertificateProvider::LoadTickets() {
 
-    path certificate_path("./certificate/");
+    boost::filesystem::path certificate_path("./certificate/");
 
-    directory_iterator end_itr;
-    for (directory_iterator itr(certificate_path); itr != end_itr; itr++) {
-        if (is_regular_file(itr->path())) {
+    boost::filesystem::directory_iterator end_itr;
+    for (boost::filesystem::directory_iterator itr(certificate_path); itr != end_itr; itr++) {
+        if (boost::filesystem::is_regular_file(itr->path())) {
             std::string file_path = itr->path().string();
             if (file_path.substr(file_path.find_last_of("."), file_path.size()).compare(".cert") == 0) {
                 unused_certificates.push(itr->path().string());
@@ -40,9 +41,9 @@ void SybilCertificateProvider::LoadTickets() {
     certificateLoaded = true;
 }
 
-void SybilCertificateProvider::LoadAuthorizationAuthority(std::string aa_path, vanetza::security::CertificateCache& cert_cache)
+void SybilCertificateProvider::LoadAuthorizationAuthority(std::string aa_path, vs2::CertificateCache& cert_cache)
 {
-    cert_cache.insert(vanetza::security::load_certificate_from_file(aa_path));
+    cert_cache.insert(vs2::load_certificate_from_file(aa_path));
 }
 
 
@@ -63,18 +64,18 @@ void SybilCertificateProvider::RenewTickets()
     std::string key_path = certificate_path.substr(0, certificate_path.find_last_of(".")) + ".key";
 
 
-    current_certificate = load_certificate_from_file(certificate_path);
-    current_keypair = load_private_key_from_file(key_path);
+    current_certificate = vs2::load_certificate_from_file(certificate_path);
+    current_keypair = vs2::load_private_key_from_file(key_path);
 }
 
-const ecdsa256::PrivateKey& SybilCertificateProvider::own_private_key() {
+const vs::ecdsa256::PrivateKey& SybilCertificateProvider::own_private_key() {
         if (usage == 0) {
         RenewTickets();
         usage = 5;
     }
     return current_keypair.private_key;
 }
-const Certificate& SybilCertificateProvider::own_certificate() {
+const vs2::Certificate& SybilCertificateProvider::own_certificate() {
     if (usage == 0) {
         RenewTickets();
         usage = 5;
@@ -83,8 +84,8 @@ const Certificate& SybilCertificateProvider::own_certificate() {
 
     return current_certificate;
 }
-std::list<Certificate> SybilCertificateProvider::own_chain() {
-    std::list<Certificate> chain;
+std::list<vs2::Certificate> SybilCertificateProvider::own_chain() {
+    std::list<vs2::Certificate> chain;
     return chain;
 }
 }
