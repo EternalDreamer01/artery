@@ -1,7 +1,12 @@
-#include "artery/application/SybilCertificateProvider.h"
+#include "artery/application/platelet/SybilCertificateProvider.h"
 
-#include<string>
-#include<stack>
+#include <vanetza/security/delegating_security_entity.hpp>
+#include <vanetza/security/naive_certificate_provider.hpp>
+#include <vanetza/security/null_certificate_provider.hpp>
+#include <vanetza/security/null_certificate_validator.hpp>
+
+#include <string>
+#include <stack>
 #include <boost/filesystem.hpp>
 #include <vanetza/security/persistence.hpp>
 #include <omnetpp.h>
