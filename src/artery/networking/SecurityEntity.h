@@ -4,7 +4,7 @@
 #include <omnetpp/csimplemodule.h>
 #include <vanetza/security/backend.hpp>
 #include <vanetza/security/security_entity.hpp>
-#include <vanetza/security/sign_service.hpp>
+#include <vanetza/security/v2/sign_service.hpp>
 #include <vanetza/security/verify_service.hpp>
 #include <vanetza/security/v2/certificate_cache.hpp>
 #include <vanetza/security/v2/certificate_provider.hpp>

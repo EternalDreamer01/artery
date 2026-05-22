@@ -5,7 +5,7 @@
 #include <inet/common/ModuleAccess.h>
 #include <vanetza/common/position_provider.hpp>
 #include <vanetza/common/runtime.hpp>
-#include <vanetza/security/v2/delegating_security_entity.hpp>
+#include <vanetza/security/delegating_security_entity.hpp>
 #include <vanetza/security/v2/naive_certificate_provider.hpp>
 #include <vanetza/security/v2/null_certificate_provider.hpp>
 #include <vanetza/security/v2/null_certificate_validator.hpp>
