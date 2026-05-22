@@ -1,4 +1,4 @@
-#include "PlateletSecurityEntity.h"
+#include "artery/networking/platelet/PlateletSecurityEntity.h"
 #include "artery/networking/Runtime.h"
 #include "artery/networking/SecurityEntity.h"
 #include "artery/utility/PointerCheck.h"
@@ -29,7 +29,7 @@ void PlateletSecurityEntity::initialize(int stage)
         mRuntime = inet::findModuleFromPar<Runtime>(par("runtimeModule"), this);
         mPositionProvider = inet::findModuleFromPar<vanetza::PositionProvider>(par("positionModule"), this);
     } else if (stage == 1){
-        mBackend = createBackend(par("CryptoBackend"));
+        mBackend = vs::createBackend(par("CryptoBackend"));
         mCertificateProvider = createCertificateProvider(par("CertificateProvider"));
         mCertificateValidator = createCertificateValidator(par("CertificateValidator"));
         mCertificateCache.reset(new vs2::CertificateCache(*notNullPtr(mRuntime)));
@@ -51,7 +51,7 @@ void PlateletSecurityEntity::finish()
 
 std::unique_ptr<vs::Backend> PlateletSecurityEntity::createBackend(const std::string& name) const
 {
-    auto backend = vs2::create_backend(name.c_str());
+    auto backend = vs::create_backend(name.c_str());
     if (!backend) {
         error("No security backend found with name \"%s\"", name.c_str());
     }
@@ -83,7 +83,7 @@ std::unique_ptr<vs2::CertificateValidator> PlateletSecurityEntity::createCertifi
     if (name == "Null") {
         // no-op
     } else if (name == "NullOk") {
-        static const vs2::CertificateValidity ok;
+        static const vs2::CertificateValidator ok;
         ASSERT(ok);
         // call concrete API via downcast
         if (auto concrete = dynamic_cast<vs2::NullCertificateValidator*>(validator.get())) {
