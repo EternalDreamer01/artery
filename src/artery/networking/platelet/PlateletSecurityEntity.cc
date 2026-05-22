@@ -5,15 +5,15 @@
 #include <inet/common/ModuleAccess.h>
 #include <vanetza/common/position_provider.hpp>
 #include <vanetza/common/runtime.hpp>
-#include <vanetza/security/delegating_security_entity.hpp>
-#include <vanetza/security/naive_certificate_provider.hpp>
-#include <vanetza/security/null_certificate_provider.hpp>
-#include <vanetza/security/null_certificate_validator.hpp>
+#include <vanetza/security/v2/delegating_security_entity.hpp>
+#include <vanetza/security/v2/naive_certificate_provider.hpp>
+#include <vanetza/security/v2/null_certificate_provider.hpp>
+#include <vanetza/security/v2/null_certificate_validator.hpp>
 #include <artery/application/platelet/StaticCertificateProvider.h>
 #include "artery/application/SybilCertificateProvider.h"
 
 
-namespace vs = vanetza::security;
+namespace vs = vanetza::security::v2;
 
 
 namespace artery {
