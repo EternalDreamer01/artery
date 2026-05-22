@@ -12,12 +12,11 @@
 #include <artery/application/platelet/StaticCertificateProvider.h>
 #include "artery/application/platelet/SybilCertificateProvider.h"
 
-
 namespace vs = vanetza::security::v2;
 
-
 namespace artery {
-    Define_Module(PlateletSecurityEntity)
+    Define_Module(PlateletSecurityEntity); // <-- semicolon added
+
 int PlateletSecurityEntity::numInitStages() const
 {
     return 2;
@@ -77,14 +76,18 @@ std::unique_ptr<vs::CertificateProvider> PlateletSecurityEntity::createCertifica
 
 std::unique_ptr<vs::CertificateValidator> PlateletSecurityEntity::createCertificateValidator(const std::string& name) const
 {
-    std::unique_ptr<vs::NullCertificateValidator> validator { new vs::NullCertificateValidator() };
+    // allocate as base type to match return signature
+    std::unique_ptr<vs::CertificateValidator> validator = std::make_unique<vs::NullCertificateValidator>();
 
     if (name == "Null") {
         // no-op
     } else if (name == "NullOk") {
         static const vs::CertificateValidity ok;
         ASSERT(ok);
-        validator->certificate_check_result(ok);
+        // call concrete API via downcast
+        if (auto concrete = dynamic_cast<vs::NullCertificateValidator*>(validator.get())) {
+            concrete->certificate_check_result(ok);
+        }
     } else {
         error("No certificate validator available with name \"%s\"", name.c_str());
     }
@@ -97,11 +100,11 @@ vs::SignService PlateletSecurityEntity::createSignService(const std::string& nam
     vs::SignService sign_service;
 
     if (name == "straight") {
-        sign_service = vs::straight_sign_service(*mCertificateProvider, *mBackend, *mSignHeaderPolicy);
+        sign_service = vs::straight_sign_service(*notNullPtr(mCertificateProvider), *notNullPtr(mBackend), *notNullPtr(mSignHeaderPolicy));
     } else if (name == "deferred") {
-        sign_service = vs::deferred_sign_service(*mCertificateProvider, *mBackend, *mSignHeaderPolicy);
+        sign_service = vs::deferred_sign_service(*notNullPtr(mCertificateProvider), *notNullPtr(mBackend), *notNullPtr(mSignHeaderPolicy));
     } else if (name == "dummy") {
-        sign_service = vs::dummy_sign_service(*mRuntime, vs::NullCertificateProvider::null_certificate());
+        sign_service = vs::dummy_sign_service(*notNullPtr(mRuntime), vs::NullCertificateProvider::null_certificate());
     } else {
         error("No security sign service available with name \"%s\"", name.c_str());
     }
@@ -114,8 +117,8 @@ vs::VerifyService PlateletSecurityEntity::createVerifyService(const std::string&
     vs::VerifyService verify_service;
 
     if (name == "straight") {
-        verify_service = vs::straight_verify_service(*mRuntime, *mCertificateProvider, *mCertificateValidator,
-                    *mBackend, *mCertificateCache, *mSignHeaderPolicy, *mPositionProvider);
+        verify_service = vs::straight_verify_service(*notNullPtr(mRuntime), *notNullPtr(mCertificateProvider), *notNullPtr(mCertificateValidator),
+                    *notNullPtr(mBackend), *notNullPtr(mCertificateCache), *notNullPtr(mSignHeaderPolicy), *notNullPtr(mPositionProvider));
     } else if (name == "dummy") {
         verify_service = vs::dummy_verify_service(vs::VerificationReport::Success, vs::CertificateValidity::valid());
     } else {
@@ -135,3 +138,4 @@ vs::DecapConfirm PlateletSecurityEntity::decapsulate_packet(vs::DecapRequest&& r
     return notNullPtr(mEntity)->decapsulate_packet(std::move(request));
 }
 }  // namespace artery
+
