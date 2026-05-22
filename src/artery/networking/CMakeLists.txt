@@ -11,4 +11,6 @@ target_sources(core PRIVATE
     SecurityEntity.cc
     StationaryPositionProvider.cc
     VehiclePositionProvider.cc
+    platelet/PlateletSecurityEntity.cc
+    platelet/PcapItsRecorder.cc
 )

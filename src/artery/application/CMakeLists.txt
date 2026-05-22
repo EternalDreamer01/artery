@@ -42,4 +42,8 @@ target_sources(core PRIVATE
     den/TractionLoss.cc
     den/TrafficJamUseCase.cc
     den/UseCase.cc
+    platelet/StaticCertificateProvider.cc
+    platelet/ddos/CaServiceZombie.cc
+    platelet/SybilCertificateProvider.cc
+    platelet/SybilService.cc
 )
