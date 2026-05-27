@@ -1,6 +1,6 @@
 # CMake generated Testfile for 
-# Source directory: /home/mathi/artery/src/artery
-# Build directory: /home/mathi/artery/src/artery
+# Source directory: /opt/artery/src/artery
+# Build directory: /opt/artery/src/artery
 # 
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.

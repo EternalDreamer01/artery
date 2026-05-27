@@ -4,11 +4,11 @@
 <netconvertConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
 
     <input>
-        <osm-files value="/home/mathi/artery/scenarios/paris_openrit/paris.osm"/>
+        <osm-files value="/opt/artery/scenarios/paris_openrit/paris.osm"/>
     </input>
 
     <output>
-        <output-file value="/home/mathi/artery/scenarios/paris_openrit_sybil/paris_openrit_sybil.net.xml"/>
+        <output-file value="/opt/artery/scenarios/paris_openrit_sybil/paris_openrit_sybil.net.xml"/>
     </output>
 
     <projection>

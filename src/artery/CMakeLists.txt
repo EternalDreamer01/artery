@@ -44,7 +44,8 @@ add_library(core SHARED
     application/den/TrafficJamUseCase.cc
     application/den/UseCase.cc
     application/platelet/ddos/CaServiceZombie.cc
-    application/SybilCertificateProvider.cc
+    application/platelet/SybilCertificateProvider.cc
+    application/platelet/SybilService.cc
     networking/AccessInterface.cc
     networking/platelet/PlateletSecurityEntity.cc
     networking/DccEntityBase.cc

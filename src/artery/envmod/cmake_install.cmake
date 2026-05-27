@@ -1,4 +1,4 @@
-# Install script for directory: /home/mathi/artery/src/artery/envmod
+# Install script for directory: /opt/artery/src/artery/envmod
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -49,12 +49,12 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libartery_envmod.so"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/home/mathi/artery/src/artery/envmod/libartery_envmod.so")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/opt/artery/src/artery/envmod/libartery_envmod.so")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libartery_envmod.so" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libartery_envmod.so")
     file(RPATH_CHANGE
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libartery_envmod.so"
-         OLD_RPATH "/home/mathi/artery/src/artery:/home/mathi/artery/src/traci:/home/mathi/artery/extern/vanetza/lib:/home/mathi/artery/extern:/home/mathi/omnetpp-5.5.2/lib:"
+         OLD_RPATH "/opt/artery/src/artery:/opt/artery/src/traci:/opt/artery/extern/vanetza/lib:/opt/artery/extern:/opt/omnetpp/lib:"
          NEW_RPATH "")
     if(CMAKE_INSTALL_DO_STRIP)
       execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libartery_envmod.so")

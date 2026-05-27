@@ -2,8 +2,8 @@
 
 <!-- generated on 2024-08-10 13:06:18.475413 by randomTrips.py UNKNOWN
 <configuration>
-    <net-file value="/home/mathi/artery/scenarios/paris_openrit/paris_openrit.net.xml"/>
-    <output-trip-file value="/home/mathi/artery/scenarios/paris_openrit/paris_openrit.trips.xml"/>
+    <net-file value="/opt/artery/scenarios/paris_openrit/paris_openrit.net.xml"/>
+    <output-trip-file value="/opt/artery/scenarios/paris_openrit/paris_openrit.trips.xml"/>
     <period value="10.0"/>
 </configuration>
 -->

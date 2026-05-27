@@ -1,4 +1,4 @@
-#include "artery/application/SybilCertificateProvider.h"
+#include "artery/application/platelet/SybilCertificateProvider.h"
 
 #include<string>
 #include<stack>

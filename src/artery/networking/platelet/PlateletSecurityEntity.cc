@@ -10,7 +10,7 @@
 #include <vanetza/security/null_certificate_provider.hpp>
 #include <vanetza/security/null_certificate_validator.hpp>
 #include <artery/application/platelet/StaticCertificateProvider.h>
-#include "artery/application/SybilCertificateProvider.h"
+#include "artery/application/platelet/SybilCertificateProvider.h"
 
 
 namespace vs = vanetza::security;

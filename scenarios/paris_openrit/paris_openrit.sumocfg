@@ -3,8 +3,8 @@
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.sf.net/xsd/sumoConfiguration.xsd">
 
     <input>
-        <net-file value="/home/mathi/artery/scenarios/paris_openrit/paris_openrit.net.xml"/>
-        <route-files value="/home/mathi/artery/scenarios/paris_openrit/paris_openrit.rou.xml"/>
+        <net-file value="/opt/artery/scenarios/paris_openrit/paris_openrit.net.xml"/>
+        <route-files value="/opt/artery/scenarios/paris_openrit/paris_openrit.rou.xml"/>
     </input>
     
     <processing>
